@@ -1,4 +1,6 @@
 #pragma once
+class Field;
+
 class TimeBar
 {
 public:

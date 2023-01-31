@@ -27,6 +27,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Field field;
     TimeBar tb;
 
+
     tb.Init();
     field.Init();
     while (ProcessMessage() == 0)

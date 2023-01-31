@@ -17,8 +17,8 @@ namespace
 	int moziY = 350;
 
 	//bool gameend = false;
-	bool answercheck = false;
 
+	bool answercheck = false;
 
 	// 問題を繰り返す回数
 	int questionnum = 20;
@@ -43,23 +43,29 @@ void Field::Init()
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 
 	num = rand() % randomnum + 1;		// 1～4の乱数を出す
+	
 }
 
 void Field::Update()
 {
+	Pad::update();
 
-	answercheck = false;	// 正解のフラグの初期化
-	
-
-	if (kTime.Check() == true)	// フラグがtrueだったらランダムに問題を出す
+	if (answercheck == true)	// 正解が押されたら次の問題へ
 	{
 		num = rand() % randomnum + 1;
 	}
 
+	answercheck = false;	// 正解のフラグの初期化
+	
+
+	//if (kTime.Check() == true)	// フラグがtrueだったらランダムに問題を出す
+	//{
+	//	num = rand() % randomnum + 1;
+	//}
 
 
-	for (i = 0; i < questionnum; i++);
-	DrawFormatString(0, 260, GetColor(255, 255, 255), "繰り返し数:% d", i);
+//	for (i = 0; i < questionnum; i++);
+//	DrawFormatString(0, 260, GetColor(255, 255, 255), "繰り返し数:% d", i);
 	
 	
 	// ランダムになっているか調べる(デバック用)
@@ -73,7 +79,7 @@ void Field::Update()
 	// numが1キーの上が押されるまでfalse(待機)
 	if (num == 1)
 	{
-		if (padState & (PAD_INPUT_UP))
+		if (Pad::isTrigger(PAD_INPUT_UP))
 		{
 			answercheck = true;		// 正解が押されたらマル
 		}
@@ -81,12 +87,11 @@ void Field::Update()
 		{
 			MissPressUp();			// 誤答処理を呼び出す
 		}
-		
 	}
 
 	if (num == 2)
 	{
-		if (padState & (PAD_INPUT_DOWN))
+		if (Pad::isTrigger(PAD_INPUT_DOWN))
 		{
 			answercheck = true;		// 正解が押されたらマル
 		}
@@ -98,7 +103,7 @@ void Field::Update()
 
 	if (num == 3)
 	{
-		if (padState & (PAD_INPUT_RIGHT))
+		if (Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
 			answercheck = true;		// 正解が押されたらマル
 		}
@@ -110,7 +115,7 @@ void Field::Update()
 
 	if (num == 4)
 	{
-		if (padState & (PAD_INPUT_LEFT))
+		if (Pad::isTrigger(PAD_INPUT_LEFT))
 		{
 			answercheck = true;		// 正解が押されたらマル
 		}
@@ -153,7 +158,7 @@ void Field::Draw()		// 問題の描画
 		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "下");
 		break;
 
-	case 3:;
+	case 3:
 		// 表示する文字
 		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "右");
 		break;
@@ -194,11 +199,8 @@ void Field::DrawField()		// フィールドの描画
 // 不正解の場合の処理
 void Field::MissPressUp()
 {
-	// パッド(もしくはキーボード)からの入力を取得する
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
-	if (padState & (PAD_INPUT_DOWN) || padState & (PAD_INPUT_LEFT) ||
-		padState & (PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 	//	gameend = true;
 		// デバック用
@@ -208,11 +210,8 @@ void Field::MissPressUp()
 
 void Field::MissPressDown()
 {
-	// パッド(もしくはキーボード)からの入力を取得する
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
-	if (padState & (PAD_INPUT_UP) || padState & (PAD_INPUT_LEFT) ||
-		padState & (PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 	//	gameend = true;
 		// デバック用
@@ -222,11 +221,8 @@ void Field::MissPressDown()
 
 void Field::MissPressLeft()
 {
-	// パッド(もしくはキーボード)からの入力を取得する
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
-	if (padState & (PAD_INPUT_UP) || padState & (PAD_INPUT_DOWN) ||
-		padState & (PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 	//	gameend = true;
 		// デバック用
@@ -236,11 +232,8 @@ void Field::MissPressLeft()
 
 void Field::MissPressRight()
 {
-	// パッド(もしくはキーボード)からの入力を取得する
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
-	if (padState & (PAD_INPUT_UP) || padState & (PAD_INPUT_DOWN) ||
-		padState & (PAD_INPUT_LEFT))
+	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
+		Pad::isTrigger(PAD_INPUT_LEFT))
 	{
 	//	gameend = true;
 		// デバック用
@@ -257,6 +250,10 @@ bool Field::AnswerCheck()
 	// trueだったら正解正解ボタンが押されるまでは待機
 	if (answercheck == true)
 	{
+		//if (kTime.Check() == false)	// フラグがtrueだったらランダムに問題を出す
+		//{
+		//	kTime.Update();
+		//}
 		DrawFormatString(0, 200, GetColor(255, 255, 255), "〇");
 	}
 	else
@@ -264,6 +261,19 @@ bool Field::AnswerCheck()
 		DrawFormatString(0, 150, GetColor(255, 255, 255), "待機中");
 	}
 	return false;
+}
+
+bool Field::AnswerFlag()
+{
+	if (answercheck == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
 }
 
 

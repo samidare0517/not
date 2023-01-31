@@ -1,10 +1,12 @@
 #include "TimeBar.h"
 #include "DxLib.h"
 #include "game.h"
+#include "Field.h"
 
 namespace
 {
 	bool timeflag = false;
+	Field kfield;
 }
 
 TimeBar::TimeBar():
@@ -28,12 +30,19 @@ void TimeBar::Init()
 
 void TimeBar::Update()
 {
-	// フラグがtrueで帰ってきたらフ
-	// ラグを初期化する前にタイムバーを画面サイズに戻す
+	// フラグがtrueで帰ってきたらフラグを
+	// 初期化する前にタイムバーを画面サイズに戻す
 	if(timeflag == true)
 	{
 		tb = Game::kScreenWindth;
 	}
+
+
+	if (kfield.AnswerFlag() == true)
+	{
+		tb = Game::kScreenWindth;
+	}
+
 
 	timeflag = false;		// フラグの初期化
 

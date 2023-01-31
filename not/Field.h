@@ -21,12 +21,12 @@ public:
 
 	// 正解が入力されたかどうかチェックする
 	bool AnswerCheck();
+	bool AnswerFlag();
 
 	// ゲームが終了しているか続行しているか調べる
 //	bool isGameEnd();
 
 private:
-
 
 };
 
