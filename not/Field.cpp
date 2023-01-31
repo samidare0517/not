@@ -267,6 +267,7 @@ bool Field::AnswerCheck()
 }
 
 
+
 // ƒQ[ƒ€‚ªI—¹‚µ‚Ä‚¢‚é‚©‘±s‚µ‚Ä‚¢‚é‚©’²‚×‚é
 //bool Field::isGameEnd()
 //{
