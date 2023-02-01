@@ -37,7 +37,7 @@ void TimeBar::Update()
 		tb = Game::kScreenWindth;
 	}
 
-
+	// 正解が押されたらタイムバーを画面サイズに戻す
 	if (kfield.AnswerFlag() == true)
 	{
 		tb = Game::kScreenWindth;
@@ -53,7 +53,7 @@ void TimeBar::Update()
 		frame = 0;
 		if (tb > 0)
 		{
-			tb -= 200;			// 1フレームで200ずつ減らす(1問あたり4秒)
+			tb -= 300;			// 1フレームで200ずつ減らす(1問あたり4秒)
 		}
 		if (tb <= 0)			// 0になったら0を入れる
 		{

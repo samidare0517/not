@@ -9,19 +9,19 @@ namespace
 	// ランダム用
 	int num = 0;
 
-	// 問題数
-	int randomnum = 4;
+	// 全体の問題バリエーション数
+	int randomnum = 8;
 
 	// 問題の文字表示位置
-	int moziX = 350;
-	int moziY = 350;
+	int moziX = 400;
+	int moziY = 400;
 
-	//bool gameend = false;
+	
 
 	bool answercheck = false;
 
 	// 問題を繰り返す回数
-	int questionnum = 20;
+	int questionnum = 30;
 	int i = 0;
 
 	TimeBar kTime;
@@ -49,23 +49,25 @@ void Field::Init()
 void Field::Update()
 {
 	Pad::update();
-
 	if (answercheck == true)	// 正解が押されたら次の問題へ
 	{
-		num = rand() % randomnum + 1;
+		for (int i = 0; i < questionnum; i++)		// 20問繰り返す
+		{
+			num = rand() % randomnum + 1;
+		}
+		i++;
 	}
 
+	// 確認用
+	if (i == 30)
+	{
+		DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:% d", i);
+	}
+		
+	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:% d", i);
+
 	answercheck = false;	// 正解のフラグの初期化
-	
 
-	//if (kTime.Check() == true)	// フラグがtrueだったらランダムに問題を出す
-	//{
-	//	num = rand() % randomnum + 1;
-	//}
-
-
-//	for (i = 0; i < questionnum; i++);
-//	DrawFormatString(0, 260, GetColor(255, 255, 255), "繰り返し数:% d", i);
 	
 	
 	// ランダムになっているか調べる(デバック用)
@@ -75,8 +77,10 @@ void Field::Update()
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 
 	// numと同じ方向が押されていたら次の問題へ
-
 	// numが1キーの上が押されるまでfalse(待機)
+
+	// ***通常問題***
+	// 上が正解
 	if (num == 1)
 	{
 		if (Pad::isTrigger(PAD_INPUT_UP))
@@ -89,6 +93,7 @@ void Field::Update()
 		}
 	}
 
+	// 下が正解
 	if (num == 2)
 	{
 		if (Pad::isTrigger(PAD_INPUT_DOWN))
@@ -101,19 +106,8 @@ void Field::Update()
 		}
 	}
 
+	// 左が正解
 	if (num == 3)
-	{
-		if (Pad::isTrigger(PAD_INPUT_RIGHT))
-		{
-			answercheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			MissPressRight();		// 誤答処理を呼び出す
-		}
-	}
-
-	if (num == 4)
 	{
 		if (Pad::isTrigger(PAD_INPUT_LEFT))
 		{
@@ -124,21 +118,77 @@ void Field::Update()
 			MissPressLeft();		// 誤答処理を呼び出す
 		}
 	}
+	
+	// 右が正解
+	if (num == 4)
+	{
+		if (Pad::isTrigger(PAD_INPUT_RIGHT))
+		{
+			answercheck = true;		// 正解が押されたらマル
+		}
+		else
+		{
+			MissPressRight();		// 誤答処理を呼び出す
+		}
+	}
+	
+	// ***じゃない問題***
+	
+	// 上じゃない　(下左右が丸)
+	if (num == 5)
+	{
+		if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) || 
+			Pad::isTrigger(PAD_INPUT_RIGHT))
+		{
+			answercheck = true;		// 正解が押されたらマル
+		}
+		else
+		{
+			NotPressUp();		// 誤答処理を呼び出す
+		}
+	}
 
+	 //下じゃない　(上左右が丸)
+	if (num == 6)
+	{
+		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT))
+		{
+			answercheck = true;		// 正解が押されたらマル
+		}
+		else
+		{
+			NotPressDown();		// 誤答処理を呼び出す
+		}
+	}
 
-	// 「じゃない」テスト
-	//if (num == 5)
-	//{
-	//	if (padState & (PAD_INPUT_LEFT))
-	//	{
-	//		answercheck = false;		// 正解が押されたらマル
-	//	}
-	//	else
-	//	{
-	//		answercheck = true;
-	//	}
-	//}
+	// 左じゃない　(上下右が丸)
+	if (num == 7)
+	{
+		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT))
+		{
+			answercheck = true;		// 正解が押されたらマル
+		}
+		else
+		{
+			NotPressLeft();		// 誤答処理を呼び出す
+		}
+	}
 
+	// 右じゃない　(上下左が丸)
+	if (num == 8)
+	{
+		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
+			Pad::isTrigger(PAD_INPUT_LEFT))
+		{
+			answercheck = true;		// 正解が押されたらマル
+		}
+		else
+		{
+			NotPressRight();		// 誤答処理を呼び出す
+		}
+	}
 }
 
 void Field::Draw()		// 問題の描画
@@ -148,6 +198,8 @@ void Field::Draw()		// 問題の描画
 	SetFontSize(100);
 	switch (num)	// 問題
 	{
+		// ***通常問題***
+
 	case 1:
 		// 表示する文字
 		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "上");
@@ -160,22 +212,38 @@ void Field::Draw()		// 問題の描画
 
 	case 3:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "右");
+		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "左");
 		break;
 
 	case 4:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "左");
+		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "右");
 		break;
 
-	//case 5:
-	//	// 表示する文字
-	//	DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "左");
-	//	DrawFormatString(200, 500, GetColor(255, 255, 255), "じゃない");
-	//	break;
-	
+		// ***じゃない問題***
 
-	default:
+	case 5:
+		// 表示する文字
+		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "上");
+		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		break;
+	
+	case 6:
+		// 表示する文字
+		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "下");
+		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		break;
+	
+	case 7:
+		// 表示する文字
+		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "左");
+		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		break;
+
+	case 8:
+		// 表示する文字
+		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "右");
+		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
 		break;
 	}
 }
@@ -183,21 +251,22 @@ void Field::Draw()		// 問題の描画
 void Field::DrawField()		// フィールドの描画
 {
 
-	DrawFormatString(350, 100, GetColor(225, 225, 225), "↑");
+	DrawFormatString(400, 150, GetColor(225, 225, 225), "↑");
 
-	DrawFormatString(350, 600, GetColor(225, 225, 225), "↓");
+	DrawFormatString(400, 650, GetColor(225, 225, 225), "↓");
 
-	DrawFormatString(600, 350, GetColor(225, 225, 225), "→");
+	DrawFormatString(650, 400, GetColor(225, 225, 225), "→");
 
-	DrawFormatString(100, 350, GetColor(225, 225, 225), "←");
+	DrawFormatString(150, 400, GetColor(225, 225, 225), "←");
 
 	// フィールドの描画
-	DrawBox(100, 100, 700, 700, GetColor(255, 255, 255), false);
+	DrawBox(150, 150, 750, 750, GetColor(255, 255, 255), false);
 
 }
 
-// 不正解の場合の処理
-void Field::MissPressUp()
+// 不正解の場合の処理(通常ver)
+
+void Field::MissPressUp()	// 正解が上の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
@@ -208,7 +277,7 @@ void Field::MissPressUp()
 	}
 }
 
-void Field::MissPressDown()
+void Field::MissPressDown()	// 正解が下の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
@@ -219,7 +288,7 @@ void Field::MissPressDown()
 	}
 }
 
-void Field::MissPressLeft()
+void Field::MissPressLeft()	// 正解が左の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
@@ -230,12 +299,50 @@ void Field::MissPressLeft()
 	}
 }
 
-void Field::MissPressRight()
+void Field::MissPressRight()	// 正解が右の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_LEFT))
 	{
 	//	gameend = true;
+		// デバック用
+		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	}
+}
+
+// 不正解の場合の処理(じゃないver)
+
+void Field::NotPressUp()	// 問題の答えが上以外の場合
+{
+	if (Pad::isTrigger(PAD_INPUT_UP))
+	{
+		// デバック用
+		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	}
+}
+
+void Field::NotPressDown()	// 問題の答えが下以外の場合
+{
+	if (Pad::isTrigger(PAD_INPUT_DOWN))
+	{
+		// デバック用
+		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	}
+}
+
+void Field::NotPressLeft()	// 問題の答えが左以外の場合
+{
+	if (Pad::isTrigger(PAD_INPUT_LEFT))
+	{
+		// デバック用
+		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	}
+}
+
+void Field::NotPressRight()	// 問題の答えが右以外の場合
+{
+	if (Pad::isTrigger(PAD_INPUT_RIGHT))
+	{
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
