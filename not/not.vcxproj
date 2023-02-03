@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="GameClearScene.cpp" />
     <ClCompile Include="GameoverScene.cpp" />
     <ClCompile Include="InputState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -154,15 +155,20 @@
   <ItemGroup>
     <ClInclude Include="Field.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameoverScene.h" />
     <ClInclude Include="InputState.h" />
     <ClInclude Include="Pad.h" />
     <ClInclude Include="PauseScene.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="TimeBar.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Vec2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="not.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

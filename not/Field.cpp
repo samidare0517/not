@@ -3,6 +3,7 @@
 #include "TitleScene.h"
 #include "SceneManager.h"
 #include "GameoverScene.h"
+#include "GameClearScene.h"
 #include "PauseScene.h"
 #include "DxLib.h"
 #include "Pad.h"
@@ -70,12 +71,18 @@ void Field::NormalUpdate(const InputState& input)
 		i++;
 
 	}
+
+	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	// 確認用
 	if (i == 30)
 	{
-	
-		DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:% d", i);
+		fadeValue_ = 225 * static_cast<float>(fadeTimer_) / static_cast<float>(fade_interval);
+		if (++fadeTimer_ == fade_interval)
+		{
+			manager_.CangeScene(new GameClearScene(manager_));
+			return;
+			DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:% d", i);
+		}
 	}
 	
 	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:% d", i);
@@ -323,7 +330,6 @@ void Field::MissPressUp()	// 正解が上の場合
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-	//	gameend = true;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
