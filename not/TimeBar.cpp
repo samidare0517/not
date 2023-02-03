@@ -6,20 +6,17 @@
 namespace
 {
 	bool timeflag = false;
-	Field kfield;
+	Field* kfield;
 }
 
-TimeBar::TimeBar():
-	tb(0),
-	handle(0),
-	frame(0)
+TimeBar::TimeBar()
 {
-
-}
+	
+}	
 
 TimeBar::~TimeBar()
 {
-
+	
 }
 
 void TimeBar::Init()
@@ -38,7 +35,7 @@ void TimeBar::Update()
 	}
 
 	// 正解が押されたらタイムバーを画面サイズに戻す
-	if (kfield.AnswerFlag() == true)
+	if (kfield->AnswerFlag() == true)
 	{
 		tb = Game::kScreenWindth;
 	}
@@ -53,7 +50,7 @@ void TimeBar::Update()
 		frame = 0;
 		if (tb > 0)
 		{
-			tb -= 300;			// 1フレームで200ずつ減らす(1問あたり4秒)
+			tb -= 300;			// 1フレームで300ずつ減らす(1問あたり3秒)
 		}
 		if (tb <= 0)			// 0になったら0を入れる
 		{
@@ -61,6 +58,7 @@ void TimeBar::Update()
 			timeflag = true;	// 0になったらtrueを返す
 		}
 	}
+
 }
 
 void TimeBar::Draw()

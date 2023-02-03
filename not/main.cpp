@@ -1,6 +1,11 @@
 #include "DxLib.h"
-#include "Field.h"
+#include <cassert>
+#include<array>
+#include "SceneManager.h"
+#include "TitleScene.h"
+#include "InputState.h"
 #include "TimeBar.h"
+#include "Field.h"
 #include "math.h"
 #include "game.h"
 
@@ -24,12 +29,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     // ダブルバッファモード
     SetDrawScreen(DX_SCREEN_BACK);
 
-    Field field;
-    TimeBar tb;
+  
 
+    InputState input;
+    SceneManager sceneManager;
+    sceneManager.CangeScene(new TitleScene(sceneManager));
 
-    tb.Init();
-    field.Init();
+   
     while (ProcessMessage() == 0)
     {
         LONGLONG time = GetNowHiPerformanceCount();
@@ -37,13 +43,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         // 画面のクリア
         ClearDrawScreen();
 
-        tb.Update();
-        field.Update();
+        input.Update();
+        sceneManager.Update(input);
+        sceneManager.Draw();
 
-        tb.Draw();
-        field.Draw();
-        field.DrawField();
-        field.AnswerCheck();
+
+      
         // 裏画面を表画面を入れ替える
         ScreenFlip();
 

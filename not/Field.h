@@ -1,14 +1,17 @@
 #pragma once
+#include "Scene.h"
+#include <memory>
+
 class TimeBar;
 
-class Field
+class Field : public Scene
 {
 public:
-	Field();
+	Field(SceneManager& manager);
 	~Field();
 
 	void Init();
-	void Update();
+	void Update(const InputState& input);
 	void Draw();
 	void DrawField();
 
@@ -29,10 +32,21 @@ public:
 	bool AnswerCheck();
 	bool AnswerFlag();
 
-	// ゲームが終了しているか続行しているか調べる
-//	bool isGameEnd();
 
 private:
+	unsigned int fadeColor_ = 0x000000;	// フェードの色(デフォ黒)
+	
+	static constexpr int fade_interval = 60;
+
+	int fadeTimer_ = fade_interval;
+	int fadeValue_ = 255;
+
+	void FadeInUpdate(const InputState& input);
+	void NormalUpdate(const InputState& input);
+	void FadeOutUpdate(const InputState& input);
+
+	using UpdateFunc_t = void(Field::*)(const InputState& input);
+	UpdateFunc_t updateFunc_ = nullptr;
 
 };
 

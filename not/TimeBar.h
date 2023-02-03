@@ -1,9 +1,13 @@
 #pragma once
+#include"Scene.h"
+#include <memory>
+
 class Field;
 
 class TimeBar
 {
 public:
+
 	TimeBar();
 	~TimeBar();
 
@@ -12,11 +16,11 @@ public:
 	void Draw();
 
 	bool Check();
-
+	
 private:
-	int tb;
-	int handle;
-	int frame;
+	int tb = 0;
+	int handle = 0;
+	int frame = 0;
 
 };
 
