@@ -22,7 +22,7 @@ TimeBar::~TimeBar()
 void TimeBar::Init()
 {
 	tb = Game::kScreenWindth;		// タイムバーの大きさ
-	handle = LoadGraph("Data/tb.png");	// タイムバー用画像
+	handle = LoadGraph("data/tb.png");	// タイムバー用画像
 }
 
 void TimeBar::Update()

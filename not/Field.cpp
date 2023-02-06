@@ -28,6 +28,9 @@ namespace
 	int questionnum = 30;
 	int i = 0;
 
+	// 背景用ハンドル
+	int handle = 0;
+
 	TimeBar kTime;
 }
 
@@ -52,6 +55,8 @@ Field::~Field()
 
 void Field::Init()
 {
+	handle = LoadGraph("data/Back.png");	// タイムバー用画像
+
 	kTime.Init();
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～4の乱数を出す
@@ -310,6 +315,12 @@ void Field::Draw()		// 問題の描画
 
 void Field::DrawField()		// フィールドの描画
 {
+	// 背景描画
+	DrawGraph(0, 0, handle, true);
+
+	// フィールドの描画
+	DrawBox(150, 150, 750, 750, GetColor(255, 225, 255), false);
+
 	SetFontSize(100);
 	DrawFormatString(400, 150, GetColor(225, 225, 225), "↑");
 
@@ -319,8 +330,6 @@ void Field::DrawField()		// フィールドの描画
 
 	DrawFormatString(150, 400, GetColor(225, 225, 225), "←");
 
-	// フィールドの描画
-	DrawBox(150, 150, 750, 750, GetColor(255, 225, 255), false);
 }
 
 // 不正解の場合の処理(通常ver)
