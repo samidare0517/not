@@ -7,7 +7,9 @@ InputState::InputState()
 	// 次へ
 	defaultMapTable_[InputType::next] = { {InputCategory::keybd,KEY_INPUT_RETURN} };
 										  //{InputCategory::pad, PAD_INPUT_R } 
-
+	// 前へ
+	defaultMapTable_[InputType::prev] = { {InputCategory::keybd,KEY_INPUT_SPACE} };
+										  //{InputCategory::pad,  PAD_INPUT_B} }
 	// ポーズ
 	defaultMapTable_[InputType::pause] = { {InputCategory::keybd,KEY_INPUT_P} };
 										  //{InputCategory::pad, PAD_INPUT_L }

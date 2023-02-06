@@ -19,8 +19,14 @@ namespace
 	int randomnum = 8;
 
 	// 問題の文字表示位置
-	int moziX = 400;
-	int moziY = 400;
+	int mozi0X = 400;	// 通常用
+	int mozi0Y = 400;	// 通常用
+
+	int mozi1X = 400;	// じゃない用一行目
+	int mozi1Y = 350;	// じゃない用一行目
+
+	int mozi2X = 250;	// じゃない用二行目
+	int mozi2Y = 450;	// じゃない用二行目
 
 	bool answercheck = false;
 
@@ -60,12 +66,16 @@ void Field::Init()
 	kTime.Init();
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～4の乱数を出す
+	i = 0;
 }
 
 void Field::NormalUpdate(const InputState& input)
 {
 	Pad::update();
 	kTime.Update();
+
+	// 背景描画 (デバック文字が見えるように背景を表示)
+	DrawGraph(0, 0, handle, true);
 
 	if (answercheck == true)	// 正解が押されたら次の問題へ
 	{
@@ -86,11 +96,11 @@ void Field::NormalUpdate(const InputState& input)
 		{
 			manager_.CangeScene(new GameClearScene(manager_));
 			return;
-			DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:% d", i);
+			DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:\n% d", i);
 		}
 	}
 	
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:% d", i);
+	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:\n%d", i);
 
 	answercheck = false;	// 正解のフラグの初期化
 
@@ -217,6 +227,7 @@ void Field::NormalUpdate(const InputState& input)
 		}
 	}
 
+	
 
 	if (input.IsTriggred(InputType::next))
 	{
@@ -260,48 +271,48 @@ void Field::Draw()		// 問題の描画
 
 	case 1:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "上");
+		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "上");
 		break;
 
 	case 2:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "下");
+		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "下");
 		break;
 
 	case 3:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "左");
+		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "左");
 		break;
 
 	case 4:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "右");
+		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "右");
 		break;
 
 		// ***じゃない問題***
 
 	case 5:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "上");
-		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "上");
+		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
 		break;
 	
 	case 6:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "下");
-		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "下");
+		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
 		break;
 	
 	case 7:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "左");
-		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "左");
+		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
 		break;
 
 	case 8:
 		// 表示する文字
-		DrawFormatString(moziX, moziY, GetColor(255, 255, 255), "右");
-		DrawFormatString(250, 500, GetColor(255, 255, 255), "じゃない");
+		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "右");
+		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
 		break;
 	}
 
@@ -316,10 +327,12 @@ void Field::Draw()		// 問題の描画
 void Field::DrawField()		// フィールドの描画
 {
 	// 背景描画
-	DrawGraph(0, 0, handle, true);
+//	DrawGraph(0, 0, handle, true);
 
 	// フィールドの描画
-	DrawBox(150, 150, 750, 750, GetColor(255, 225, 255), false);
+	DrawBox(150, 150, 750, 750, GetColor(0, 0, 0), true);
+	DrawBox(150, 150, 750, 750, GetColor(255, 255, 255), false);
+
 
 	SetFontSize(100);
 	DrawFormatString(400, 150, GetColor(225, 225, 225), "↑");
@@ -339,8 +352,10 @@ void Field::MissPressUp()	// 正解が上の場合
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");	
 	}
 }
 
@@ -349,7 +364,8 @@ void Field::MissPressDown()	// 正解が下の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-	//	gameend = true;
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
@@ -360,7 +376,8 @@ void Field::MissPressLeft()	// 正解が左の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-	//	gameend = true;
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
@@ -371,7 +388,8 @@ void Field::MissPressRight()	// 正解が右の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_LEFT))
 	{
-	//	gameend = true;
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
@@ -383,6 +401,8 @@ void Field::NotPressUp()	// 問題の答えが上以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP))
 	{
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
@@ -392,6 +412,8 @@ void Field::NotPressDown()	// 問題の答えが下以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN))
 	{
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
@@ -401,6 +423,8 @@ void Field::NotPressLeft()	// 問題の答えが左以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_LEFT))
 	{
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
@@ -410,6 +434,8 @@ void Field::NotPressRight()	// 問題の答えが右以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		manager_.CangeScene(new GameoverScene(manager_));
+		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}

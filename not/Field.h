@@ -49,6 +49,7 @@ private:
 	UpdateFunc_t updateFunc_ = nullptr;
 
 
+	int handle = 0;
 
 };
 

@@ -2,6 +2,8 @@
 #include "InputState.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
+#include "Field.h"
+#include "Pad.h"
 #include "DxLib.h"
 
 void GameoverScene::FadeInUpdate(const InputState& input)
@@ -16,9 +18,16 @@ void GameoverScene::FadeInUpdate(const InputState& input)
 
 void GameoverScene::NormalUpdate(const InputState& input)
 {
+	// タイトルの場合
 	if (input.IsTriggred(InputType::next))
 	{
 		manager_.CangeScene(new TitleScene(manager_));
+		return;
+	}
+	// リスタートの場合
+	if (input.IsTriggred(InputType::prev))
+	{
+		manager_.CangeScene(new Field(manager_));
 		return;
 	}
 }
@@ -51,7 +60,12 @@ void GameoverScene::Draw()
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
 
+	SetFontSize(50);
+	DrawFormatString(200, 400, GetColor(255, 255, 255), 
+					"リスタート→スペースキー\nタイトル　→エンターキー");
+
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 	DrawBox(0, 0, 640, 480, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
+
