@@ -60,12 +60,12 @@ void GameoverScene::Draw()
 	// 普通の描画
 	DrawGraph(0, 0, gameoverH, true);
 
-	/*SetFontSize(100);
-	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームオーバー");*/
-
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
+
+	/*SetFontSize(100);
+	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームオーバー");*/
 
 	//SetFontSize(50);
 	//DrawFormatString(500, 700, GetColor(255, 255, 255), 

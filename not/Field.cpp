@@ -96,10 +96,10 @@ void Field::NormalUpdate(const InputState& input)
 		return;
 
 		// デバック用
-		DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:\n% d", i);	
+		DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:% d", i);	
 	}
 	// デバック用
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:\n%d", i);
+	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:%d", i);
 
 	answercheck = false;	// 正解のフラグの初期化
 
