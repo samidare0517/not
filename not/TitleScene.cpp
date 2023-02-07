@@ -62,7 +62,7 @@ void TitleScene::Draw()
 	//DrawRotaGraph(320, 240, 1.0f, 0.0f, titleH_, true);
 	
 	SetFontSize(100);
-	DrawFormatString(250, 400, GetColor(255, 255, 255), "タイトル");
+	DrawFormatString(550, 400, GetColor(255, 255, 255), "タイトル");
 	
 	// シーン確認用
 	SetFontSize(50);
@@ -72,6 +72,6 @@ void TitleScene::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 	
 	// 画面全体を真っ黒に塗りつぶす
-	DrawBox(0, 0, 900, 900, GetColor(255, 0, 255), true);
+	DrawBox(0, 0, 1600, 900, GetColor(255, 0, 255), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

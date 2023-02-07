@@ -54,17 +54,20 @@ void GameClearScene::Update(const InputState& input)
 
 void GameClearScene::Draw()
 {
-	DrawBox(200, 200, 400, 400, GetColor(255, 0, 255), true);
+	//DrawBox(200, 200, 400, 400, GetColor(255, 0, 255), true);
+
+	SetFontSize(100);
+	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームクリア");
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームクリア");
 
 	SetFontSize(50);
-	DrawFormatString(200, 400, GetColor(255, 255, 255),
+	DrawFormatString(500, 700, GetColor(255, 255, 255),
 		"リスタート→スペースキー\nタイトル　→エンターキー");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
-	DrawBox(0, 0, 640, 480, 0x000000, true);
+	DrawBox(0, 0, 1600, 900, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
