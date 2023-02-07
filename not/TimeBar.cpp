@@ -69,8 +69,6 @@ void TimeBar::Draw()
 
 	DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
 
-	//DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
-
 }
 
 bool TimeBar::Check()
