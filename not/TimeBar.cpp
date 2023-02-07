@@ -21,7 +21,7 @@ TimeBar::~TimeBar()
 
 void TimeBar::Init()
 {
-	tb = Game::kScreenWindth;		// タイムバーの大きさ
+	tb = 1100;		// タイムバーの大きさ
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
 }
 
@@ -31,13 +31,13 @@ void TimeBar::Update()
 	// 初期化する前にタイムバーを画面サイズに戻す
 	if(timeflag == true)
 	{
-		tb = Game::kScreenWindth;
+		tb = 1100;
 	}
 
 	// 正解が押されたらタイムバーを画面サイズに戻す
 	if (kfield->AnswerFlag() == true)
 	{
-		tb = Game::kScreenWindth;
+		tb = 1100;
 	}
 
 
@@ -50,11 +50,11 @@ void TimeBar::Update()
 		frame = 0;
 		if (tb > 0)
 		{
-			tb -= 300;			// 1フレームで300ずつ減らす(1問あたり3秒)
+			tb -= 200;			// 1フレームで300ずつ減らす(1問あたり3秒)
 		}
-		if (tb <= 0)			// 0になったら0を入れる
+		if (tb <= 500)			// 0になったら0を入れる
 		{
-			tb = 0;
+			tb = 500;
 			timeflag = true;	// 0になったらtrueを返す
 		}
 	}
@@ -67,7 +67,10 @@ void TimeBar::Draw()
 	SetFontSize(50);
 	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
 
-	DrawExtendGraph(0, 0, tb, 0 + 50, handle, true);
+	DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
+
+	//DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
+
 }
 
 bool TimeBar::Check()
