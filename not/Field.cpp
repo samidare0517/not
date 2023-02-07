@@ -71,15 +71,16 @@ void Field::Init()
 
 void Field::NormalUpdate(const InputState& input)
 {
-	Pad::update();
-	kTime.Update();
 
 	// ”wŒi•`‰æ (ƒfƒoƒbƒN•¶š‚ªŒ©‚¦‚é‚æ‚¤‚É”wŒi‚ğ•\¦)
 	DrawGraph(0, 0, handle, true);
 
+	Pad::update();
+	kTime.Update();
+
 	if (answercheck == true)	// ³‰ğ‚ª‰Ÿ‚³‚ê‚½‚çŸ‚Ì–â‘è‚Ö
 	{
-		for (int i = 0; i < questionnum; i++)		// 20–âŒJ‚è•Ô‚·
+		for (int i = 0; i < questionnum; i++)		// 30–âŒJ‚è•Ô‚·
 		{
 			num = rand() % randomnum + 1;
 		}
@@ -263,9 +264,11 @@ void Field::Draw()		// –â‘è‚Ì•`‰æ
 	kTime.Draw();
 	AnswerCheck();
 
-	SetFontSize(100);
 	// •¶š‚ğŠg‘å
-	switch (num)	// –â‘è
+	SetFontSize(100);
+	
+	// –â‘è
+	switch (num)	
 	{
 		// ***’Êí–â‘è***
 

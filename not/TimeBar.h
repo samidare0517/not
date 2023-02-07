@@ -1,5 +1,4 @@
 #pragma once
-#include"Scene.h"
 #include <memory>
 
 class Field;
@@ -23,4 +22,3 @@ private:
 	int frame = 0;
 
 };
-

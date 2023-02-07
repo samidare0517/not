@@ -58,7 +58,6 @@ void TimeBar::Update()
 			timeflag = true;	// 0‚É‚È‚Á‚½‚çtrue‚ð•Ô‚·
 		}
 	}
-
 }
 
 void TimeBar::Draw()
