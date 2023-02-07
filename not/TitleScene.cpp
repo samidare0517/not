@@ -44,11 +44,13 @@ TitleScene::TitleScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&TitleScene::FadeInUpdate)
 {
 	// 画像のロード
+	titleH_ = LoadGraph("data/TitleBack.png");
 }
 
 TitleScene::~TitleScene()
 {
 	// 画像のデリート
+	DeleteGraph(titleH_);
 }
 
 void TitleScene::Update(const InputState& input)
@@ -59,7 +61,7 @@ void TitleScene::Update(const InputState& input)
 void TitleScene::Draw()
 {
 	// 普通の描画
-	//DrawRotaGraph(320, 240, 1.0f, 0.0f, titleH_, true);
+	DrawGraph(0, 0, titleH_, true);
 	
 	SetFontSize(100);
 	DrawFormatString(550, 400, GetColor(255, 255, 255), "タイトル");
@@ -72,6 +74,6 @@ void TitleScene::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 	
 	// 画面全体を真っ黒に塗りつぶす
-	DrawBox(0, 0, 1600, 900, GetColor(255, 0, 255), true);
+	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

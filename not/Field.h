@@ -36,7 +36,7 @@ public:
 private:
 	unsigned int fadeColor_ = 0x000000;	// フェードの色(デフォ黒)
 	
-	static constexpr int fade_interval = 60;
+	static constexpr int fade_interval = 180;
 
 	int fadeTimer_ = fade_interval;
 	int fadeValue_ = 255;

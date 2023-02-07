@@ -323,7 +323,7 @@ void Field::Draw()		// –â‘è‚Ì•`‰æ
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 
 	// ‰æ–Ê‘S‘Ì‚ğ^‚Á•‚É“h‚è‚Â‚Ô‚·
-	DrawBox(0, 0, 1600, 900, GetColor(255, 255, 0), true);
+	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
