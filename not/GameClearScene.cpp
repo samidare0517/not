@@ -17,11 +17,13 @@ void GameClearScene::FadeInUpdate(const InputState& input)
 
 void GameClearScene::NormalUpdate(const InputState& input)
 {
+	// タイトルの場合
 	if (input.IsTriggred(InputType::next))
 	{
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
+	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
 		manager_.CangeScene(new Field(manager_));
