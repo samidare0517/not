@@ -17,13 +17,11 @@ void GameClearScene::FadeInUpdate(const InputState& input)
 
 void GameClearScene::NormalUpdate(const InputState& input)
 {
-	// タイトルの場合
 	if (input.IsTriggred(InputType::next))
 	{
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
-	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
 		manager_.CangeScene(new Field(manager_));
@@ -58,7 +56,7 @@ void GameClearScene::Draw()
 
 	// シーン確認用
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームクリア");
 
 	SetFontSize(50);
 	DrawFormatString(200, 400, GetColor(255, 255, 255),
