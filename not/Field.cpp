@@ -92,23 +92,18 @@ void Field::NormalUpdate(const InputState& input)
 	SetFontSize(50);
 	if (i == 30)
 	{
-		fadeValue_ = 225 * static_cast<float>(fadeTimer_) / static_cast<float>(fade_interval);
-		if (++fadeTimer_ == fade_interval)
-		{
-			manager_.CangeScene(new GameClearScene(manager_));
-			return;
-			DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:\n% d", i);
-		}
+		manager_.CangeScene(new GameClearScene(manager_));
+		return;
+
+		// デバック用
+		DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:\n% d", i);	
 	}
-	
+	// デバック用
 	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:\n%d", i);
 
 	answercheck = false;	// 正解のフラグの初期化
 
-	
-	
 	// ランダムになっているか調べる(デバック用)
-
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "問題:% d", num);
 
 	// パッド(もしくはキーボード)からの入力を取得する

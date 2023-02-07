@@ -41,11 +41,13 @@ GameoverScene::GameoverScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&GameoverScene::FadeInUpdate)
 {
 	// 画像のロード
+	gameoverH = LoadGraph("data/OverBack.png");
 }
 
 GameoverScene::~GameoverScene()
 {
-	// 画像のデリート(DeleteGraph(消したい画像ハンドル))
+	// 画像のデリート
+	DeleteGraph(gameoverH);
 }
 
 void GameoverScene::Update(const InputState& input)
@@ -55,19 +57,19 @@ void GameoverScene::Update(const InputState& input)
 
 void GameoverScene::Draw()
 {
-	//DrawBox(200, 200, 400, 400, GetColor(255, 0, 255), true);
+	// 普通の描画
+	DrawGraph(0, 0, gameoverH, true);
 
-
-	SetFontSize(100);
-	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームオーバー");
+	/*SetFontSize(100);
+	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームオーバー");*/
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
 
-	SetFontSize(50);
-	DrawFormatString(500, 700, GetColor(255, 255, 255), 
-					"リスタート→スペースキー\nタイトル　→エンターキー");
+	//SetFontSize(50);
+	//DrawFormatString(500, 700, GetColor(255, 255, 255), 
+	//				"リスタート→スペースキー\nタイトル　→エンターキー");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);

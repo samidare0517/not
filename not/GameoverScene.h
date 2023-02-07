@@ -9,7 +9,7 @@ class GameoverScene : public Scene
 private:
 	int gameoverH = -1;	// ‰æ‘œ
 
-	static constexpr int fade_interval = 60;
+	static constexpr int fade_interval = 120;
 	int fadeTimer_ = fade_interval;
 	int fadeValue_ = 255;
 	using UpdateFunc_t = void(GameoverScene::*)(const InputState&);

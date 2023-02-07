@@ -40,11 +40,13 @@ GameClearScene::GameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&GameClearScene::FadeInUpdate)
 {
 	// 画像のロード
+	gameclearH = LoadGraph("data/ClearBack.png");
 }
 
 GameClearScene::~GameClearScene()
 {
-	// 画像のデリート(DeleteGraph(消したい画像ハンドル))
+	// 画像のデリート
+	DeleteGraph(gameclearH);
 }
 
 void GameClearScene::Update(const InputState& input)
@@ -54,20 +56,21 @@ void GameClearScene::Update(const InputState& input)
 
 void GameClearScene::Draw()
 {
-	//DrawBox(200, 200, 400, 400, GetColor(255, 0, 255), true);
+	// 普通の描画
+	DrawGraph(0, 0, gameclearH, true);
 
-	SetFontSize(100);
-	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームクリア");
+	/*SetFontSize(100);
+	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームクリア");*/
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームクリア");
 
-	SetFontSize(50);
+	/*SetFontSize(50);
 	DrawFormatString(500, 700, GetColor(255, 255, 255),
-		"リスタート→スペースキー\nタイトル　→エンターキー");
+		"リスタート→スペースキー\nタイトル　→エンターキー");*/
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
-	DrawBox(0, 0, 1600, 900, 0x000000, true);
+	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
