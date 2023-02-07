@@ -317,7 +317,7 @@ void Field::Draw()		// 問題の描画
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 
-	// 画面全体を真っ黒に塗りつぶす
+	// 画面全体を青に塗りつぶす
 	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
@@ -331,15 +331,14 @@ void Field::DrawField()		// フィールドの描画
 	DrawBox(500, 150, 1100, 750, GetColor(0, 0, 0), true);
 	DrawBox(500, 150, 1100, 750, GetColor(255, 255, 255), false);
 
-	//300
 	SetFontSize(100);
-	DrawFormatString(750, 150, GetColor(225, 225, 225), "↑");
+	DrawFormatString(750,  150, GetColor(225, 225, 225), "↑");
 
-	DrawFormatString(750, 650, GetColor(225, 225, 225), "↓");
+	DrawFormatString(750,  650, GetColor(225, 225, 225), "↓");
 
 	DrawFormatString(1000, 400, GetColor(225, 225, 225), "→");
 
-	DrawFormatString(500, 400, GetColor(225, 225, 225), "←");
+	DrawFormatString(500,  400, GetColor(225, 225, 225), "←");
 
 }
 
