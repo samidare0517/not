@@ -19,13 +19,13 @@ namespace
 	int randomnum = 8;
 
 	// 問題の文字表示位置
-	int mozi0X = 400;	// 通常用
+	int mozi0X = 750;	// 通常用
 	int mozi0Y = 400;	// 通常用
 
-	int mozi1X = 400;	// じゃない用一行目
+	int mozi1X = 750;	// じゃない用一行目
 	int mozi1Y = 350;	// じゃない用一行目
 
-	int mozi2X = 250;	// じゃない用二行目
+	int mozi2X = 600;	// じゃない用二行目
 	int mozi2Y = 450;	// じゃない用二行目
 
 	bool answercheck = false;
@@ -333,18 +333,18 @@ void Field::DrawField()		// フィールドの描画
 //	DrawGraph(0, 0, handle, true);
 
 	// フィールドの描画
-	DrawBox(150, 150, 750, 750, GetColor(0, 0, 0), true);
-	DrawBox(150, 150, 750, 750, GetColor(255, 255, 255), false);
+	DrawBox(500, 150, 1100, 750, GetColor(0, 0, 0), true);
+	DrawBox(500, 150, 1100, 750, GetColor(255, 255, 255), false);
 
-
+	//300
 	SetFontSize(100);
-	DrawFormatString(400, 150, GetColor(225, 225, 225), "↑");
+	DrawFormatString(750, 150, GetColor(225, 225, 225), "↑");
 
-	DrawFormatString(400, 650, GetColor(225, 225, 225), "↓");
+	DrawFormatString(750, 650, GetColor(225, 225, 225), "↓");
 
-	DrawFormatString(650, 400, GetColor(225, 225, 225), "→");
+	DrawFormatString(1000, 400, GetColor(225, 225, 225), "→");
 
-	DrawFormatString(150, 400, GetColor(225, 225, 225), "←");
+	DrawFormatString(500, 400, GetColor(225, 225, 225), "←");
 
 }
 
