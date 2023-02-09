@@ -50,12 +50,12 @@ void TimeBar::Update()
 		frame = 0;
 		if (tb > 0)
 		{
-			tb -= 200;			// 1フレームで300ずつ減らす(1問あたり3秒)
+			tb -= 200;			// 1フレームで200ずつ減らす(1問あたり3秒)
 		}
-		if (tb <= 500)			// 0になったら0を入れる
+		if (tb <= 500)			// 500になったら500を入れる
 		{
 			tb = 500;
-			timeflag = true;	// 0になったらtrueを返す
+			timeflag = true;	// 500になったらtrueを返す
 		}
 	}
 
@@ -68,7 +68,6 @@ void TimeBar::Draw()
 	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
 
 	DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
-
 }
 
 bool TimeBar::Check()

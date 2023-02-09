@@ -85,7 +85,6 @@ void Field::NormalUpdate(const InputState& input)
 			num = rand() % randomnum + 1;
 		}
 		i++;
-
 	}
 
 	// 正解数が30になったらクリア画面へ
@@ -224,17 +223,11 @@ void Field::NormalUpdate(const InputState& input)
 	}
 
 	
-
-	if (input.IsTriggred(InputType::next))
-	{
-		updateFunc_ = &Field::FadeOutUpdate;
-		fadeColor_ = 0x000000;
-	}
+	// Pキーでポーズシーン
 	if (input.IsTriggred(InputType::pause))
 	{
 		manager_.PushScene(new PauseScene(manager_));
 	}
-
 }
 
 void Field::FadeOutUpdate(const InputState& input)
@@ -343,7 +336,6 @@ void Field::DrawField()		// フィールドの描画
 }
 
 // 不正解の場合の処理(通常ver)
-
 void Field::MissPressUp()	// 正解が上の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
@@ -393,7 +385,6 @@ void Field::MissPressRight()	// 正解が右の場合
 }
 
 // 不正解の場合の処理(じゃないver)
-
 void Field::NotPressUp()	// 問題の答えが上以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP))

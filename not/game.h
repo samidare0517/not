@@ -1,8 +1,13 @@
 #pragma once
+
 namespace Game
 {
-    // ウインドウモード設定
+#ifdef _DEBUG
+    // ウインドウモード設定(リリース版ではfalseになる)
     constexpr bool kWindowMode = true;
+#else
+    constexpr bool kWindowMode = false;
+#endif
 
     // ウインドウ名
     const char* const kTitleText = "ゲーム名";

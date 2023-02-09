@@ -64,13 +64,6 @@ void GameoverScene::Draw()
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
 
-	/*SetFontSize(100);
-	DrawFormatString(500, 400, GetColor(255, 255, 255), "ゲームオーバー");*/
-
-	//SetFontSize(50);
-	//DrawFormatString(500, 700, GetColor(255, 255, 255), 
-	//				"リスタート→スペースキー\nタイトル　→エンターキー");
-
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
