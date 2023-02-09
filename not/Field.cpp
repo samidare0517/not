@@ -66,7 +66,7 @@ void Field::Init()
 	kTime.Init();
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～4の乱数を出す
-	i = 0;
+	i = 0;	// 問題の正解数カウントを0にする(初期化)
 }
 
 void Field::NormalUpdate(const InputState& input)
@@ -332,7 +332,6 @@ void Field::DrawField()		// フィールドの描画
 	DrawFormatString(1000, 400, GetColor(225, 225, 225), "→");
 
 	DrawFormatString(500,  400, GetColor(225, 225, 225), "←");
-
 }
 
 // 不正解の場合の処理(通常ver)
