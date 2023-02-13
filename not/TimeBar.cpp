@@ -40,6 +40,7 @@ void TimeBar::Update()
 	if (frame >= 60)
 	{
 		frame = 0;
+		time = 0;
 		if (tb > 0)
 		{
 			tb -= 200;			// 1ƒtƒŒ[ƒ€‚Å200‚¸‚ÂŒ¸‚ç‚·(1–â‚ ‚½‚è–ñ3•b)

@@ -1,4 +1,3 @@
-
 #include "ExplanationScene.h"
 #include "InputState.h"
 #include "TitleScene.h"
