@@ -3,7 +3,9 @@
 #include <memory>
 
 class Field;
-
+/// <summary>
+/// タイムバー
+/// </summary>
 class TimeBar
 {
 public:
@@ -18,8 +20,14 @@ public:
 	bool Check();
 	
 private:
+
+	// タイムバー
 	int tb = 0;
+
+	// 画像ハンドル
 	int handle = 0;
+
+	// フレーム
 	int frame = 0;
 
 };

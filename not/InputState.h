@@ -18,7 +18,6 @@ enum class InputType
 enum class InputCategory
 {
 	keybd,	// キーボード
-//	pad,	// ゲームパッド
 };
 
 /// <summary>
@@ -35,30 +34,9 @@ struct InputInfo
 /// </summary>
 class InputState
 {
-private:
-
-	// 仮想入力情報と、実際の入力テーブルを作る
-	// キー(first) = InputType
-	// 値(second) = std::vector<InputInfo.
-	using InputMap_t = std::map<InputType, std::vector<InputInfo>>;
-
-	// 実際の入力と対応のボタン
-	InputMap_t inputMapTable_;
-
-	// 書き換え用の一時的なのコピー
-	// いきなり書き換えてしまわないように
-	InputMap_t tempMapTable_;
-
-	// リセット用キーマップテーブル
-	InputMap_t defaultMapTable_;
-
-	// 入力タイプとその名前のテーブル
-	std::map < InputType, std::wstring> inputNameTable_;
-
-	std::vector<bool>currentInput_;		// 現在の入力情報(押しているか押していないか)
-	std::vector<bool>lastInput_;		// 直前の入力情報(直前押しているか押していないか)
 
 public:
+
 	InputState();
 
 	/// <summary>
@@ -88,5 +66,29 @@ public:
 	/// <param name="cat">入力カテゴリ</param>
 	/// <param name="id">実際の入力</param>
 	void RewriteInputInfo(InputType type, InputCategory cat, int id);
+
+private:
+
+	// 仮想入力情報と、実際の入力テーブルを作る
+	// キー(first) = InputType
+	// 値(second) = std::vector<InputInfo.
+	using InputMap_t = std::map<InputType, std::vector<InputInfo>>;
+
+	// 実際の入力と対応のボタン
+	InputMap_t inputMapTable_;
+
+	// 書き換え用の一時的なのコピー
+	// いきなり書き換えてしまわないように
+	InputMap_t tempMapTable_;
+
+	// リセット用キーマップテーブル
+	InputMap_t defaultMapTable_;
+
+	// 入力タイプとその名前のテーブル
+	std::map < InputType, std::wstring> inputNameTable_;
+
+	std::vector<bool>currentInput_;		// 現在の入力情報(押しているか押していないか)
+	std::vector<bool>lastInput_;		// 直前の入力情報(直前押しているか押していないか)
+
 };
 

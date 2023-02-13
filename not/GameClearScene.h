@@ -6,24 +6,33 @@
 /// </summary>
 class GameClearScene : public Scene
 {
-private:
-	int gameclearH = -1;	// 画像
-
-	static constexpr int fade_interval = 120;
-	int fadeTimer_ = fade_interval;
-	int fadeValue_ = 255;
-	using UpdateFunc_t = void(GameClearScene::*)(const InputState&);
-	UpdateFunc_t updateFunc_ = nullptr;
-
-	void FadeInUpdate(const InputState& input);
-	void NormalUpdate(const InputState& input);
-	void FadeOutUpdate(const InputState& input);
-
 public:
+
 	GameClearScene(SceneManager& manager);
 	~GameClearScene();
 
 	void Update(const InputState& input);
 	void Draw();
+
+private:
+
+	int gameclearH = -1;	// 画像
+
+	static constexpr int fade_interval = 120;
+	int fadeTimer_ = fade_interval;
+	int fadeValue_ = 255;
+
+	// フェードイン時のUpdate関数
+	void FadeInUpdate(const InputState& input);
+
+	// 通常時のUpdate関数
+	void NormalUpdate(const InputState& input);
+
+	// フェードアウト時のUpdate関数
+	void FadeOutUpdate(const InputState& input);
+
+	using UpdateFunc_t = void(GameClearScene::*)(const InputState&);
+	UpdateFunc_t updateFunc_ = nullptr;
+
 };
 

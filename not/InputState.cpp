@@ -6,13 +6,13 @@ InputState::InputState()
 {
 	// 次へ
 	defaultMapTable_[InputType::next] = { {InputCategory::keybd,KEY_INPUT_RETURN} };
-										  //{InputCategory::pad, PAD_INPUT_R } 
+									
 	// 前へ
 	defaultMapTable_[InputType::prev] = { {InputCategory::keybd,KEY_INPUT_SPACE} };
-										  //{InputCategory::pad,  PAD_INPUT_B} }
+										
 	// ポーズ
 	defaultMapTable_[InputType::pause] = { {InputCategory::keybd,KEY_INPUT_P} };
-										  //{InputCategory::pad, PAD_INPUT_L }
+										
 
 	inputMapTable_ = defaultMapTable_;
 
@@ -31,7 +31,6 @@ void InputState::Update()
 
 	GetHitKeyStateAll(keystate);	// 全キー情報取得
 
-//	int padState = GetJoypadInputState(DX_INPUT_PAD1);	// パッド1コンの情報を得る
 	
 	for (const auto& keymap : inputMapTable_)
 	{
@@ -45,11 +44,6 @@ void InputState::Update()
 			{
 				currentInput_[static_cast<int>(keymap.first)] = keystate[input.id];
 			}
-			
-			/*else if (input.cat == InputCategory::pad)
-			{
-				currentInput_[static_cast<int>(keymap.first)] = padState & input.id;
-			}*/
 
 			// 入力のうちどれかがtrueだったらもう「入力されている」
 			// とみなしてbreakする

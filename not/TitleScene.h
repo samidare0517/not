@@ -6,10 +6,19 @@ class InputState;
 // タイトルシーン
 class TitleScene : public Scene
 {
+public:
+
+	TitleScene(SceneManager& manager);
+	~TitleScene();
+
+	void Update(const InputState& input);
+	void Draw();
+
 private:
 
-	static constexpr int fade_intarval = 60;
 	int titleH_ = -1;		// タイトル画像
+
+	static constexpr int fade_intarval = 60;
 	int fadeTimer_ = fade_intarval;		// フェードタイマー
 	int fadeValue_ = 225;	// 黒矩形とのブレンド具合
 
@@ -27,13 +36,5 @@ private:
 
 	void Function();
 
-
-public:
-
-	TitleScene(SceneManager& manager);
-	~TitleScene();
-
-	void Update(const InputState& input);
-	void Draw();
 };
 

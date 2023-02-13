@@ -4,9 +4,13 @@
 
 class TimeBar;
 
+/// <summary>
+/// フィールド
+/// </summary>
 class Field : public Scene
 {
 public:
+
 	Field(SceneManager& manager);
 	~Field();
 
@@ -34,24 +38,27 @@ public:
 	bool AnswerCheck();
 	bool AnswerFlag();
 
-
 private:
-	unsigned int fadeColor_ = 0x1e90ff;	// フェードの色(デフォ黒)
-	
-	static constexpr int fade_interval = 160;
 
+	// 背景用
+	int handle = 0;
+	
+	unsigned int fadeColor_ = 0x1e90ff;	// フェードの色(デフォ黒)
+	static constexpr int fade_interval = 160;
 	int fadeTimer_ = fade_interval;
 	int fadeValue_ = 255;
 
+	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);
+	
+	// 通常時のUpdate関数
 	void NormalUpdate(const InputState& input);
+	
+	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
 
 	using UpdateFunc_t = void(Field::*)(const InputState& input);
 	UpdateFunc_t updateFunc_ = nullptr;
-
-
-	int handle = 0;
 
 };
 
