@@ -30,4 +30,6 @@ private:
 	// フレーム
 	int frame = 0;
 
+	// 表示用のタイマー(3秒)
+	int time = 3;
 };

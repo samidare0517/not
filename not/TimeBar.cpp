@@ -43,6 +43,7 @@ void TimeBar::Update()
 		if (tb > 0)
 		{
 			tb -= 200;			// 1フレームで200ずつ減らす(1問あたり約3秒)
+			time--;				// 表示する用の時間
 		}
 		if (tb <= 500)			// 500になったら500を入れる
 		{
@@ -50,15 +51,17 @@ void TimeBar::Update()
 			timeflag = true;	// 500になったらtrueを返す
 		}
 	}
-
 }
 
 void TimeBar::Draw()
 {
 	// 数字をマイナスする(デバック用)
 	SetFontSize(50);
-	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
-
+//	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
+	
+	// ゲージ用のタイマー(表示用)
+	DrawFormatString(0, 2, GetColor(255, 255, 255), "time:%d", time);
+	
 	DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
 }
 
