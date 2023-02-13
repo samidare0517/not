@@ -27,19 +27,11 @@ void TimeBar::Init()
 
 void TimeBar::Update()
 {
-	// フラグがtrueで帰ってきたらフラグを
-	// 初期化する前にタイムバーを画面サイズに戻す
-	if(timeflag == true)
-	{
-		tb = 1100;
-	}
-
 	// 正解が押されたらタイムバーを画面サイズに戻す
 	if (kfield->AnswerFlag() == true)
 	{
 		tb = 1100;
 	}
-
 
 	timeflag = false;		// フラグの初期化
 

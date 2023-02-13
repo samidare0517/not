@@ -27,6 +27,8 @@ public:
 	void NotPressLeft();		// 正解が左じゃない場合
 	void NotPressRight();		// 正解が右じゃない場合
 
+	// タイムアップの場合の処理
+	void TimeUp();
 
 	// 正解が入力されたかどうかチェックする
 	bool AnswerCheck();

@@ -73,7 +73,7 @@ void Field::NormalUpdate(const InputState& input)
 {
 
 	// 背景描画 (デバック文字が見えるように背景を表示)
-	DrawGraph(0, 0, handle, true);
+//	DrawGraph(0, 0, handle, true);
 
 	Pad::update();
 	kTime.Update();
@@ -85,6 +85,10 @@ void Field::NormalUpdate(const InputState& input)
 			num = rand() % randomnum + 1;
 		}
 		i++;
+	}
+	else if (kTime.Check() == true)	// タイムバーが0になっていたらゲームオーバー処理へ
+	{
+		TimeUp();
 	}
 
 	// 正解数が30になったらクリア画面へ
@@ -318,7 +322,7 @@ void Field::Draw()		// 問題の描画
 void Field::DrawField()		// フィールドの描画
 {
 	// 背景描画
-//	DrawGraph(0, 0, handle, true);
+	DrawGraph(0, 0, handle, true);
 
 	// フィールドの描画
 	DrawBox(500, 150, 1100, 750, GetColor(0, 0, 0), true);
@@ -426,6 +430,13 @@ void Field::NotPressRight()	// 問題の答えが右以外の場合
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
+}
+
+// タイムアップの場合の処理(即ゲームオーバー)
+void Field::TimeUp()
+{
+	manager_.CangeScene(new GameoverScene(manager_));
+	return;
 }
 
 // 正解の入力
