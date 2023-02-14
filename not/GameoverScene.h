@@ -32,7 +32,7 @@ private:
 	void FadeOutUpdate(const InputState& input);
 
 	using UpdateFunc_t = void(GameoverScene::*)(const InputState&);
-	UpdateFunc_t updateFunc_ = nullptr;
+	UpdateFunc_t updateFunc = nullptr;
 
 };
 

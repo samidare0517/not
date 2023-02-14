@@ -38,7 +38,7 @@ public:
 
 private:
 	// 「今実行中」のシーンを切り替えたいので参照ではなくポインタとして宣言
-	std::deque<Scene*>scenes_;
+	std::deque<Scene*>scenes;
 
 };
 

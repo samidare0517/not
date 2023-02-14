@@ -11,7 +11,7 @@ void GameoverScene::FadeInUpdate(const InputState& input)
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc_ = &GameoverScene::NormalUpdate;
+		updateFunc = &GameoverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
@@ -38,7 +38,7 @@ void GameoverScene::FadeOutUpdate(const InputState& input)
 }
 
 GameoverScene::GameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc_(&GameoverScene::FadeInUpdate)
+updateFunc(&GameoverScene::FadeInUpdate)
 {
 	// ‰æ‘œ‚Ìƒ[ƒh
 	gameoverHandle = LoadGraph("data/OverBack.png");
@@ -52,7 +52,7 @@ GameoverScene::~GameoverScene()
 
 void GameoverScene::Update(const InputState& input)
 {
-	(this->*updateFunc_)(input);
+	(this->*updateFunc)(input);
 }
 
 void GameoverScene::Draw()

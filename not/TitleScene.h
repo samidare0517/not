@@ -32,7 +32,7 @@ private:
 	void FadeOutUpdate(const InputState& input);
 
 	// Update用メンバ関数ポインタ
-	void (TitleScene::* updateFunc_)(const InputState& input);
+	void (TitleScene::* updateFunc)(const InputState& input);
 
 	void Function();
 

@@ -58,7 +58,7 @@ private:
 	void FadeOutUpdate(const InputState& input);
 
 	using UpdateFunc_t = void(Field::*)(const InputState& input);
-	UpdateFunc_t updateFunc_ = nullptr;
+	UpdateFunc_t updateFunc = nullptr;
 
 };
 

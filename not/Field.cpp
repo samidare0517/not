@@ -47,12 +47,12 @@ void Field::FadeInUpdate(const InputState& input)
 	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc_ = &Field::NormalUpdate;
+		updateFunc = &Field::NormalUpdate;
 	}
 }
 
 Field::Field(SceneManager& manager) :Scene(manager),
-updateFunc_(&Field::FadeInUpdate)
+updateFunc(&Field::FadeInUpdate)
 {
 	Init();
 }
@@ -248,7 +248,7 @@ void Field::FadeOutUpdate(const InputState& input)
 
 void Field::Update(const InputState& input)
 {
-	(this->*updateFunc_)(input);
+	(this->*updateFunc)(input);
 }
 
 void Field::Draw()		// –â‘è‚Ì•`‰æ

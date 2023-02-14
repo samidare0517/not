@@ -11,7 +11,7 @@ void TitleScene::FadeInUpdate(const InputState& input)
 	fadeValue = fadeTimer;
 	if (--fadeTimer == 0)
 	{
-		updateFunc_ = &TitleScene::NormalUpdate;
+		updateFunc = &TitleScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
@@ -21,7 +21,7 @@ void TitleScene::NormalUpdate(const InputState& input)
 	// 次へボタンが押されたら次のシーンへ移行する
 	if (input.IsTriggred(InputType::next))
 	{
-		updateFunc_ = &TitleScene::FadeOutUpdate;
+		updateFunc = &TitleScene::FadeOutUpdate;
 	}
 }
 
@@ -40,7 +40,7 @@ void TitleScene::Function()
 }
 
 TitleScene::TitleScene(SceneManager& manager) : Scene(manager),
-updateFunc_(&TitleScene::FadeInUpdate)
+updateFunc(&TitleScene::FadeInUpdate)
 {
 	// 画像のロード
 	titleHandle = LoadGraph("data/TitleBack.png");
@@ -54,7 +54,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Update(const InputState& input)
 {
-	(this ->*updateFunc_)(input);
+	(this ->*updateFunc)(input);
 }
 
 void TitleScene::Draw()

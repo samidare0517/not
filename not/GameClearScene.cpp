@@ -10,7 +10,7 @@ void GameClearScene::FadeInUpdate(const InputState& input)
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc_ = &GameClearScene::NormalUpdate;
+		updateFunc = &GameClearScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
@@ -37,7 +37,7 @@ void GameClearScene::FadeOutUpdate(const InputState& input)
 }
 
 GameClearScene::GameClearScene(SceneManager& manager) : Scene(manager),
-updateFunc_(&GameClearScene::FadeInUpdate)
+updateFunc(&GameClearScene::FadeInUpdate)
 {
 	// ‰æ‘œ‚Ìƒ[ƒh
 	gameclearHandle = LoadGraph("data/ClearBack.png");
@@ -51,7 +51,7 @@ GameClearScene::~GameClearScene()
 
 void GameClearScene::Update(const InputState& input)
 {
-	(this->*updateFunc_)(input);
+	(this->*updateFunc)(input);
 }
 
 void GameClearScene::Draw()
