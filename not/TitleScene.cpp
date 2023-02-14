@@ -8,11 +8,11 @@
 
 void TitleScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue_ = fadeTimer_;
-	if (--fadeTimer_ == 0)
+	fadeValue = fadeTimer;
+	if (--fadeTimer == 0)
 	{
 		updateFunc_ = &TitleScene::NormalUpdate;
-		fadeValue_ = 0;
+		fadeValue = 0;
 	}
 }
 
@@ -27,8 +27,8 @@ void TitleScene::NormalUpdate(const InputState& input)
 
 void TitleScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue_ = 255 * (static_cast<float>(fadeTimer_) / static_cast<float>(fade_intarval));
-	if (++fadeTimer_ == fade_intarval)
+	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
+	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new ExplanationScene(manager_));
 		return;
@@ -43,13 +43,13 @@ TitleScene::TitleScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&TitleScene::FadeInUpdate)
 {
 	// 画像のロード
-	titleH_ = LoadGraph("data/TitleBack.png");
+	titleHandle = LoadGraph("data/TitleBack.png");
 }
 
 TitleScene::~TitleScene()
 {
 	// 画像のデリート
-	DeleteGraph(titleH_);
+	DeleteGraph(titleHandle);
 }
 
 void TitleScene::Update(const InputState& input)
@@ -60,7 +60,7 @@ void TitleScene::Update(const InputState& input)
 void TitleScene::Draw()
 {
 	// 普通の描画
-	DrawGraph(0, 0, titleH_, true);
+	DrawGraph(0, 0, titleHandle, true);
 	
 	SetFontSize(100);
 	DrawFormatString(550, 400, GetColor(255, 255, 255), "タイトル");
@@ -70,7 +70,7 @@ void TitleScene::Draw()
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	
 	// 画面全体を青に塗りつぶす
 	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);

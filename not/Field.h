@@ -43,10 +43,10 @@ private:
 	// 背景用
 	int handle = 0;
 	
-	unsigned int fadeColor_ = 0x1e90ff;	// フェードの色(デフォ黒)
-	static constexpr int fade_interval = 160;
-	int fadeTimer_ = fade_interval;
-	int fadeValue_ = 255;
+	unsigned int fadeColor = 0x1e90ff;	// フェードの色(デフォ黒)
+	static constexpr int fadeInterval = 160;
+	int fadeTimer = fadeInterval;
+	int fadeValue = 255;
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);

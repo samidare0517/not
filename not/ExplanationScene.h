@@ -4,12 +4,21 @@
 
 class ExplanationScene : public Scene
 {
+
+public:
+
+	ExplanationScene(SceneManager& manager);
+	~ExplanationScene();
+
+	void Update(const InputState& input);
+	void Draw();
+
 private:
 
-	static constexpr int fade_intarval = 60;
-	int titleH_ = -1;		// タイトル画像
-	int fadeTimer_ = fade_intarval;		// フェードタイマー
-	int fadeValue_ = 225;	// 黒矩形とのブレンド具合
+	static constexpr int fadeIntarval = 60;
+	int titleHandle = -1;		// タイトル画像
+	int fadeTimer = fadeIntarval;		// フェードタイマー
+	int fadeValue = 225;	// 黒矩形とのブレンド具合
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);
@@ -24,15 +33,6 @@ private:
 	void (ExplanationScene::* updateFunc_)(const InputState& input);
 
 	void Function();
-
-
-public:
-
-	ExplanationScene(SceneManager& manager);
-	~ExplanationScene();
-
-	void Update(const InputState& input);
-	void Draw();
 
 };
 

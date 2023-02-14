@@ -7,11 +7,11 @@
 
 void GameClearScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue_ = 255 * static_cast<float>(fadeTimer_) / static_cast<float>(fade_interval);
-	if (--fadeTimer_ == 0)
+	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	if (--fadeTimer == 0)
 	{
 		updateFunc_ = &GameClearScene::NormalUpdate;
-		fadeValue_ = 0;
+		fadeValue = 0;
 	}
 }
 
@@ -40,13 +40,13 @@ GameClearScene::GameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&GameClearScene::FadeInUpdate)
 {
 	// 画像のロード
-	gameclearH = LoadGraph("data/ClearBack.png");
+	gameclearHandle = LoadGraph("data/ClearBack.png");
 }
 
 GameClearScene::~GameClearScene()
 {
 	// 画像のデリート
-	DeleteGraph(gameclearH);
+	DeleteGraph(gameclearHandle);
 }
 
 void GameClearScene::Update(const InputState& input)
@@ -57,13 +57,13 @@ void GameClearScene::Update(const InputState& input)
 void GameClearScene::Draw()
 {
 	// 普通の描画
-	DrawGraph(0, 0, gameclearH, true);
+	DrawGraph(0, 0, gameclearHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームクリア");
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

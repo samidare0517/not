@@ -8,11 +8,11 @@
 
 void GameoverScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue_ = 255 * static_cast<float>(fadeTimer_) / static_cast<float>(fade_interval);
-	if (--fadeTimer_ == 0)
+	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	if (--fadeTimer == 0)
 	{
 		updateFunc_ = &GameoverScene::NormalUpdate;
-		fadeValue_ = 0;
+		fadeValue = 0;
 	}
 }
 
@@ -41,13 +41,13 @@ GameoverScene::GameoverScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&GameoverScene::FadeInUpdate)
 {
 	// 画像のロード
-	gameoverH = LoadGraph("data/OverBack.png");
+	gameoverHandle = LoadGraph("data/OverBack.png");
 }
 
 GameoverScene::~GameoverScene()
 {
 	// 画像のデリート
-	DeleteGraph(gameoverH);
+	DeleteGraph(gameoverHandle);
 }
 
 void GameoverScene::Update(const InputState& input)
@@ -58,13 +58,13 @@ void GameoverScene::Update(const InputState& input)
 void GameoverScene::Draw()
 {
 	// 普通の描画
-	DrawGraph(0, 0, gameoverH, true);
+	DrawGraph(0, 0, gameoverHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

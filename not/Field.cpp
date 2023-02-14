@@ -32,6 +32,8 @@ namespace
 
 	// –â‘è‚ğŒJ‚è•Ô‚·‰ñ”
 	int questionnum = 30;
+
+	// –â‘è‚Ì³‰ğ‰ñ”
 	int i = 0;
 
 	// ”wŒi—pƒnƒ“ƒhƒ‹
@@ -42,8 +44,8 @@ namespace
 
 void Field::FadeInUpdate(const InputState& input)
 {
-	fadeValue_ = 225 * static_cast<float>(fadeTimer_) / static_cast<float>(fade_interval);
-	if (--fadeTimer_ == 0)
+	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	if (--fadeTimer == 0)
 	{
 		updateFunc_ = &Field::NormalUpdate;
 	}
@@ -73,7 +75,7 @@ void Field::NormalUpdate(const InputState& input)
 {
 
 	// ”wŒi•`‰æ (ƒfƒoƒbƒN•¶š‚ªŒ©‚¦‚é‚æ‚¤‚É”wŒi‚ğ•\¦)
-//	DrawGraph(0, 0, handle, true);
+	DrawGraph(0, 0, handle, true);
 
 	Pad::update();
 	kTime.Update();
@@ -236,8 +238,8 @@ void Field::NormalUpdate(const InputState& input)
 
 void Field::FadeOutUpdate(const InputState& input)
 {
-	fadeValue_ = 225 * static_cast<float>(fadeTimer_) / static_cast<float>(fade_interval);
-	if (++fadeTimer_ == fade_interval)
+	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	if (++fadeTimer == fadeInterval)
 	{
 		manager_.CangeScene(new GameoverScene(manager_));
 		return;
@@ -312,7 +314,7 @@ void Field::Draw()		// –â‘è‚Ì•`‰æ
 	}
 
 	// ¡‚©‚çŠe‰æ‘œ‚Æ‚·‚Å‚É•`‰æ‚³‚ê‚Ä‚¢‚éƒXƒNƒŠ[ƒ“‚Æ‚ÌƒuƒŒƒ“ƒh‚Ìd•û‚ğw’è
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 
 	// ‰æ–Ê‘S‘Ì‚ğÂ‚É“h‚è‚Â‚Ô‚·
 	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
@@ -322,7 +324,7 @@ void Field::Draw()		// –â‘è‚Ì•`‰æ
 void Field::DrawField()		// ƒtƒB[ƒ‹ƒh‚Ì•`‰æ
 {
 	// ”wŒi•`‰æ
-	DrawGraph(0, 0, handle, true);
+//	DrawGraph(0, 0, handle, true);
 
 	// ƒtƒB[ƒ‹ƒh‚Ì•`‰æ
 	DrawBox(500, 150, 1100, 750, GetColor(0, 0, 0), true);

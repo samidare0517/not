@@ -9,10 +9,6 @@ class InputState;	// 入力ステート
 // シーン監視クラス
 class SceneManager
 {
-private:
-	// 「今実行中」のシーンを切り替えたいので参照ではなくポインタとして宣言
-	std::deque<Scene*>scenes_;
-
 public:
 
 	/// <summary>
@@ -39,6 +35,10 @@ public:
 	/// 各シーンの描画を行う
 	/// </summary>
 	void Draw();
+
+private:
+	// 「今実行中」のシーンを切り替えたいので参照ではなくポインタとして宣言
+	std::deque<Scene*>scenes_;
 
 };
 

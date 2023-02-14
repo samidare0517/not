@@ -16,11 +16,11 @@ public:
 
 private:
 
-	int gameclearH = -1;	// 画像
+	int gameclearHandle = -1;	// 画像
 
-	static constexpr int fade_interval = 120;
-	int fadeTimer_ = fade_interval;
-	int fadeValue_ = 255;
+	static constexpr int fadeInterval = 120;
+	int fadeTimer = fadeInterval;
+	int fadeValue = 255;
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);

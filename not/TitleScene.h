@@ -16,11 +16,11 @@ public:
 
 private:
 
-	int titleH_ = -1;		// タイトル画像
+	int titleHandle = -1;		// タイトル画像
 
-	static constexpr int fade_intarval = 60;
-	int fadeTimer_ = fade_intarval;		// フェードタイマー
-	int fadeValue_ = 225;	// 黒矩形とのブレンド具合
+	static constexpr int fadeIntarval = 60;
+	int fadeTimer = fadeIntarval;		// フェードタイマー
+	int fadeValue = 225;	// 黒矩形とのブレンド具合
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);

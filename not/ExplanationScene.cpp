@@ -8,11 +8,11 @@
 
 void ExplanationScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue_ = fadeTimer_;
-	if (--fadeTimer_ == 0)
+	fadeValue = fadeTimer;
+	if (--fadeTimer == 0)
 	{
 		updateFunc_ = &ExplanationScene::NormalUpdate;
-		fadeValue_ = 0;
+		fadeValue = 0;
 	}
 }
 
@@ -27,8 +27,8 @@ void ExplanationScene::NormalUpdate(const InputState& input)
 
 void ExplanationScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue_ = 255 * (static_cast<float>(fadeTimer_) / static_cast<float>(fade_intarval));
-	if (++fadeTimer_ == fade_intarval)
+	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
+	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new Field(manager_));
 		return;
@@ -63,7 +63,7 @@ void ExplanationScene::Draw()
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "説明画面");
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue_);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 
 	// 画面全体を青に塗りつぶす
 	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
