@@ -40,9 +40,6 @@ public:
 
 private:
 
-	// 背景用
-	int handle = 0;
-	
 	unsigned int fadeColor = 0x1e90ff;	// フェードの色(デフォ黒)
 	static constexpr int fadeInterval = 160;
 	int fadeTimer = fadeInterval;

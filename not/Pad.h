@@ -4,7 +4,7 @@
 namespace Pad
 {
 	// ƒpƒbƒh‚Ì“ü—Íó‘Ôæ“¾
-	void update();
+	void Update();
 
 
 	// ‰Ÿ‚µã‚°”»’è

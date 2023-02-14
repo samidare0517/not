@@ -22,7 +22,10 @@ TimeBar::~TimeBar()
 void TimeBar::Init()
 {
 	tb = 1100;		// タイムバーの大きさ
+	time = 3;		// 表示用のタイマー(3秒)
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
+	timeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の画像
+	timerBackHandle = LoadGraph("data/TimerBack.png");
 }
 
 void TimeBar::Update()
@@ -31,6 +34,7 @@ void TimeBar::Update()
 	if (kfield->AnswerFlag() == true)
 	{
 		tb = 1100;
+		time = 3;
 	}
 
 	timeflag = false;		// フラグの初期化
@@ -40,7 +44,6 @@ void TimeBar::Update()
 	if (frame >= 60)
 	{
 		frame = 0;
-		time = 0;
 		if (tb > 0)
 		{
 			tb -= 200;			// 1フレームで200ずつ減らす(1問あたり約3秒)
@@ -60,10 +63,19 @@ void TimeBar::Draw()
 	SetFontSize(50);
 //	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
 	
-	// ゲージ用のタイマー(表示用)
-	DrawFormatString(0, 2, GetColor(255, 255, 255), "time:%d", time);
+	DrawGraph(20, 20, timerBackHandle, true);
+
+	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	
-	DrawExtendGraph(500, 120, tb, 0 + 50, handle, true);
+	// ゲージ用のタイマー(表示用)
+	DrawFormatString(75, 35, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
+	
+	// タイムバーの背景
+	DrawGraph(450, 25, timeBackHandle, true);
+
+	// タイムバー
+	DrawExtendGraph(500, 100, tb, 0 + 50, handle, true);
 }
 
 bool TimeBar::Check()

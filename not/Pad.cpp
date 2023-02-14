@@ -14,7 +14,7 @@ namespace
 namespace Pad
 {
 	// パッドの入力状態取得
-	void update()
+	void Update()
 	{
 		// 現在のパッドの状態を取得
 		int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);

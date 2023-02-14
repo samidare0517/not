@@ -25,16 +25,16 @@ namespace
 	int mozi1X = 750;	// じゃない用一行目
 	int mozi1Y = 350;	// じゃない用一行目
 
-	int mozi2X = 600;	// じゃない用二行目
+	int mozi2X = 640;	// じゃない用二行目
 	int mozi2Y = 450;	// じゃない用二行目
 
-	bool answercheck = false;
+	bool answerCheck = false;
 
 	// 問題を繰り返す回数
-	int questionnum = 30;
+	int questionNum = 30;
 
 	// 問題の正解回数
-	int i = 0;
+	int answerNum = 0;
 
 	// 背景用ハンドル
 	int handle = 0;
@@ -66,9 +66,11 @@ void Field::Init()
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
 
 	kTime.Init();
+
+ 	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
+
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
-	num = rand() % randomnum + 1;		// 1～4の乱数を出す
-	i = 0;	// 問題の正解数カウントを0にする(初期化)
+	num = rand() % randomnum + 1;		// 1～8の乱数を出す
 }
 
 void Field::NormalUpdate(const InputState& input)
@@ -77,16 +79,16 @@ void Field::NormalUpdate(const InputState& input)
 	// 背景描画 (デバック文字が見えるように背景を表示)
 	DrawGraph(0, 0, handle, true);
 
-	Pad::update();
+	Pad::Update();
 	kTime.Update();
 
-	if (answercheck == true)	// 正解が押されたら次の問題へ
+	if (answerCheck == true)	// 正解が押されたら次の問題へ
 	{
-		for (int i = 0; i < questionnum; i++)		// 30問繰り返す
+		for (int i = 0; i < questionNum; i++)		// 30問繰り返す
 		{
 			num = rand() % randomnum + 1;
 		}
-		i++;
+		answerNum++;
 	}
 	else if (kTime.Check() == true)	// タイムバーが0になっていたらゲームオーバー処理へ
 	{
@@ -95,21 +97,21 @@ void Field::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (i == 30)
+	if (answerNum == 1)
 	{
-		manager_.CangeScene(new GameClearScene(manager_));
-		return;
+		answerCheck = false;	// 正解のフラグの初期化
 
-		// デバック用
-		DrawFormatString(0, 350, GetColor(255, 255, 255), "全問正解:% d", i);	
+		// 指定の回数正解したらゲームクリアシーンに行く
+		manager_.CangeScene(new GameClearScene(manager_));
+		return;	
 	}
 	// デバック用
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "問題数:%d", i);
+	DrawFormatString(0, 400, GetColor(255, 255, 255), "問題数:%d", answerNum);
 
-	answercheck = false;	// 正解のフラグの初期化
+	answerCheck = false;	// 正解のフラグの初期化
 
 	// ランダムになっているか調べる(デバック用)
-	DrawFormatString(0, 100, GetColor(255, 255, 255), "問題:% d", num);
+	DrawFormatString(0, 200, GetColor(255, 255, 255), "問題:% d", num);
 
 	// パッド(もしくはキーボード)からの入力を取得する
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
@@ -123,7 +125,7 @@ void Field::NormalUpdate(const InputState& input)
 	{
 		if (Pad::isTrigger(PAD_INPUT_UP))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -136,7 +138,7 @@ void Field::NormalUpdate(const InputState& input)
 	{
 		if (Pad::isTrigger(PAD_INPUT_DOWN))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -149,7 +151,7 @@ void Field::NormalUpdate(const InputState& input)
 	{
 		if (Pad::isTrigger(PAD_INPUT_LEFT))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -162,7 +164,7 @@ void Field::NormalUpdate(const InputState& input)
 	{
 		if (Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -178,7 +180,7 @@ void Field::NormalUpdate(const InputState& input)
 		if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) || 
 			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -192,7 +194,7 @@ void Field::NormalUpdate(const InputState& input)
 		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -206,7 +208,7 @@ void Field::NormalUpdate(const InputState& input)
 		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -220,7 +222,7 @@ void Field::NormalUpdate(const InputState& input)
 		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 			Pad::isTrigger(PAD_INPUT_LEFT))
 		{
-			answercheck = true;		// 正解が押されたらマル
+			answerCheck = true;		// 正解が押されたらマル
 		}
 		else
 		{
@@ -333,11 +335,11 @@ void Field::DrawField()		// フィールドの描画
 	SetFontSize(100);
 	DrawFormatString(750,  150, GetColor(225, 225, 225), "↑");
 
-	DrawFormatString(750,  650, GetColor(225, 225, 225), "↓");
+	DrawFormatString(750,  665, GetColor(225, 225, 225), "↓");
 
-	DrawFormatString(1000, 400, GetColor(225, 225, 225), "→");
+	DrawFormatString(1008, 400, GetColor(225, 225, 225), "→");
 
-	DrawFormatString(500,  400, GetColor(225, 225, 225), "←");
+	DrawFormatString(492,  400, GetColor(225, 225, 225), "←");
 }
 
 // 不正解の場合の処理(通常ver)
@@ -448,20 +450,20 @@ bool Field::AnswerCheck()
 	SetFontSize(50);
 	
 	// trueだったら正解正解ボタンが押されるまでは待機
-	if (answercheck == true)
+	if (answerCheck == true)
 	{
-		DrawFormatString(0, 200, GetColor(255, 255, 255), "〇");
+		DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}
 	else
 	{
-		DrawFormatString(0, 150, GetColor(255, 255, 255), "待機中");
+		DrawFormatString(0, 300, GetColor(255, 255, 255), "待機中");
 	}
 	return false;
 }
 
 bool Field::AnswerFlag()
 {
-	if (answercheck == true)
+	if (answerCheck == true)
 	{
 		return true;
 	}
