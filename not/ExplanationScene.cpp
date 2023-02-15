@@ -1,5 +1,5 @@
 #include "TimeBar.h"
-#include "Field.h"
+#include "KeyField.h"
 #include "ExplanationScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
@@ -30,7 +30,7 @@ void ExplanationScene::FadeOutUpdate(const InputState& input)
 	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
 	if (++fadeTimer == fadeIntarval)
 	{
-		manager_.CangeScene(new Field(manager_));
+		manager_.CangeScene(new KeyField(manager_));
 		return;
 	}
 }

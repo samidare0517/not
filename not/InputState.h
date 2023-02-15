@@ -7,7 +7,8 @@
 enum class InputType
 {
 	next,	// 次へ行くボタン
-	prev, // 前に戻るボタン
+	prev,	// 前に戻るボタン
+	title,	// タイトルに戻る
 	pause,	// ポーズボタン
 	max		// 最大入力インデックス
 };

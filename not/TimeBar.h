@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include <memory>
 
-class Field;
+class KeyField;
 /// <summary>
 /// タイムバー
 /// </summary>

@@ -2,14 +2,14 @@
 #include "Scene.h"
 
 /// <summary>
-/// ゲームオーバーシーン
+/// キー問題用ゲームオーバーシーン
 /// </summary>
-class GameoverScene : public Scene
+class KeyGameoverScene : public Scene
 {
 public:
 
-	GameoverScene(SceneManager& manager);
-	~GameoverScene();
+	KeyGameoverScene(SceneManager& manager);
+	~KeyGameoverScene();
 
 	void Update(const InputState& input);
 	void Draw();
@@ -31,7 +31,7 @@ private:
 	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
 
-	using UpdateFunc_t = void(GameoverScene::*)(const InputState&);
+	using UpdateFunc_t = void(KeyGameoverScene::*)(const InputState&);
 	UpdateFunc_t updateFunc = nullptr;
 
 };

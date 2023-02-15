@@ -3,7 +3,7 @@
 #include "TitleScene.h"
 #include "SceneManager.h"
 #include "PauseScene.h"
-#include "GameoverScene.h"
+#include "KeyGameoverScene.h"
 #include "DxLib.h"
 
 void TitleScene::FadeInUpdate(const InputState& input)

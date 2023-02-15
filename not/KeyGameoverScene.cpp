@@ -1,25 +1,25 @@
-#include "GameoverScene.h"
+#include "KeyGameoverScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
-#include "Field.h"
+#include "KeyField.h"
 #include "Pad.h"
 #include "DxLib.h"
 
-void GameoverScene::FadeInUpdate(const InputState& input)
+void KeyGameoverScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &GameoverScene::NormalUpdate;
+		updateFunc = &KeyGameoverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void GameoverScene::NormalUpdate(const InputState& input)
+void KeyGameoverScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
-	if (input.IsTriggred(InputType::next))
+	if (input.IsTriggred(InputType::title))
 	{
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
@@ -27,35 +27,35 @@ void GameoverScene::NormalUpdate(const InputState& input)
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
-		manager_.CangeScene(new Field(manager_));
+		manager_.CangeScene(new KeyField(manager_));
 		return;
 	}
 }
 
-void GameoverScene::FadeOutUpdate(const InputState& input)
+void KeyGameoverScene::FadeOutUpdate(const InputState& input)
 {
 
 }
 
-GameoverScene::GameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc(&GameoverScene::FadeInUpdate)
+KeyGameoverScene::KeyGameoverScene(SceneManager& manager) : Scene(manager),
+updateFunc(&KeyGameoverScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameoverHandle = LoadGraph("data/OverBack.png");
 }
 
-GameoverScene::~GameoverScene()
+KeyGameoverScene::~KeyGameoverScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameoverHandle);
 }
 
-void GameoverScene::Update(const InputState& input)
+void KeyGameoverScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void GameoverScene::Draw()
+void KeyGameoverScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameoverHandle, true);

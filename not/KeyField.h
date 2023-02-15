@@ -7,12 +7,12 @@ class TimeBar;
 /// <summary>
 /// フィールド
 /// </summary>
-class Field : public Scene
+class KeyField : public Scene
 {
 public:
 
-	Field(SceneManager& manager);
-	~Field();
+	KeyField(SceneManager& manager);
+	~KeyField();
 
 	void Init();
 	void Update(const InputState& input);
@@ -54,7 +54,7 @@ private:
 	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
 
-	using UpdateFunc_t = void(Field::*)(const InputState& input);
+	using UpdateFunc_t = void(KeyField::*)(const InputState& input);
 	UpdateFunc_t updateFunc = nullptr;
 
 };

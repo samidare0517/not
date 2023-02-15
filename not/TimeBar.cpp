@@ -1,12 +1,12 @@
 #include "TimeBar.h"
 #include "DxLib.h"
 #include "game.h"
-#include "Field.h"
+#include "KeyField.h"
 
 namespace
 {
 	bool timeflag = false;
-	Field* kfield;
+	KeyField* kfield;
 }
 
 TimeBar::TimeBar()

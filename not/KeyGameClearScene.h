@@ -2,14 +2,15 @@
 #include "Scene.h"
 
 /// <summary>
-/// ゲームクリアシーン
+/// キー問題用ゲームクリアシーン
 /// </summary>
-class GameClearScene : public Scene
+/// 
+class KeyGameClearScene : public Scene
 {
 public:
 
-	GameClearScene(SceneManager& manager);
-	~GameClearScene();
+	KeyGameClearScene(SceneManager& manager);
+	~KeyGameClearScene();
 
 	void Update(const InputState& input);
 	void Draw();
@@ -31,7 +32,7 @@ private:
 	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
 
-	using UpdateFunc_t = void(GameClearScene::*)(const InputState&);
+	using UpdateFunc_t = void(KeyGameClearScene::*)(const InputState&);
 	UpdateFunc_t updateFunc = nullptr;
 
 };

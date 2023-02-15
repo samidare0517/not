@@ -1,23 +1,29 @@
-#include "GameClearScene.h"
+#include "KeyGameClearScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
-#include "Field.h"
+#include "KeyField.h"
 #include "DxLib.h"
 
-void GameClearScene::FadeInUpdate(const InputState& input)
+void KeyGameClearScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &GameClearScene::NormalUpdate;
+		updateFunc = &KeyGameClearScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void GameClearScene::NormalUpdate(const InputState& input)
+void KeyGameClearScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
+	if (input.IsTriggred(InputType::title))
+	{
+		manager_.CangeScene(new TitleScene(manager_));
+		return;
+	}
+	// 次の問題に進む場合
 	if (input.IsTriggred(InputType::next))
 	{
 		manager_.CangeScene(new TitleScene(manager_));
@@ -26,35 +32,35 @@ void GameClearScene::NormalUpdate(const InputState& input)
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
-		manager_.CangeScene(new Field(manager_));
+		manager_.CangeScene(new KeyField(manager_));
 		return;
 	}
 }
 
-void GameClearScene::FadeOutUpdate(const InputState& input)
+void KeyGameClearScene::FadeOutUpdate(const InputState& input)
 {
 
 }
 
-GameClearScene::GameClearScene(SceneManager& manager) : Scene(manager),
-updateFunc(&GameClearScene::FadeInUpdate)
+KeyGameClearScene::KeyGameClearScene(SceneManager& manager) : Scene(manager),
+updateFunc(&KeyGameClearScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameclearHandle = LoadGraph("data/ClearBack.png");
 }
 
-GameClearScene::~GameClearScene()
+KeyGameClearScene::~KeyGameClearScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameclearHandle);
 }
 
-void GameClearScene::Update(const InputState& input)
+void KeyGameClearScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void GameClearScene::Draw()
+void KeyGameClearScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameclearHandle, true);

@@ -1,9 +1,9 @@
-#include "Field.h"
+#include "KeyField.h"
 #include "InputState.h"
 #include "TitleScene.h"
 #include "SceneManager.h"
-#include "GameoverScene.h"
-#include "GameClearScene.h"
+#include "KeyGameoverScene.h"
+#include "KeyGameClearScene.h"
 #include "PauseScene.h"
 #include "DxLib.h"
 #include "Pad.h"
@@ -42,26 +42,26 @@ namespace
 	TimeBar kTime;
 }
 
-void Field::FadeInUpdate(const InputState& input)
+void KeyField::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &Field::NormalUpdate;
+		updateFunc = &KeyField::NormalUpdate;
 	}
 }
 
-Field::Field(SceneManager& manager) :Scene(manager),
-updateFunc(&Field::FadeInUpdate)
+KeyField::KeyField(SceneManager& manager) :Scene(manager),
+updateFunc(&KeyField::FadeInUpdate)
 {
 	Init();
 }
 
-Field::~Field()
+KeyField::~KeyField()
 {
 }
 
-void Field::Init()
+void KeyField::Init()
 {
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
 
@@ -73,7 +73,7 @@ void Field::Init()
 	num = rand() % randomnum + 1;		// 1～8の乱数を出す
 }
 
-void Field::NormalUpdate(const InputState& input)
+void KeyField::NormalUpdate(const InputState& input)
 {
 
 	// 背景描画 (デバック文字が見えるように背景を表示)
@@ -102,7 +102,7 @@ void Field::NormalUpdate(const InputState& input)
 		answerCheck = false;	// 正解のフラグの初期化
 
 		// 指定の回数正解したらゲームクリアシーンに行く
-		manager_.CangeScene(new GameClearScene(manager_));
+		manager_.CangeScene(new KeyGameClearScene(manager_));
 		return;	
 	}
 	// デバック用
@@ -238,22 +238,22 @@ void Field::NormalUpdate(const InputState& input)
 	}
 }
 
-void Field::FadeOutUpdate(const InputState& input)
+void KeyField::FadeOutUpdate(const InputState& input)
 {
 	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (++fadeTimer == fadeInterval)
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 	}
 }
 
-void Field::Update(const InputState& input)
+void KeyField::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void Field::Draw()		// 問題の描画
+void KeyField::Draw()		// 問題の描画
 {
 	SetFontSize(50);
 	DrawField();
@@ -323,7 +323,7 @@ void Field::Draw()		// 問題の描画
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-void Field::DrawField()		// フィールドの描画
+void KeyField::DrawField()		// フィールドの描画
 {
 	// 背景描画
 //	DrawGraph(0, 0, handle, true);
@@ -343,48 +343,48 @@ void Field::DrawField()		// フィールドの描画
 }
 
 // 不正解の場合の処理(通常ver)
-void Field::MissPressUp()	// 正解が上の場合
+void KeyField::MissPressUp()	// 正解が上の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");	
 	}
 }
 
-void Field::MissPressDown()	// 正解が下の場合
+void KeyField::MissPressDown()	// 正解が下の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
-void Field::MissPressLeft()	// 正解が左の場合
+void KeyField::MissPressLeft()	// 正解が左の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
-void Field::MissPressRight()	// 正解が右の場合
+void KeyField::MissPressRight()	// 正解が右の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_LEFT))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -392,44 +392,44 @@ void Field::MissPressRight()	// 正解が右の場合
 }
 
 // 不正解の場合の処理(じゃないver)
-void Field::NotPressUp()	// 問題の答えが上以外の場合
+void KeyField::NotPressUp()	// 問題の答えが上以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
-void Field::NotPressDown()	// 問題の答えが下以外の場合
+void KeyField::NotPressDown()	// 問題の答えが下以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
-void Field::NotPressLeft()	// 問題の答えが左以外の場合
+void KeyField::NotPressLeft()	// 問題の答えが左以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_LEFT))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
-void Field::NotPressRight()	// 問題の答えが右以外の場合
+void KeyField::NotPressRight()	// 問題の答えが右以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
-		manager_.CangeScene(new GameoverScene(manager_));
+		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
 		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -437,14 +437,14 @@ void Field::NotPressRight()	// 問題の答えが右以外の場合
 }
 
 // タイムアップの場合の処理(即ゲームオーバー)
-void Field::TimeUp()
+void KeyField::TimeUp()
 {
-	manager_.CangeScene(new GameoverScene(manager_));
+	manager_.CangeScene(new KeyGameoverScene(manager_));
 	return;
 }
 
 // 正解の入力
-bool Field::AnswerCheck()
+bool KeyField::AnswerCheck()
 {
 
 	SetFontSize(50);
@@ -461,7 +461,7 @@ bool Field::AnswerCheck()
 	return false;
 }
 
-bool Field::AnswerFlag()
+bool KeyField::AnswerFlag()
 {
 	if (answerCheck == true)
 	{
