@@ -5,16 +5,16 @@
 InputState::InputState()
 {
 	// 次へ
-	defaultMapTable[InputType::next] = { {InputCategory::keybd,PAD_INPUT_6} };
+	defaultMapTable[InputType::next] = { {InputCategory::keybd,KEY_INPUT_RETURN} };
 									
 	// 前へ
-	defaultMapTable[InputType::prev] = { {InputCategory::keybd,PAD_INPUT_7} };
+	defaultMapTable[InputType::prev] = { {InputCategory::keybd,KEY_INPUT_SPACE} };
 				
 	// タイトルへ
-	defaultMapTable[InputType::title] = { {InputCategory::keybd,KEY_INPUT_RETURN} };
+	defaultMapTable[InputType::title] = {{InputCategory::keybd,KEY_INPUT_RETURN}};
 
 	// ポーズ
-	defaultMapTable[InputType::pause] = { {InputCategory::keybd,KEY_INPUT_8} };
+	defaultMapTable[InputType::pause] = { {InputCategory::keybd,KEY_INPUT_P} };
 										
 
 	inputMapTable = defaultMapTable;

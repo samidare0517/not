@@ -46,13 +46,13 @@ KeyGameClearScene::KeyGameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc(&KeyGameClearScene::FadeInUpdate)
 {
 	// 画像のロード
-	gameclearHandle = LoadGraph("data/ClearBack.png");
+//	gameclearHandle = LoadGraph("data/ClearBack.png");
 }
 
 KeyGameClearScene::~KeyGameClearScene()
 {
 	// 画像のデリート
-	DeleteGraph(gameclearHandle);
+//	DeleteGraph(gameclearHandle);
 }
 
 void KeyGameClearScene::Update(const InputState& input)
@@ -63,11 +63,12 @@ void KeyGameClearScene::Update(const InputState& input)
 void KeyGameClearScene::Draw()
 {
 	// 普通の描画
-	DrawGraph(0, 0, gameclearHandle, true);
+//	DrawGraph(0, 0, gameclearHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームクリア");
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "keyゲームクリア");
+	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→T\nリスタート→スペース");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

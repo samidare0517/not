@@ -62,7 +62,8 @@ void KeyGameoverScene::Draw()
 
 	// シーン確認用
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "ゲームオーバー");
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "keyゲームオーバー");
+	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→エンター\nリスタート→back");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);
