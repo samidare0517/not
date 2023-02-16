@@ -43,11 +43,13 @@ KeyExplanationScene::KeyExplanationScene(SceneManager& manager) : Scene(manager)
 updateFunc_(&KeyExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
+	Handle = LoadGraph("data/KeyGameSetumei.png");
 }
 
 KeyExplanationScene::~KeyExplanationScene()
 {
 	// 画像のデリート
+	DeleteGraph(Handle);
 }
 
 void KeyExplanationScene::Update(const InputState& input)
@@ -58,15 +60,30 @@ void KeyExplanationScene::Update(const InputState& input)
 void KeyExplanationScene::Draw()
 {
 	// 普通の描画
-	//DrawRotaGraph(320, 240, 1.0f, 0.0f, titleH_, true);
-	DrawBox(200, 200, 400, 400, GetColor(255, 255, 255), true);
+	DrawGraph(0, 0,Handle, true);
+	
+	
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "全体＆1問目説明画面");
-	DrawFormatString(0, 500, GetColor(255, 255, 255), 
-		"(仮説明)\n"
-		"真ん中に表示される指示の通りに\nパッドの十字キーやボタンを押してください。\n"
-		"一問目は方向問題です。\n十字キーかパッド左のスティックを使ってください。\n"
-		"ゲームをスタートするにはRBボタンを押してください。");
+	
+	DrawFormatString(0, 500, GetColor(255, 255, 255),
+		"(仮説明)\n");
+	
+	// 点滅処理
+	static int BrinkCounter;
+	BrinkCounter++;
+	if (BrinkCounter == 120)
+	{
+		BrinkCounter = 0;
+	}
+	
+	if (BrinkCounter < 80)
+	{
+		DrawFormatString(250, 800, GetColor(255, 255, 255),"ゲームをスタートするには");
+		DrawFormatString(790, 800, GetColor(255, 0, 0),"RBボタン");
+		DrawFormatString(995, 800, GetColor(255, 255, 255),"を押してください");
+	}
 
+	
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 

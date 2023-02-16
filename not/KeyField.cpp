@@ -231,7 +231,7 @@ void KeyField::NormalUpdate(const InputState& input)
 	}
 
 	
-	// Pキーでポーズシーン
+	// パッドのSTARTでポーズシーン
 	if (input.IsTriggred(InputType::pause))
 	{
 		manager_.PushScene(new PauseScene(manager_));
@@ -461,6 +461,7 @@ bool KeyField::AnswerCheck()
 	return false;
 }
 
+// 正解フラグ
 bool KeyField::AnswerFlag()
 {
 	if (answerCheck == true)

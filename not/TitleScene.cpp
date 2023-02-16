@@ -66,8 +66,22 @@ void TitleScene::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	
 	SetFontSize(100);
-	DrawFormatString(550, 400, GetColor(255, 255, 255), "タイトル");
+	DrawFormatString(600, 400, GetColor(255, 255, 255), "タイトル");
 	
+	// 点滅処理
+	static int BrinkCounter;
+	BrinkCounter++;
+	if (BrinkCounter == 120)
+	{
+		BrinkCounter = 0;
+	}
+
+	if (BrinkCounter < 80)
+	{
+		SetFontSize(50);
+		DrawFormatString(500, 600, GetColor(255, 255, 0), "RBボタンを押してください");
+	}
+
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");

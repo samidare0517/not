@@ -341,7 +341,7 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	// Pキーでポーズシーン
+	// パッドのSTARTでポーズシーンへ
 	if (input.IsTriggred(InputType::pause))
 	{
 		manager_.PushScene(new PauseScene(manager_));
@@ -745,6 +745,7 @@ bool MixField::AnswerCheck()
 	return false;
 }
 
+// 正解フラグ
 bool MixField::AnswerFlag()
 {
 	if (answerCheck == true)

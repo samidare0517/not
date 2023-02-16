@@ -16,7 +16,7 @@ public:
 private:
 
 	static constexpr int fadeIntarval = 60;
-	int titleHandle = -1;		// タイトル画像
+	int Handle = -1;		// 画像
 	int fadeTimer = fadeIntarval;		// フェードタイマー
 	int fadeValue = 225;	// 黒矩形とのブレンド具合
 
