@@ -40,13 +40,13 @@ MixGameClearScene::MixGameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc(&MixGameClearScene::FadeInUpdate)
 {
 	// 画像のロード
-//	gameclearHandle = LoadGraph("data/ClearBack.png");
+	gameclearHandle = LoadGraph("data/ClearBack.png");
 }
 
 MixGameClearScene::~MixGameClearScene()
 {
 	// 画像のデリート
-//	DeleteGraph(gameclearHandle);
+	DeleteGraph(gameclearHandle);
 }
 
 void MixGameClearScene::Update(const InputState& input)
@@ -57,12 +57,13 @@ void MixGameClearScene::Update(const InputState& input)
 void MixGameClearScene::Draw()
 {
 	// 普通の描画
-//	DrawGraph(0, 0, gameclearHandle, true);
+	DrawGraph(0, 0, gameclearHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Mixゲームクリア");
-	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→T\nリスタート→スペース");
+	DrawFormatString(500, 500, GetColor(255, 255, 255),
+		"タイトル→BACK\n次の問題→RB\nリスタート→LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

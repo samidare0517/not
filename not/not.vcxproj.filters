@@ -69,9 +69,6 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="ExplanationScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="KeyField.cpp">
       <Filter>ソース ファイル\KeyGame</Filter>
     </ClCompile>
@@ -105,6 +102,15 @@
     <ClCompile Include="TimeBar.cpp">
       <Filter>ソース ファイル\TimeBar</Filter>
     </ClCompile>
+    <ClCompile Include="KeyExplanationScene.cpp">
+      <Filter>ソース ファイル\KeyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PadExplanationScene.cpp">
+      <Filter>ソース ファイル\PadGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MixExplanationScene.cpp">
+      <Filter>ソース ファイル\MixGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -133,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ExplanationScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="KeyField.h">
       <Filter>ヘッダー ファイル\KeyGame</Filter>
@@ -169,6 +172,15 @@
     </ClInclude>
     <ClInclude Include="TimeBar.h">
       <Filter>ヘッダー ファイル\TimeBar</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyExplanationScene.h">
+      <Filter>ヘッダー ファイル\KeyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PadExplanationScene.h">
+      <Filter>ヘッダー ファイル\PadGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MixExplanationScene.h">
+      <Filter>ヘッダー ファイル\MixGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

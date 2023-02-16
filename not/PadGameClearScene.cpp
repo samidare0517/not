@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
 #include "PadField.h"
-#include "MixField.h"
+#include "MixExplanationScene.h"
 #include "DxLib.h"
 
 void PadGameClearScene::FadeInUpdate(const InputState& input)
@@ -27,7 +27,7 @@ void PadGameClearScene::NormalUpdate(const InputState& input)
 	// 次の問題に進む場合
 	if (input.IsTriggred(InputType::next))
 	{
-		manager_.CangeScene(new MixField(manager_));
+		manager_.CangeScene(new MixExplanationScene(manager_));
 		return;
 	}
 	// リスタートの場合
@@ -47,13 +47,13 @@ PadGameClearScene::PadGameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc(&PadGameClearScene::FadeInUpdate)
 {
 	// 画像のロード
-//	gameclearHandle = LoadGraph("data/ClearBack.png");
+	gameclearHandle = LoadGraph("data/ClearBack.png");
 }
 
 PadGameClearScene::~PadGameClearScene()
 {
 	// 画像のデリート
-//	DeleteGraph(gameclearHandle);
+	DeleteGraph(gameclearHandle);
 }
 
 void PadGameClearScene::Update(const InputState& input)
@@ -64,13 +64,13 @@ void PadGameClearScene::Update(const InputState& input)
 void PadGameClearScene::Draw()
 {
 	// 普通の描画
-//	DrawGraph(0, 0, gameclearHandle, true);
+	DrawGraph(0, 0, gameclearHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "padゲームクリア");
 	DrawFormatString(500, 500, GetColor(255, 255, 255),
-		"タイトル→T\n次の問題→エンター\nリスタート→スペース");
+		"タイトル→BACK\n次の問題→RB\nリスタート→LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

@@ -41,13 +41,13 @@ MixGameoverScene::MixGameoverScene(SceneManager& manager) : Scene(manager),
 updateFunc(&MixGameoverScene::FadeInUpdate)
 {
 	// 画像のロード
-//	gameoverHandle = LoadGraph("data/OverBack.png");
+	gameoverHandle = LoadGraph("data/OverBack.png");
 }
 
 MixGameoverScene::~MixGameoverScene()
 {
 	// 画像のデリート
-//	DeleteGraph(gameoverHandle);
+	DeleteGraph(gameoverHandle);
 }
 
 void MixGameoverScene::Update(const InputState& input)
@@ -58,12 +58,12 @@ void MixGameoverScene::Update(const InputState& input)
 void MixGameoverScene::Draw()
 {
 	// 普通の描画
-//	DrawGraph(0, 0, gameoverHandle, true);
+	DrawGraph(0, 0, gameoverHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Mixゲームオーバー");
-	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→T\nリスタート→スペース");
+	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→BACK\nリスタート→LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);

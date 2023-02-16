@@ -1,4 +1,4 @@
-#include "ExplanationScene.h"
+#include "KeyExplanationScene.h"
 #include "InputState.h"
 #include "TitleScene.h"
 #include "SceneManager.h"
@@ -30,7 +30,7 @@ void TitleScene::FadeOutUpdate(const InputState& input)
 	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
 	if (++fadeTimer == fadeIntarval)
 	{
-		manager_.CangeScene(new ExplanationScene(manager_));
+		manager_.CangeScene(new KeyExplanationScene(manager_));
 		return;
 	}
 }

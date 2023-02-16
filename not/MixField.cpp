@@ -503,8 +503,10 @@ void MixField::DrawField()		// フィールドの描画
 // 不正解の場合の処理(通常ver)
 void MixField::MissPressUp()	// 正解が上の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT)|| Pad::isTrigger(PAD_INPUT_1)   ||
+		Pad::isTrigger(PAD_INPUT_2)	   || Pad::isTrigger(PAD_INPUT_3)   ||
+		Pad::isTrigger(PAD_INPUT_4) )
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -515,8 +517,10 @@ void MixField::MissPressUp()	// 正解が上の場合
 
 void MixField::MissPressDown()	// 正解が下の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_UP)   || Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT)|| Pad::isTrigger(PAD_INPUT_1)   ||
+		Pad::isTrigger(PAD_INPUT_2)    || Pad::isTrigger(PAD_INPUT_3)   ||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -527,8 +531,10 @@ void MixField::MissPressDown()	// 正解が下の場合
 
 void MixField::MissPressLeft()	// 正解が左の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_UP)   || Pad::isTrigger(PAD_INPUT_DOWN)||
+		Pad::isTrigger(PAD_INPUT_RIGHT)|| Pad::isTrigger(PAD_INPUT_1)   ||
+		Pad::isTrigger(PAD_INPUT_2)    || Pad::isTrigger(PAD_INPUT_3)   ||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -539,8 +545,10 @@ void MixField::MissPressLeft()	// 正解が左の場合
 
 void MixField::MissPressRight()	// 正解が右の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
-		Pad::isTrigger(PAD_INPUT_LEFT))
+	if (Pad::isTrigger(PAD_INPUT_UP)  || Pad::isTrigger(PAD_INPUT_DOWN)||
+		Pad::isTrigger(PAD_INPUT_LEFT)|| Pad::isTrigger(PAD_INPUT_1)   ||
+		Pad::isTrigger(PAD_INPUT_2)   || Pad::isTrigger(PAD_INPUT_3)   ||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -552,7 +560,9 @@ void MixField::MissPressRight()	// 正解が右の場合
 // 不正解の場合の処理(じゃないver)
 void MixField::NotPressUp()	// 問題の答えが上以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_UP))
+	if (Pad::isTrigger(PAD_INPUT_UP)|| Pad::isTrigger(PAD_INPUT_1)||
+		Pad::isTrigger(PAD_INPUT_2) || Pad::isTrigger(PAD_INPUT_3)||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -563,7 +573,9 @@ void MixField::NotPressUp()	// 問題の答えが上以外の場合
 
 void MixField::NotPressDown()	// 問題の答えが下以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_DOWN))
+	if (Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_1)||
+		Pad::isTrigger(PAD_INPUT_2)	  || Pad::isTrigger(PAD_INPUT_3)||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -574,7 +586,9 @@ void MixField::NotPressDown()	// 問題の答えが下以外の場合
 
 void MixField::NotPressLeft()	// 問題の答えが左以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_LEFT))
+	if (Pad::isTrigger(PAD_INPUT_LEFT)|| Pad::isTrigger(PAD_INPUT_1)||
+		Pad::isTrigger(PAD_INPUT_2)	  || Pad::isTrigger(PAD_INPUT_3)||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -585,7 +599,9 @@ void MixField::NotPressLeft()	// 問題の答えが左以外の場合
 
 void MixField::NotPressRight()	// 問題の答えが右以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_RIGHT)|| Pad::isTrigger(PAD_INPUT_1)||
+		Pad::isTrigger(PAD_INPUT_2)	   || Pad::isTrigger(PAD_INPUT_3)||
+		Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -597,8 +613,10 @@ void MixField::NotPressRight()	// 問題の答えが右以外の場合
 // パッド問題用不正解の場合の処理(通常ver)
 void MixField::MissPressY()	// 正解がYの場合
 {
-	if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
-		Pad::isTrigger(PAD_INPUT_3))
+	if (Pad::isTrigger(PAD_INPUT_1)   || Pad::isTrigger(PAD_INPUT_2)   ||
+		Pad::isTrigger(PAD_INPUT_3)   || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -609,8 +627,10 @@ void MixField::MissPressY()	// 正解がYの場合
 
 void MixField::MissPressA()	// 正解がAの場合
 {
-	if (Pad::isTrigger(PAD_INPUT_2) || Pad::isTrigger(PAD_INPUT_3) ||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_2)   || Pad::isTrigger(PAD_INPUT_3)   ||
+		Pad::isTrigger(PAD_INPUT_4)   || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -621,8 +641,10 @@ void MixField::MissPressA()	// 正解がAの場合
 
 void MixField::MissPressX()	// 正解がXの場合
 {
-	if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_1)   || Pad::isTrigger(PAD_INPUT_2)   ||
+		Pad::isTrigger(PAD_INPUT_4)   || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -633,8 +655,10 @@ void MixField::MissPressX()	// 正解がXの場合
 
 void MixField::MissPressB()	// 正解がBの場合
 {
-	if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_3) ||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_1)   || Pad::isTrigger(PAD_INPUT_3)   ||
+		Pad::isTrigger(PAD_INPUT_4)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -646,7 +670,9 @@ void MixField::MissPressB()	// 正解がBの場合
 // パッド問題用不正解の場合の処理(じゃないver)
 void MixField::NotPressY()	// 問題の答えがY以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_4)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -657,7 +683,9 @@ void MixField::NotPressY()	// 問題の答えがY以外の場合
 
 void MixField::NotPressA()	// 問題の答えがA以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_1))
+	if (Pad::isTrigger(PAD_INPUT_1)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -668,7 +696,9 @@ void MixField::NotPressA()	// 問題の答えがA以外の場合
 
 void MixField::NotPressX()	// 問題の答えがX以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_3))
+	if (Pad::isTrigger(PAD_INPUT_3)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -679,7 +709,9 @@ void MixField::NotPressX()	// 問題の答えがX以外の場合
 
 void MixField::NotPressB()	// 問題の答えがA以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_2))
+	if (Pad::isTrigger(PAD_INPUT_2)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
+		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
+		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;

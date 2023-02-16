@@ -139,17 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ExplanationScene.cpp" />
+    <ClCompile Include="KeyExplanationScene.cpp" />
     <ClCompile Include="KeyField.cpp" />
     <ClCompile Include="KeyGameClearScene.cpp" />
     <ClCompile Include="KeyGameoverScene.cpp" />
     <ClCompile Include="InputState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MixExplanationScene.cpp" />
     <ClCompile Include="MixField.cpp" />
     <ClCompile Include="MixGameClearScene.cpp" />
     <ClCompile Include="MixGameoverScene.cpp" />
     <ClCompile Include="MixTimeBar.cpp" />
     <ClCompile Include="Pad.cpp" />
+    <ClCompile Include="PadExplanationScene.cpp" />
     <ClCompile Include="PadField.cpp" />
     <ClCompile Include="PadGameClearScene.cpp" />
     <ClCompile Include="PadGameoverScene.cpp" />
@@ -161,17 +163,19 @@
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ExplanationScene.h" />
+    <ClInclude Include="KeyExplanationScene.h" />
     <ClInclude Include="KeyField.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="KeyGameClearScene.h" />
     <ClInclude Include="KeyGameoverScene.h" />
     <ClInclude Include="InputState.h" />
+    <ClInclude Include="MixExplanationScene.h" />
     <ClInclude Include="MixField.h" />
     <ClInclude Include="MixGameClearScene.h" />
     <ClInclude Include="MixGameoverScene.h" />
     <ClInclude Include="MixTimeBar.h" />
     <ClInclude Include="Pad.h" />
+    <ClInclude Include="PadExplanationScene.h" />
     <ClInclude Include="PadField.h" />
     <ClInclude Include="PadGameClearScene.h" />
     <ClInclude Include="PadGameoverScene.h" />

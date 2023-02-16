@@ -2,13 +2,13 @@
 #include "Scene.h"
 #include <memory>
 
-class ExplanationScene : public Scene
+class KeyExplanationScene : public Scene
 {
 
 public:
 
-	ExplanationScene(SceneManager& manager);
-	~ExplanationScene();
+	KeyExplanationScene(SceneManager& manager);
+	~KeyExplanationScene();
 
 	void Update(const InputState& input);
 	void Draw();
@@ -30,7 +30,7 @@ private:
 	void FadeOutUpdate(const InputState& input);
 
 	// Update用メンバ関数ポインタ
-	void (ExplanationScene::* updateFunc_)(const InputState& input);
+	void (KeyExplanationScene::* updateFunc_)(const InputState& input);
 
 	void Function();
 

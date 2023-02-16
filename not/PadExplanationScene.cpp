@@ -1,70 +1,69 @@
+#include "PadExplanationScene.h"
 #include "TimeBar.h"
-#include "KeyField.h"
-#include "ExplanationScene.h"
+#include "PadField.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "DxLib.h"
 
 
-void ExplanationScene::FadeInUpdate(const InputState& input)
+void PadExplanationScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = fadeTimer;
 	if (--fadeTimer == 0)
 	{
-		updateFunc_ = &ExplanationScene::NormalUpdate;
+		updateFunc_ = &PadExplanationScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void ExplanationScene::NormalUpdate(const InputState& input)
+void PadExplanationScene::NormalUpdate(const InputState& input)
 {
 	// 次へボタンが押されたら次のシーンへ移行する
 	if (input.IsTriggred(InputType::next))
 	{
-		updateFunc_ = &ExplanationScene::FadeOutUpdate;
+		updateFunc_ = &PadExplanationScene::FadeOutUpdate;
 	}
 }
 
-void ExplanationScene::FadeOutUpdate(const InputState& input)
+void PadExplanationScene::FadeOutUpdate(const InputState& input)
 {
 	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
 	if (++fadeTimer == fadeIntarval)
 	{
-		manager_.CangeScene(new KeyField(manager_));
+		manager_.CangeScene(new PadField(manager_));
 		return;
 	}
 }
 
-void ExplanationScene::Function()
+void PadExplanationScene::Function()
 {
 }
 
-ExplanationScene::ExplanationScene(SceneManager& manager) : Scene(manager),
-updateFunc_(&ExplanationScene::FadeInUpdate)
+PadExplanationScene::PadExplanationScene(SceneManager& manager) : Scene(manager),
+updateFunc_(&PadExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
 }
 
-ExplanationScene::~ExplanationScene()
+PadExplanationScene::~PadExplanationScene()
 {
 	// 画像のデリート
 }
 
-void ExplanationScene::Update(const InputState& input)
+void PadExplanationScene::Update(const InputState& input)
 {
 	(this->*updateFunc_)(input);
 }
 
-void ExplanationScene::Draw()
+void PadExplanationScene::Draw()
 {
 	// 普通の描画
 	//DrawRotaGraph(320, 240, 1.0f, 0.0f, titleH_, true);
 	DrawBox(200, 200, 400, 400, GetColor(255, 255, 255), true);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "説明画面");
-	DrawFormatString(0, 500, GetColor(255, 255, 255), 
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "二問目説明画面");
+	DrawFormatString(0, 500, GetColor(255, 255, 255),
 		"(仮説明)\n"
-		"真ん中に表示される指示の通りに\nパッドの十字キーやボタンを押してください。\n"
-		"・一問目は方向\n・二問目はボタン\n・三問目は方向とボタンのミックスです。\n"
+		"二問目はA・B・X・Yボタンを押してプレイします。\n"
 		"ゲームをスタートするにはRBボタンを押してください。");
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
