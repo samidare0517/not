@@ -19,6 +19,30 @@
     <Filter Include="ヘッダー ファイル\Scene">
       <UniqueIdentifier>{ecb049a4-62f9-48af-bde3-1c70b51c2a5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\KeyGame">
+      <UniqueIdentifier>{a4484f36-5fb4-4cd3-ad70-9657f540cd71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\PadGame">
+      <UniqueIdentifier>{3b4fa96b-b216-4bd7-9e26-7e5fefa70c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\KeyGame">
+      <UniqueIdentifier>{da252673-34ee-46af-a716-cdf9273ba033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\PadGame">
+      <UniqueIdentifier>{1f707976-c550-4e0e-b5ef-a400b0eacb2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MixGame">
+      <UniqueIdentifier>{991242b9-5a86-47aa-9dcf-470dc44d7570}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MixGame">
+      <UniqueIdentifier>{d27c4798-a590-466e-ad1a-96c98d727170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\TimeBar">
+      <UniqueIdentifier>{28ded600-4cf0-446a-bfea-865b2f9dccac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\TimeBar">
+      <UniqueIdentifier>{43a9d2aa-8c9e-4b2b-9777-4c8a62e50f78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,17 +51,8 @@
     <ClCompile Include="Vec2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="KeyField.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Pad.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeBar.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyGameoverScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="InputState.cpp">
       <Filter>ソース ファイル\Scene</Filter>
@@ -54,11 +69,41 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="KeyGameClearScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="ExplanationScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyField.cpp">
+      <Filter>ソース ファイル\KeyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PadField.cpp">
+      <Filter>ソース ファイル\PadGame</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyGameClearScene.cpp">
+      <Filter>ソース ファイル\KeyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyGameoverScene.cpp">
+      <Filter>ソース ファイル\KeyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PadGameClearScene.cpp">
+      <Filter>ソース ファイル\PadGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PadGameoverScene.cpp">
+      <Filter>ソース ファイル\PadGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MixField.cpp">
+      <Filter>ソース ファイル\MixGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MixGameClearScene.cpp">
+      <Filter>ソース ファイル\MixGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MixGameoverScene.cpp">
+      <Filter>ソース ファイル\MixGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MixTimeBar.cpp">
+      <Filter>ソース ファイル\TimeBar</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeBar.cpp">
+      <Filter>ソース ファイル\TimeBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,17 +113,8 @@
     <ClInclude Include="Vec2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="KeyField.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Pad.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeBar.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyGameoverScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="InputState.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
@@ -98,11 +134,41 @@
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="KeyGameClearScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="ExplanationScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyField.h">
+      <Filter>ヘッダー ファイル\KeyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PadField.h">
+      <Filter>ヘッダー ファイル\PadGame</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyGameClearScene.h">
+      <Filter>ヘッダー ファイル\KeyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyGameoverScene.h">
+      <Filter>ヘッダー ファイル\KeyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PadGameClearScene.h">
+      <Filter>ヘッダー ファイル\PadGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PadGameoverScene.h">
+      <Filter>ヘッダー ファイル\PadGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MixField.h">
+      <Filter>ヘッダー ファイル\MixGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MixGameClearScene.h">
+      <Filter>ヘッダー ファイル\MixGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MixGameoverScene.h">
+      <Filter>ヘッダー ファイル\MixGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MixTimeBar.h">
+      <Filter>ヘッダー ファイル\TimeBar</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeBar.h">
+      <Filter>ヘッダー ファイル\TimeBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

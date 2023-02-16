@@ -1,22 +1,22 @@
-#include "KeyGameoverScene.h"
+#include "PadGameoverScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
-#include "KeyField.h"
+#include "PadField.h"
 #include "Pad.h"
 #include "DxLib.h"
 
-void KeyGameoverScene::FadeInUpdate(const InputState& input)
+void PadGameoverScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &KeyGameoverScene::NormalUpdate;
+		updateFunc = &PadGameoverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void KeyGameoverScene::NormalUpdate(const InputState& input)
+void PadGameoverScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
@@ -27,46 +27,45 @@ void KeyGameoverScene::NormalUpdate(const InputState& input)
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
-		manager_.CangeScene(new KeyField(manager_));
+		manager_.CangeScene(new PadField(manager_));
 		return;
 	}
 }
 
-void KeyGameoverScene::FadeOutUpdate(const InputState& input)
+void PadGameoverScene::FadeOutUpdate(const InputState& input)
 {
 
 }
 
-KeyGameoverScene::KeyGameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc(&KeyGameoverScene::FadeInUpdate)
+PadGameoverScene::PadGameoverScene(SceneManager& manager) : Scene(manager),
+updateFunc(&PadGameoverScene::FadeInUpdate)
 {
 	// 画像のロード
 //	gameoverHandle = LoadGraph("data/OverBack.png");
 }
 
-KeyGameoverScene::~KeyGameoverScene()
+PadGameoverScene::~PadGameoverScene()
 {
 	// 画像のデリート
 //	DeleteGraph(gameoverHandle);
 }
 
-void KeyGameoverScene::Update(const InputState& input)
+void PadGameoverScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void KeyGameoverScene::Draw()
+void PadGameoverScene::Draw()
 {
 	// 普通の描画
 //	DrawGraph(0, 0, gameoverHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "keyゲームオーバー");
-	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→エンター\nリスタート→back");
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "Padゲームオーバー");
+	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→T\nリスタート→スペース");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
-

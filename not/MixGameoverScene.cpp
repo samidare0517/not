@@ -1,22 +1,22 @@
-#include "KeyGameoverScene.h"
+#include "MixGameoverScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
-#include "KeyField.h"
+#include "MixField.h"
 #include "Pad.h"
 #include "DxLib.h"
 
-void KeyGameoverScene::FadeInUpdate(const InputState& input)
+void MixGameoverScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &KeyGameoverScene::NormalUpdate;
+		updateFunc = &MixGameoverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void KeyGameoverScene::NormalUpdate(const InputState& input)
+void MixGameoverScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
@@ -27,43 +27,43 @@ void KeyGameoverScene::NormalUpdate(const InputState& input)
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
-		manager_.CangeScene(new KeyField(manager_));
+		manager_.CangeScene(new MixField(manager_));
 		return;
 	}
 }
 
-void KeyGameoverScene::FadeOutUpdate(const InputState& input)
+void MixGameoverScene::FadeOutUpdate(const InputState& input)
 {
 
 }
 
-KeyGameoverScene::KeyGameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc(&KeyGameoverScene::FadeInUpdate)
+MixGameoverScene::MixGameoverScene(SceneManager& manager) : Scene(manager),
+updateFunc(&MixGameoverScene::FadeInUpdate)
 {
 	// 画像のロード
 //	gameoverHandle = LoadGraph("data/OverBack.png");
 }
 
-KeyGameoverScene::~KeyGameoverScene()
+MixGameoverScene::~MixGameoverScene()
 {
 	// 画像のデリート
 //	DeleteGraph(gameoverHandle);
 }
 
-void KeyGameoverScene::Update(const InputState& input)
+void MixGameoverScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void KeyGameoverScene::Draw()
+void MixGameoverScene::Draw()
 {
 	// 普通の描画
 //	DrawGraph(0, 0, gameoverHandle, true);
 
 	// シーン確認用
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "keyゲームオーバー");
-	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→エンター\nリスタート→back");
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "Mixゲームオーバー");
+	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→T\nリスタート→スペース");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);

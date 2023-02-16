@@ -11,7 +11,7 @@ InputState::InputState()
 	defaultMapTable[InputType::prev] = { {InputCategory::keybd,KEY_INPUT_SPACE} };
 				
 	// タイトルへ
-	defaultMapTable[InputType::title] = {{InputCategory::keybd,KEY_INPUT_RETURN}};
+	defaultMapTable[InputType::title] = {{InputCategory::keybd,KEY_INPUT_T}};
 
 	// ポーズ
 	defaultMapTable[InputType::pause] = { {InputCategory::keybd,KEY_INPUT_P} };
