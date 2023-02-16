@@ -65,9 +65,6 @@ void TimeBar::Draw()
 	
 	DrawGraph(20, 20, timerBackHandle, true);
 
-	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
-	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
-	
 	// ゲージ用のタイマー(表示用)
 	DrawFormatString(75, 35, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
 	

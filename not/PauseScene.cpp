@@ -32,18 +32,18 @@ void PauseScene::Draw()
 
 	// ポーズウィンドウセロファン(黒)
 	DrawBox(pw_start_x, pw_start_y,
-		pw_start_x + pw_width,
-		pw_start_y + pw_height,
-		GetColor(188, 221, 255), true);
+			pw_start_x + pw_width,
+			pw_start_y + pw_height,
+			GetColor(188, 221, 255), true);
 
 	// 通常描画に戻す
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	// ポーズウィンドウ枠線
 	DrawBox(pw_start_x, pw_start_y,
-		pw_start_x + pw_width,
-		pw_start_y + pw_height,
-		0xffffff, false);
+			pw_start_x + pw_width,
+			pw_start_y + pw_height,
+			0xffffff, false);
 
 	// ポーズ中メッセージ
 	SetFontSize(50);

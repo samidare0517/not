@@ -62,6 +62,9 @@ void TitleScene::Draw()
 	// 普通の描画
 	DrawGraph(0, 0, titleHandle, true);
 	
+	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+	
 	SetFontSize(100);
 	DrawFormatString(550, 400, GetColor(255, 255, 255), "タイトル");
 	
