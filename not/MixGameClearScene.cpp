@@ -63,7 +63,7 @@ void MixGameClearScene::Draw()
 	SetFontSize(50);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Mixゲームクリア");
 	DrawFormatString(500, 500, GetColor(255, 255, 255),
-		"タイトル→BACK\n次の問題→RB\nリスタート→LB");
+		"タイトル→BACK\nリスタート→LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

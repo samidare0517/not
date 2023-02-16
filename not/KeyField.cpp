@@ -8,7 +8,7 @@
 #include "DxLib.h"
 #include "Pad.h"
 #include <time.h>		// ƒ‰ƒ“ƒ_ƒ€—p
-#include"TimeBar.h"
+#include "TimeBar.h"
 
 namespace
 {
