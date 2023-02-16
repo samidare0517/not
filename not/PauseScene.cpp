@@ -23,7 +23,7 @@ void PauseScene::Update(const InputState& input)
 
 void PauseScene::Draw()
 {
-	constexpr int pw_width = 500;	// ポーズ枠の幅
+	constexpr int pw_width  = 500;	// ポーズ枠の幅
 	constexpr int pw_height = 500;	// ポーズ枠の高さ
 	constexpr int pw_start_x = (1600 - pw_width) / 2;	// ポーズ枠左
 	constexpr int pw_start_y = (900 - pw_height) / 2;	// ポーズ枠上

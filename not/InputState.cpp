@@ -46,7 +46,7 @@ void InputState::Update()
 
 			if (input.cat == InputCategory::pad)
 			{
-				currentInput[static_cast<int>(keymap.first)] = keystate[input.id];
+				currentInput[static_cast<int>(keymap.first)] = padState & input.id;
 			}
 
 			// “ü—Í‚Ì‚¤‚¿‚Ç‚ê‚©‚ªtrue‚¾‚Á‚½‚ç‚à‚¤u“ü—Í‚³‚ê‚Ä‚¢‚év

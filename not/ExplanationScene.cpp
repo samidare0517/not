@@ -61,6 +61,11 @@ void ExplanationScene::Draw()
 	//DrawRotaGraph(320, 240, 1.0f, 0.0f, titleH_, true);
 	DrawBox(200, 200, 400, 400, GetColor(255, 255, 255), true);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "説明画面");
+	DrawFormatString(0, 500, GetColor(255, 255, 255), 
+		"(仮説明)\n"
+		"真ん中に表示される指示の通りに\nパッドの十字キーやボタンを押してください。\n"
+		"・一問目は方向\n・二問目はボタン\n・三問目は方向とボタンのミックスです。\n"
+		"ゲームをスタートするにはRBボタンを押してください。");
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
