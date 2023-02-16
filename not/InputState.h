@@ -18,7 +18,7 @@ enum class InputType
 /// </summary>
 enum class InputCategory
 {
-	keybd,	// キーボード
+	pad,	// パッド
 };
 
 /// <summary>

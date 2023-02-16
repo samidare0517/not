@@ -5,16 +5,16 @@
 InputState::InputState()
 {
 	// 次へ
-	defaultMapTable[InputType::next] = { {InputCategory::keybd,KEY_INPUT_RETURN} };
-									
+	defaultMapTable[InputType::next] = { {InputCategory::pad,PAD_INPUT_Z} };//RBボタン
+
 	// 前へ
-	defaultMapTable[InputType::prev] = { {InputCategory::keybd,KEY_INPUT_SPACE} };
-				
+	defaultMapTable[InputType::prev] = { {InputCategory::pad,PAD_INPUT_Y} };//LBボタン
+
 	// タイトルへ
-	defaultMapTable[InputType::title] = {{InputCategory::keybd,KEY_INPUT_T}};
+	defaultMapTable[InputType::title] = { {InputCategory::pad,PAD_INPUT_L} };//BACKボタン
 
 	// ポーズ
-	defaultMapTable[InputType::pause] = { {InputCategory::keybd,KEY_INPUT_P} };
+	defaultMapTable[InputType::pause] = { {InputCategory::pad,PAD_INPUT_R} };//STARTボタン
 										
 
 	inputMapTable = defaultMapTable;
@@ -34,6 +34,7 @@ void InputState::Update()
 
 	GetHitKeyStateAll(keystate);	// 全キー情報取得
 
+	int padState = GetJoypadInputState(DX_INPUT_PAD1);	// パッド1コンの情報を得る
 	
 	for (const auto& keymap : inputMapTable)
 	{
@@ -43,7 +44,7 @@ void InputState::Update()
 			// セット(InputInfo)が入っている。keymap.firstには、対応するゲーム入力名の
 			// "InputType::next"などが入っている。
 
-			if (input.cat == InputCategory::keybd)
+			if (input.cat == InputCategory::pad)
 			{
 				currentInput[static_cast<int>(keymap.first)] = keystate[input.id];
 			}
