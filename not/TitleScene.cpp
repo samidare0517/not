@@ -89,7 +89,7 @@ void TitleScene::Draw()
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	
-	// 画面全体を青に塗りつぶす
-	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
+	// 画面全体を黒に塗りつぶす
+	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

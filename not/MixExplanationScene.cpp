@@ -43,11 +43,13 @@ MixExplanationScene::MixExplanationScene(SceneManager& manager) : Scene(manager)
 updateFunc_(&MixExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
+	Handle = LoadGraph("data/MixGameSetumei.png");
 }
 
 MixExplanationScene::~MixExplanationScene()
 {
 	// 画像のデリート
+	DeleteGraph(Handle);
 }
 
 void MixExplanationScene::Update(const InputState& input)
@@ -58,19 +60,30 @@ void MixExplanationScene::Update(const InputState& input)
 void MixExplanationScene::Draw()
 {
 	// 普通の描画
-	//DrawRotaGraph(320, 240, 1.0f, 0.0f, titleH_, true);
-	DrawBox(200, 200, 400, 400, GetColor(255, 255, 255), true);
+	DrawGraph(0, 0, Handle, true);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "三問目説明画面");
 	DrawFormatString(0, 500, GetColor(255, 255, 255),
-		"(仮説明)\n"
-		"三問目はミックス問題です。\n"
-		"十字キー・左スティック・A・B・X・Yボタンを押してプレイします。\n"
-		"ゲームをスタートするにはRBボタンを押してください。");
+		"(仮説明)\n");
+
+	// 点滅処理
+	static int BrinkCounter;
+	BrinkCounter++;
+	if (BrinkCounter == 120)
+	{
+		BrinkCounter = 0;
+	}
+
+	if (BrinkCounter < 80)
+	{
+		DrawFormatString(250, 800, GetColor(255, 255, 255), "ゲームをスタートするには");
+		DrawFormatString(790, 800, GetColor(255, 0, 0), "RBボタン");
+		DrawFormatString(995, 800, GetColor(255, 255, 255), "を押してください");
+	}
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 
-	// 画面全体を青に塗りつぶす
-	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
+	// 画面全体を黒に塗りつぶす
+	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

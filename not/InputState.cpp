@@ -88,12 +88,12 @@ void InputState::RewriteInputInfo(InputType type, InputCategory cat, int id)
 
 }
 
-bool InputState::IsTriggred(InputType type) const
+bool InputState::IsPressed(InputType type) const
 {
 	return currentInput[static_cast<int>(type)];
 }
 
-bool InputState::IsPressed(InputType type) const
+bool InputState::IsTriggred(InputType type) const
 {
 	return IsPressed(type) && !lastInput[static_cast<int>(type)];
 }

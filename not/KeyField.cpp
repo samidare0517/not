@@ -113,9 +113,7 @@ void KeyField::NormalUpdate(const InputState& input)
 	// ランダムになっているか調べる(デバック用)
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "問題:% d", num);
 
-	// パッド(もしくはキーボード)からの入力を取得する
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
+	
 	// numと同じ方向が押されていたら次の問題へ
 	// numが1キーの上が押されるまでfalse(待機)
 	
@@ -318,8 +316,8 @@ void KeyField::Draw()		// 問題の描画
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 
-	// 画面全体を青に塗りつぶす
-	DrawBox(0, 0, 1600, 900, GetColor(30, 144, 255), true);
+	// 画面全体を黒に塗りつぶす
+	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
