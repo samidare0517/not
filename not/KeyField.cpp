@@ -77,7 +77,7 @@ void KeyField::NormalUpdate(const InputState& input)
 {
 
 	// ”wŒi•`‰æ (ƒfƒoƒbƒN•¶š‚ªŒ©‚¦‚é‚æ‚¤‚É”wŒi‚ğ•\¦)
-	DrawGraph(0, 0, handle, true);
+//	DrawGraph(0, 0, handle, true);
 
 	Pad::Update();
 	kTime.Update();
@@ -324,7 +324,7 @@ void KeyField::Draw()		// –â‘è‚Ì•`‰æ
 void KeyField::DrawField()		// ƒtƒB[ƒ‹ƒh‚Ì•`‰æ
 {
 	// ”wŒi•`‰æ
-//	DrawGraph(0, 0, handle, true);
+	DrawGraph(0, 0, handle, true);
 
 	// ƒtƒB[ƒ‹ƒh‚Ì•`‰æ
 	DrawBox(500, 150, 1100, 750, GetColor(0, 0, 0), true);

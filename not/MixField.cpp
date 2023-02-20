@@ -77,7 +77,7 @@ void MixField::NormalUpdate(const InputState& input)
 {
 
 	// 背景描画 (デバック文字が見えるように背景を表示)
-	DrawGraph(0, 0, handle, true);
+//	DrawGraph(0, 0, handle, true);
 
 	Pad::Update();
 	kMixTime.Update();
@@ -97,7 +97,7 @@ void MixField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 1)
+	if (answerNum == 30)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -484,7 +484,7 @@ void MixField::Draw()		// 問題の描画
 void MixField::DrawField()		// フィールドの描画
 {
 	// 背景描画
-//	DrawGraph(0, 0, handle, true);
+	DrawGraph(0, 0, handle, true);
 
 	// フィールドの描画
 	DrawBox(500, 150, 1100, 750, GetColor(0, 0, 0), true);

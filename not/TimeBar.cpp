@@ -2,11 +2,13 @@
 #include "DxLib.h"
 #include "game.h"
 #include "KeyField.h"
+#include "PadField.h"
 
 namespace
 {
 	bool timeflag = false;
-	KeyField* kfield;
+	KeyField* kkey;
+	PadField* kpad;
 }
 
 TimeBar::TimeBar()
@@ -31,11 +33,18 @@ void TimeBar::Init()
 void TimeBar::Update()
 {
 	// 正解が押されたらタイムバーを画面サイズに戻す
-	if (kfield->AnswerFlag() == true)
+	if (kkey->AnswerFlag() == true)
 	{
 		tb = 1100;
 		time = 3;
 	}
+
+	if (kpad->AnswerFlag() == true)
+	{
+		tb = 1100;
+		time = 3;
+	}
+
 
 	timeflag = false;		// フラグの初期化
 

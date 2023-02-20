@@ -3,6 +3,7 @@
 #include <memory>
 
 class KeyField;
+class PadField;
 /// <summary>
 /// タイムバー
 /// </summary>
