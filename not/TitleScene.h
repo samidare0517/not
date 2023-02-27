@@ -23,12 +23,11 @@ private:
 	int starHandle3 = -1;
 	
 
-	int left = 0;
-	int top = 0;
-	int rigth = 192;
-	int bottom = 192;
+	int indexX = 192;		//画像サイズのインデックス
+	int indexY = 192;		//画像サイズのインデックス
+	int posX = 0;			//今のアニメーション
+	int posY = 0;
 	int frameCount = 0;
-	float changeY = false;
 	int frame = 0;
 	
 	int starnum = 0;// 星の種類ランダム用
@@ -51,7 +50,8 @@ private:
 
 	// Update用メンバ関数ポインタ
 	void (TitleScene::* updateFunc)(const InputState& input);
-;
 
+	// アニメーション時のDraw関数
+	void DrawAnimation();
 };
 

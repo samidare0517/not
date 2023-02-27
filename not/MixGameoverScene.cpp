@@ -38,6 +38,55 @@ void MixGameoverScene::FadeOutUpdate(const InputState& input)
 
 }
 
+void MixGameoverScene::DrawAnimation()
+{
+	// ランダムにアニメーションを描画
+	switch (starnum)
+	{
+	case 1:
+		DrawRectRotaGraph(starX, starY,
+			indexX * posX, indexY * posY, indexX, indexY,
+			1, 0, starHandle1, true, false);
+		break;
+
+	case 2:
+		DrawRectRotaGraph(starX, starY,
+			indexX * posX, indexY * posY, indexX, indexY,
+			1, 0, starHandle2, true, false);
+		break;
+
+	case 3:
+		DrawRectRotaGraph(starX, starY,
+			indexX * posX, indexY * posY, indexX, indexY,
+			1, 0, starHandle3, true, false);
+		break;
+	}
+
+	frameCount++;
+
+	if (frameCount > 2)	//2フレームごとに画像を右に192移動させる
+	{
+		frameCount = 0;	// フレームカウントをリセット
+		posX++;	//1をプラスする
+	}
+	if (posX >= 5)	// 画像の右まで移動すると左に戻す
+	{
+		posX = 0;	//0に戻す
+		posY += 1;	// アニメーションを一段下げる
+
+	}
+	if (posY >= 4)	//一番最後の段より大きくなろうとしたら
+	{
+		posY = 0;	//ゼロに戻す
+
+		//一番最後まで行ったら場所をランダムで生成する
+		srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
+		starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
+		starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
+		starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
+	}
+}
+
 MixGameoverScene::MixGameoverScene(SceneManager& manager) : Scene(manager),
 updateFunc(&MixGameoverScene::FadeInUpdate)
 {
@@ -46,6 +95,12 @@ updateFunc(&MixGameoverScene::FadeInUpdate)
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
+
+	//初期化
+	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
+	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
+	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
+	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
 }
 
 MixGameoverScene::~MixGameoverScene()
@@ -66,67 +121,13 @@ void MixGameoverScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameoverHandle, true);
-
-	//	printfDx("%d\n", left);	// デバック用
-	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
-	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
-	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
-	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
-
-	// ランダムにアニメーションを描画
-	switch (starnum)
-	{
-	case 1:
-		DrawRectRotaGraph(starX, starY,
-			left, top, rigth, bottom,
-			1, 0, starHandle1, true, false);
-		break;
-
-	case 2:
-		DrawRectRotaGraph(starX, starY,
-			left, top, rigth, bottom,
-			1, 0, starHandle2, true, false);
-		break;
-
-	case 3:
-		DrawRectRotaGraph(starX, starY,
-			left, top, rigth, bottom,
-			1, 0, starHandle3, true, false);
-		break;
-	}
-
-	frameCount++;
-
-	if (frameCount == 3)	//3フレームごとに画像を右に192移動させる
-	{
-		frameCount = 0;	// フレームカウントをリセット
-		left += 192;	// 192をプラスする
-	}
-	if (left == 960)	// 画像の右まで移動すると左に戻す
-	{
-		left = 0;
-		changeY = true;	// 画像を下に192移動
-	}
-	if (changeY)	// 画像を下に192移動
-	{
-		top += 192;
-		changeY = false;
-	}
-	if (top == 768)
-	{
-		top = 768;
-	}
-	if (top == 768)
-	{
-		top = 0;
-	}
-
-
+	
 	// ランダムになっているか(デバック用)
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
 	// フレーム数(デバック用)
 	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
+	DrawAnimation();	// アニメーションを呼び出す
 
 	// シーン確認用
 	SetFontSize(50);
