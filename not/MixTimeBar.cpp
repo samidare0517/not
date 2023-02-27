@@ -25,7 +25,7 @@ void MixTimeBar::Init()
 	time = 4;		// 表示用のタイマー(6秒)
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
 	mixTimeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の背景画像
-	mixTimerBackHandle = LoadGraph("data/TimerBack.png");// タイマー用の背景画像
+	mixTimerBackHandle = LoadGraph("data/TimerBack.png");// タイマー
 }
 
 void MixTimeBar::Update()
@@ -69,7 +69,7 @@ void MixTimeBar::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 
 	// ゲージ用のタイマー(表示用)
-	DrawFormatString(75, 35, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
+	DrawFormatString(75, 50, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
 
 	// タイムバーの背景
 	DrawGraph(450, 25, mixTimeBackHandle, true);

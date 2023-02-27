@@ -75,7 +75,7 @@ void TimeBar::Draw()
 	DrawGraph(20, 20, timerBackHandle, true);
 
 	// ゲージ用のタイマー(表示用)
-	DrawFormatString(75, 35, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
+	DrawFormatString(75, 50, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
 	
 	// タイムバーの背景
 	DrawGraph(450, 25, timeBackHandle, true);
