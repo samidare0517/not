@@ -6,10 +6,14 @@
 
 PauseScene::PauseScene(SceneManager& manager) : Scene(manager)
 {
+	// 画像のロード
+	Handle = LoadGraph("data/cat/black_1.png");
 }
 
 PauseScene::~PauseScene()
 {
+	// 画像のデリート
+	DeleteGraph(Handle);
 }
 
 void PauseScene::Update(const InputState& input)
@@ -29,15 +33,18 @@ void PauseScene::Draw()
 	constexpr int pw_start_y = (900 - pw_height) / 2;	// ポーズ枠上
 
 //	SetDrawBlendMode(DX_BLENDMODE_MULA, 128);	// 乗算合成
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+	// 画面を暗くする
+	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), TRUE);
 
-	// ポーズウィンドウセロファン(黒)
+	// 通常描画に戻す
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	// 青のポーズウインドウ
 	DrawBox(pw_start_x, pw_start_y,
 			pw_start_x + pw_width,
 			pw_start_y + pw_height,
 			GetColor(188, 221, 255), true);
-
-	// 通常描画に戻す
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	// ポーズウィンドウ枠線
 	DrawBox(pw_start_x, pw_start_y,
@@ -46,6 +53,27 @@ void PauseScene::Draw()
 			0xffffff, false);
 
 	// ポーズ中メッセージ
-	SetFontSize(50);
-	DrawString(pw_start_x + 10, pw_start_y + 10, "Pauseing", GetColor(255, 255, 127));
+	SetFontSize(80);
+	DrawString(pw_start_x + 20, pw_start_y + 210, "Pauseing...", GetColor(255, 255, 127));
+
+	//アニメーションが最後まで行ったらゼロに戻してあげる
+	if (animationNumber > 14)
+	{
+		animationNumber = 0;
+	}
+
+	timer++;        //時間のカウント
+	if (timer >= 15)
+	{
+		//インターバルより大きくなったらアニメーションを動かす
+		animationNumber++;
+		timer = 0;
+	}
+
+	DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+		32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
+		32, 32,							//幅、高さ（画像の大きさ32）
+		2.5f, 0.0f,						//拡大率、回転角度
+		Handle, true);
+
 }

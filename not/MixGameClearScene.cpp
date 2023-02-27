@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
 #include "MixField.h"
+#include <time.h>		// ランダム用
 #include "DxLib.h"
 
 void MixGameClearScene::FadeInUpdate(const InputState& input)
@@ -41,12 +42,18 @@ updateFunc(&MixGameClearScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameclearHandle = LoadGraph("data/ClearBack.png");
+	starHandle1 = LoadGraph("data/png/star1.png");
+	starHandle2 = LoadGraph("data/png/star2.png");
+	starHandle3 = LoadGraph("data/png/star3.png");
 }
 
 MixGameClearScene::~MixGameClearScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameclearHandle);
+	DeleteGraph(starHandle1);
+	DeleteGraph(starHandle2);
+	DeleteGraph(starHandle3);
 }
 
 void MixGameClearScene::Update(const InputState& input)
@@ -58,6 +65,63 @@ void MixGameClearScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameclearHandle, true);
+
+	//	printfDx("%d\n", left);	// デバック用
+	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
+	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
+	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
+	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
+
+
+	frameCount++;
+
+	if (frameCount == 3)	//3フレームごとに画像を右に192移動させる
+	{
+		frameCount = 0;	// フレームカウントをリセット
+		left += 192;	// 192をプラスする
+	}
+	if (left == 960)	// 画像の右まで移動すると左に戻す
+	{
+		left = 0;
+		changeY = true;	// 画像を下に192移動
+	}
+	if (changeY)	// 画像を下に192移動
+	{
+		top += 192;
+		changeY = false;
+	}
+	if (top == 768)
+	{
+		top = 0;
+	}
+
+
+	// ランダムになっているか(デバック用)
+	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
+	// フレーム数(デバック用)
+	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
+
+	// ランダムにアニメーションを描画
+	switch (starnum)
+	{
+	case 1:
+		DrawRectRotaGraph(starX, starY,
+			left, top, rigth, bottom,
+			1, 0, starHandle1, true, false);
+		break;
+
+	case 2:
+		DrawRectRotaGraph(starX, starY,
+			left, top, rigth, bottom,
+			1, 0, starHandle2, true, false);
+		break;
+
+	case 3:
+		DrawRectRotaGraph(starX, starY,
+			left, top, rigth, bottom,
+			1, 0, starHandle3, true, false);
+		break;
+	}
 
 	// シーン確認用
 	SetFontSize(50);

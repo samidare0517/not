@@ -73,6 +73,7 @@ void TitleScene::Draw()
 	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 	starY = rand() % 650  + 192;	// 192～700のランダムな数値 (画面内に描画)
 
+
 	frameCount++;
 
 	if (frameCount == 3)	//3フレームごとに画像を右に192移動させる
@@ -94,10 +95,12 @@ void TitleScene::Draw()
 	{
 		top = 0;
 	}
-
+	
+	
 	// ランダムになっているか(デバック用)
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d", starnum);
-	printfDx("%d\n", frameCount);
+	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
+	// フレーム数(デバック用)
+	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 	
 	// ランダムにアニメーションを描画
 	switch (starnum)

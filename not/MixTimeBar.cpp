@@ -24,8 +24,8 @@ void MixTimeBar::Init()
 	mtb = 1100;		// タイムバーの大きさ
 	time = 4;		// 表示用のタイマー(6秒)
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
-	mixTimeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の画像
-	mixTimerBackHandle = LoadGraph("data/TimerBack.png");
+	mixTimeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の背景画像
+	mixTimerBackHandle = LoadGraph("data/TimerBack.png");// タイマー用の背景画像
 }
 
 void MixTimeBar::Update()

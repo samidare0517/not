@@ -15,5 +15,11 @@ public:
 
 	virtual void Update(const InputState& input) override;
 	void Draw();
+
+private:
+	int Handle = -1;		// アニメーション画像
+	int animationNumber = 0;                        //アニメーション（横）
+	int imgidx = 2;                                 //縦の画像
+	int timer = 0;                                  //アニメーションのインターバル
 };
 
