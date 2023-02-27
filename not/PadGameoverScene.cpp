@@ -73,35 +73,6 @@ void PadGameoverScene::Draw()
 	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
 
-
-	frameCount++;
-
-	if (frameCount == 3)	//3フレームごとに画像を右に192移動させる
-	{
-		frameCount = 0;	// フレームカウントをリセット
-		left += 192;	// 192をプラスする
-	}
-	if (left == 960)	// 画像の右まで移動すると左に戻す
-	{
-		left = 0;
-		changeY = true;	// 画像を下に192移動
-	}
-	if (changeY)	// 画像を下に192移動
-	{
-		top += 192;
-		changeY = false;
-	}
-	if (top == 768)
-	{
-		top = 0;
-	}
-
-
-	// ランダムになっているか(デバック用)
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
-	// フレーム数(デバック用)
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
-
 	// ランダムにアニメーションを描画
 	switch (starnum)
 	{
@@ -123,6 +94,39 @@ void PadGameoverScene::Draw()
 			1, 0, starHandle3, true, false);
 		break;
 	}
+
+	frameCount++;
+
+	if (frameCount == 3)	//3フレームごとに画像を右に192移動させる
+	{
+		frameCount = 0;	// フレームカウントをリセット
+		left += 192;	// 192をプラスする
+	}
+	if (left == 960)	// 画像の右まで移動すると左に戻す
+	{
+		left = 0;
+		changeY = true;	// 画像を下に192移動
+	}
+	if (changeY)	// 画像を下に192移動
+	{
+		top += 192;
+		changeY = false;
+	}
+	if (top == 768)
+	{
+		top = 768;
+	}
+	if (top == 768)
+	{
+		top = 0;
+	}
+
+
+	// ランダムになっているか(デバック用)
+//	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
+	// フレーム数(デバック用)
+//	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
+
 
 	// シーン確認用
 	SetFontSize(50);
