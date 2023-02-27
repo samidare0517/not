@@ -129,10 +129,17 @@ void PadGameoverScene::Draw()
 
 	DrawAnimation();	// アニメーションを呼び出す
 
-	// シーン確認用
+	// 表示用文字
+	ChangeFont("Lucida Bright");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+	SetFontSize(150);
+	DrawFormatString(260, 300, GetColor(191, 127, 255), "GAME OVER");
+
+	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "Padゲームオーバー");
-	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→BACK\nリスタート→LB");
+	DrawFormatString(500, 600, GetColor(255, 255, 255),
+		"  タイトル    ・・・ BACK\n\nリスタート   ・・・ LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);

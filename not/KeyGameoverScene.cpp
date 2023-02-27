@@ -123,16 +123,23 @@ void KeyGameoverScene::Draw()
 	DrawGraph(0, 0, gameoverHandle, true);
 
 	// ランダムになっているか(デバック用)
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
+//	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
 	// フレーム数(デバック用)
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
+//	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
 	DrawAnimation();
 
-	// シーン確認用
+	// 表示用文字
+	ChangeFont("Lucida Bright");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+	SetFontSize(150);
+	DrawFormatString(260, 300, GetColor(191, 127, 255), "GAME OVER");
+
+	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "keyゲームオーバー");
-	DrawFormatString(500, 500, GetColor(255, 255, 255), "タイトル→BACK\nリスタート→LB");
+	DrawFormatString(500, 600, GetColor(255, 255, 255),
+		"  タイトル    ・・・ BACK\n\nリスタート   ・・・ LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);

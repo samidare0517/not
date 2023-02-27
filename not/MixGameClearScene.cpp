@@ -123,17 +123,24 @@ void MixGameClearScene::Draw()
 	DrawGraph(0, 0, gameclearHandle, true);
 
 	// ランダムになっているか(デバック用)
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
+//	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
 	// フレーム数(デバック用)
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
+//	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
 	DrawAnimation();	// アニメーションを呼び出す
 
-	// シーン確認用
+	// 表示用文字
+
+	ChangeFont("Lucida Bright");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+	SetFontSize(150);
+	DrawFormatString(250, 300, GetColor(255, 255, 133), "GAME CLEAR");
+
+	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "Mixゲームクリア");
-	DrawFormatString(500, 500, GetColor(255, 255, 255),
-		"タイトル→BACK\nリスタート→LB");
+	DrawFormatString(500, 600, GetColor(255, 255, 255),
+		" タイトル  ・・・ BACK\n\n次の問題 ・・・ RB\n\nリスタート ・・・ LB");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

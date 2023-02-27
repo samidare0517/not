@@ -33,6 +33,9 @@ namespace
 	// 問題を繰り返す回数
 	int questionNum = 30;
 
+	// 表示用問題数
+	int question = 30;
+
 	// 問題の正解回数
 	int answerNum = 0;
 
@@ -89,6 +92,7 @@ void KeyField::NormalUpdate(const InputState& input)
 			num = rand() % randomnum + 1;
 		}
 		answerNum++;
+		question--;
 	}
 	else if (kTime.Check() == true)	// タイムバーが0になっていたらゲームオーバー処理へ
 	{
@@ -106,12 +110,12 @@ void KeyField::NormalUpdate(const InputState& input)
 		return;	
 	}
 	// デバック用
-	DrawFormatString(0, 400, GetColor(255, 255, 255), "問題数:%d", answerNum);
+//	DrawFormatString(0, 400, GetColor(255, 255, 255), "問題数:%d", answerNum);
 
 	answerCheck = false;	// 正解のフラグの初期化
 
 	// ランダムになっているか調べる(デバック用)
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "問題:% d", num);
+//	DrawFormatString(0, 200, GetColor(255, 255, 255), "問題:% d", num);
 
 	
 	// numと同じ方向が押されていたら次の問題へ
@@ -257,6 +261,9 @@ void KeyField::Draw()		// 問題の描画
 	DrawField();
 	kTime.Draw();
 	AnswerCheck();
+	
+	// 残り問題数を表示
+	DrawFormatString(100, 190, GetColor(255, 255, 255), "問題数\n  %d", question);
 
 	// 文字を拡大
 	SetFontSize(100);
