@@ -457,11 +457,11 @@ bool KeyField::AnswerCheck()
 	// trueだったら正解正解ボタンが押されるまでは待機
 	if (answerCheck == true)
 	{
-		DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
+	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}
 	else
 	{
-		DrawFormatString(0, 300, GetColor(255, 255, 255), "待機中");
+	//	DrawFormatString(0, 300, GetColor(255, 255, 255), "待機中");
 	}
 	return false;
 }
