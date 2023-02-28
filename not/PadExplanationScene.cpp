@@ -72,7 +72,6 @@ void PadExplanationScene::Draw()
 	{
 		BrinkCounter = 0;
 	}
-
 	if (BrinkCounter < 80)
 	{
 		DrawFormatString(250, 800, GetColor(255, 255, 255), "ゲームをスタートするには");

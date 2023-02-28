@@ -73,7 +73,6 @@ void KeyExplanationScene::Draw()
 	{
 		BrinkCounter = 0;
 	}
-	
 	if (BrinkCounter < 80)
 	{
 		SetFontSize(50);

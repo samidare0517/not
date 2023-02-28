@@ -62,8 +62,7 @@ void MixExplanationScene::Draw()
 	// 普通の描画
 	DrawGraph(0, 0, Handle, true);
 //	DrawFormatString(0, 0, GetColor(255, 255, 255), "三問目説明画面");
-//	DrawFormatString(0, 500, GetColor(255, 255, 255),
-//		"(仮説明)\n");
+//	DrawFormatString(0, 500, GetColor(255, 255, 255),"(仮説明)\n");
 
 	// 点滅処理
 	static int BrinkCounter;
@@ -72,7 +71,6 @@ void MixExplanationScene::Draw()
 	{
 		BrinkCounter = 0;
 	}
-
 	if (BrinkCounter < 80)
 	{
 		DrawFormatString(250, 800, GetColor(255, 255, 255), "ゲームをスタートするには");
