@@ -22,18 +22,36 @@ void PadGameClearScene::NormalUpdate(const InputState& input)
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seBackButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seBackButton, DX_PLAYTYPE_NORMAL, false);
+
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
 	// 次の問題に進む場合
 	if (input.IsTriggred(InputType::next))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_NORMAL, false);
+
 		manager_.CangeScene(new MixExplanationScene(manager_));
 		return;
 	}
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_NORMAL, false);
+
 		manager_.CangeScene(new PadField(manager_));
 		return;
 	}
@@ -107,6 +125,15 @@ updateFunc(&PadGameClearScene::FadeInUpdate)
 	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
 	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
+
+	// BGMの読みこみ
+	musicClear = LoadSoundMem("data/BGM/GameClearBGM.mp3");
+
+	// SEの読み込み
+	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
+
+	// SEの読み込み
+	seBackButton = LoadSoundMem("data/BGM/BackTitleSE.mp3");
 }
 
 PadGameClearScene::~PadGameClearScene()
@@ -116,6 +143,11 @@ PadGameClearScene::~PadGameClearScene()
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
+
+	// 音楽のデリート
+	DeleteSoundMem(musicClear);
+	DeleteSoundMem(seButton);
+	DeleteSoundMem(seBackButton);
 }
 
 void PadGameClearScene::Update(const InputState& input)
@@ -127,6 +159,12 @@ void PadGameClearScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameclearHandle, true);
+
+	// BGMの音量を調整する
+	ChangeVolumeSoundMem(255 * 50 / 100, musicClear);
+
+	// BGMを呼び出す
+	PlaySoundMem(musicClear, DX_PLAYTYPE_LOOP, false);
 
 	// ランダムになっているか(デバック用)
 //	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);

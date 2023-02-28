@@ -12,36 +12,6 @@
 
 namespace
 {
-	// ランダム用
-	int num = 0;
-
-	// 全体の問題バリエーション数
-	int randomnum = 8;
-
-	// 問題の文字表示位置
-	int mozi0X = 765;	// 通常用
-	int mozi0Y = 400;	// 通常用
-
-	int mozi1X = 765;	// じゃない用一行目
-	int mozi1Y = 350;	// じゃない用一行目
-
-	int mozi2X = 640;	// じゃない用二行目
-	int mozi2Y = 450;	// じゃない用二行目
-
-	bool answerCheck = false;
-
-	// 問題を繰り返す回数
-	int questionNum = 30;
-
-	// 表示用問題数
-	int question = 30;
-
-	// 問題の正解回数
-	int answerNum = 0;
-
-	// 背景用ハンドル
-	int handle = 0;
-
 	TimeBar kMixTime;
 }
 
@@ -62,11 +32,33 @@ updateFunc(&PadField::FadeInUpdate)
 
 PadField::~PadField()
 {
+	// 画像のデリート
+	DeleteGraph(handle);
+
+	// 音楽のデリート
+	DeleteSoundMem(musicGameScene);
+	DeleteSoundMem(seButtonYse);
+	DeleteSoundMem(seButtonNo);
 }
 
 void PadField::Init()
 {
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
+
+	// BGMの読みこみ
+	musicGameScene = LoadSoundMem("data/BGM/GameSceneBGM.mp3");
+
+	// BGMの音量を調整する
+	ChangeVolumeSoundMem(255 * 30 / 100, musicGameScene);
+
+	// BGMを呼び出す
+	PlaySoundMem(musicGameScene, DX_PLAYTYPE_LOOP, false);
+
+	// 正解用SEの読みこみ
+	seButtonYse = LoadSoundMem("data/BGM/SeikaiBGM.mp3");
+
+	// 不正解用SEの読み込み
+	seButtonYse = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
 	kMixTime.Init();
 

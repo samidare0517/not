@@ -52,6 +52,34 @@ public:
 
 private:
 
+	int num = 0;	// ランダム用
+
+	int randomnum = 16;	// 全体の問題バリエーション数
+
+	// 問題の文字表示位置
+	int mozi0X = 765;	// 通常用
+	int mozi0Y = 400;	// 通常用
+
+	int mozi1X = 765;	// じゃない用一行目
+	int mozi1Y = 350;	// じゃない用一行目
+
+	int mozi2X = 640;	// じゃない用二行目
+	int mozi2Y = 450;	// じゃない用二行目
+
+	bool answerCheck = false;
+
+	int questionNum = 30;	// 問題を繰り返す回数
+
+	int question = 30;	// 表示用問題数
+
+	int answerNum = 0;	// 問題の正解回数
+
+	int handle = 0;	// 背景用ハンドル
+
+	int musicGameScene = 0;	// ゲーム中BGMハンドル
+	int seButtonYse = 0;	// 正解ときのSEハンドル
+	int seButtonNo = 0;		// 不正解ときのSEハンドル
+
 	unsigned int fadeColor = 0x1e90ff;	// フェードの色(デフォ黒)
 	static constexpr int fadeInterval = 160;
 	int fadeTimer = fadeInterval;

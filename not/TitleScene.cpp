@@ -22,6 +22,12 @@ void TitleScene::NormalUpdate(const InputState& input)
 	// 次へボタンが押されたら次のシーンへ移行する
 	if (input.IsTriggred(InputType::next))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_NORMAL, false);
+
 		updateFunc = &TitleScene::FadeOutUpdate;
 	}
 }
@@ -99,6 +105,12 @@ updateFunc(&TitleScene::FadeInUpdate)
 	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
 	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
+
+	// BGMの読みこみ
+	musicTitle = LoadSoundMem("data/BGM/TitleBGM.mp3");
+
+	// SEの読み込み
+	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
 }
 
 TitleScene::~TitleScene()
@@ -108,6 +120,10 @@ TitleScene::~TitleScene()
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
+
+	// 音楽のデリート
+	DeleteSoundMem(musicTitle);
+	DeleteSoundMem(seButton);
 }
 
 void TitleScene::Update(const InputState& input)
@@ -120,6 +136,12 @@ void TitleScene::Draw()
 {
 	// 背景描画
 	DrawGraph(0, 0, titleHandle, true);
+
+	// BGMの音量を調整する
+	ChangeVolumeSoundMem(255 * 50 / 100, musicTitle);
+
+	// BGMを呼び出す
+	PlaySoundMem(musicTitle, DX_PLAYTYPE_LOOP, false);
 
 	// テスト用座標固定アニメーション
 	//DrawRectRotaGraph(200, 200,

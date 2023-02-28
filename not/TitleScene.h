@@ -39,6 +39,9 @@ private:
 	int fadeTimer = fadeIntarval;		// フェードタイマー
 	int fadeValue = 225;	// 黒矩形とのブレンド具合
 
+	int musicTitle = 0;	// タイトルBGMハンドル
+	int seButton = 0;	// 次に行くときのSEハンドル
+
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);
 
