@@ -61,9 +61,9 @@ void MixExplanationScene::Draw()
 {
 	// •’Ê‚Ì•`‰æ
 	DrawGraph(0, 0, Handle, true);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "O–â–Úà–¾‰æ–Ê");
-	DrawFormatString(0, 500, GetColor(255, 255, 255),
-		"(‰¼à–¾)\n");
+//	DrawFormatString(0, 0, GetColor(255, 255, 255), "O–â–Úà–¾‰æ–Ê");
+//	DrawFormatString(0, 500, GetColor(255, 255, 255),
+//		"(‰¼à–¾)\n");
 
 	// “_–Åˆ—
 	static int BrinkCounter;

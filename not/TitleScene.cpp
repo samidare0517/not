@@ -127,9 +127,9 @@ void TitleScene::Draw()
 	//	1, 0, starHandle1, true, false);
 	
 	// ランダムになっているか(デバック用)
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
+//	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
 	// フレーム数(デバック用)
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
+//	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 	
 	DrawAnimation();	// アニメーションを呼び出す
 	
@@ -155,7 +155,7 @@ void TitleScene::Draw()
 
 	// シーン確認用
 	SetFontSize(50);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");
+//	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);

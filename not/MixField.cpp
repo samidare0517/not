@@ -72,6 +72,8 @@ void MixField::Init()
 
 	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
+	question = 30;	// 残り問題数を初期化
+
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～8の乱数を出す
 }
@@ -178,11 +180,13 @@ void MixField::NormalUpdate(const InputState& input)
 
 	// ***じゃない問題***
 
-	// 上じゃない　(下左右が丸)
+	// 上じゃない　(下左右ABXYが丸)
 	if (num == 5)
 	{
-		if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
-			Pad::isTrigger(PAD_INPUT_RIGHT))
+		if (Pad::isTrigger(PAD_INPUT_DOWN)  || Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT) || Pad::isTrigger(PAD_INPUT_1)    ||
+			Pad::isTrigger(PAD_INPUT_2)     || Pad::isTrigger(PAD_INPUT_3)    ||
+			Pad::isTrigger(PAD_INPUT_4))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -192,11 +196,13 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	//下じゃない　(上左右が丸)
+	//下じゃない　(上左右ABXYが丸)
 	if (num == 6)
 	{
-		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
-			Pad::isTrigger(PAD_INPUT_RIGHT))
+		if (Pad::isTrigger(PAD_INPUT_UP)	|| Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT) || Pad::isTrigger(PAD_INPUT_1)    ||
+			Pad::isTrigger(PAD_INPUT_2)		|| Pad::isTrigger(PAD_INPUT_3)    ||
+			Pad::isTrigger(PAD_INPUT_4))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -206,11 +212,13 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	// 左じゃない　(上下右が丸)
+	// 左じゃない　(上下右ABXYが丸)
 	if (num == 7)
 	{
-		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
-			Pad::isTrigger(PAD_INPUT_RIGHT))
+		if (Pad::isTrigger(PAD_INPUT_UP)	|| Pad::isTrigger(PAD_INPUT_DOWN) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT) || Pad::isTrigger(PAD_INPUT_1)    ||
+			Pad::isTrigger(PAD_INPUT_2)		|| Pad::isTrigger(PAD_INPUT_3)    ||
+			Pad::isTrigger(PAD_INPUT_4))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -220,11 +228,13 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	// 右じゃない　(上下左が丸)
+	// 右じゃない　(上下左ABXYが丸)
 	if (num == 8)
 	{
-		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
-			Pad::isTrigger(PAD_INPUT_LEFT))
+		if (Pad::isTrigger(PAD_INPUT_UP)	|| Pad::isTrigger(PAD_INPUT_DOWN) ||
+			Pad::isTrigger(PAD_INPUT_LEFT)  || Pad::isTrigger(PAD_INPUT_1)    ||
+			Pad::isTrigger(PAD_INPUT_2)		|| Pad::isTrigger(PAD_INPUT_3)    ||
+			Pad::isTrigger(PAD_INPUT_4))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -289,11 +299,13 @@ void MixField::NormalUpdate(const InputState& input)
 
 	// ***パッドじゃない問題***
 
-	// Yじゃない　(ABXが丸)
+	// Yじゃない　(ABX左右上下が丸)
 	if (num == 13)
 	{
-		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
-			Pad::isTrigger(PAD_INPUT_3))
+		if (Pad::isTrigger(PAD_INPUT_1)    || Pad::isTrigger(PAD_INPUT_2)    ||
+			Pad::isTrigger(PAD_INPUT_3)	   || Pad::isTrigger(PAD_INPUT_UP)   ||
+			Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -303,11 +315,13 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	//Aじゃない　(BXYが丸)
+	//Aじゃない　(BXY左右上下が丸)
 	if (num == 14)
 	{
-		if (Pad::isTrigger(PAD_INPUT_2) || Pad::isTrigger(PAD_INPUT_3) ||
-			Pad::isTrigger(PAD_INPUT_4))
+		if (Pad::isTrigger(PAD_INPUT_2)	   || Pad::isTrigger(PAD_INPUT_3)    ||
+			Pad::isTrigger(PAD_INPUT_4)	   || Pad::isTrigger(PAD_INPUT_UP)   ||
+			Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -317,11 +331,13 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	// Xじゃない　(ABYが丸)
+	// Xじゃない　(ABY左右上下が丸)
 	if (num == 15)
 	{
-		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
-			Pad::isTrigger(PAD_INPUT_4))
+		if (Pad::isTrigger(PAD_INPUT_1)    || Pad::isTrigger(PAD_INPUT_2)    ||
+			Pad::isTrigger(PAD_INPUT_4)	   || Pad::isTrigger(PAD_INPUT_UP)   ||
+			Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -331,11 +347,13 @@ void MixField::NormalUpdate(const InputState& input)
 		}
 	}
 
-	// Bじゃない　(AXYが丸)
+	// Bじゃない　(AXY左右上下が丸)
 	if (num == 16)
 	{
-		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_3) ||
-			Pad::isTrigger(PAD_INPUT_4))
+		if (Pad::isTrigger(PAD_INPUT_1)    || Pad::isTrigger(PAD_INPUT_3)    ||
+			Pad::isTrigger(PAD_INPUT_4)	   || Pad::isTrigger(PAD_INPUT_UP)   ||
+			Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+			Pad::isTrigger(PAD_INPUT_RIGHT))
 		{
 			answerCheck = true;		// 正解が押されたらマル
 		}
@@ -567,9 +585,7 @@ void MixField::MissPressRight()	// 正解が右の場合
 // 不正解の場合の処理(じゃないver)
 void MixField::NotPressUp()	// 問題の答えが上以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_UP)|| Pad::isTrigger(PAD_INPUT_1)||
-		Pad::isTrigger(PAD_INPUT_2) || Pad::isTrigger(PAD_INPUT_3)||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_UP))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -580,9 +596,7 @@ void MixField::NotPressUp()	// 問題の答えが上以外の場合
 
 void MixField::NotPressDown()	// 問題の答えが下以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_1)||
-		Pad::isTrigger(PAD_INPUT_2)	  || Pad::isTrigger(PAD_INPUT_3)||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_DOWN))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -593,9 +607,7 @@ void MixField::NotPressDown()	// 問題の答えが下以外の場合
 
 void MixField::NotPressLeft()	// 問題の答えが左以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_LEFT)|| Pad::isTrigger(PAD_INPUT_1)||
-		Pad::isTrigger(PAD_INPUT_2)	  || Pad::isTrigger(PAD_INPUT_3)||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_LEFT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -606,9 +618,7 @@ void MixField::NotPressLeft()	// 問題の答えが左以外の場合
 
 void MixField::NotPressRight()	// 問題の答えが右以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_RIGHT)|| Pad::isTrigger(PAD_INPUT_1)||
-		Pad::isTrigger(PAD_INPUT_2)	   || Pad::isTrigger(PAD_INPUT_3)||
-		Pad::isTrigger(PAD_INPUT_4))
+	if (Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -677,9 +687,7 @@ void MixField::MissPressB()	// 正解がBの場合
 // パッド問題用不正解の場合の処理(じゃないver)
 void MixField::NotPressY()	// 問題の答えがY以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_4)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
-		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_4))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -690,9 +698,7 @@ void MixField::NotPressY()	// 問題の答えがY以外の場合
 
 void MixField::NotPressA()	// 問題の答えがA以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_1)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
-		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_1))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -703,9 +709,7 @@ void MixField::NotPressA()	// 問題の答えがA以外の場合
 
 void MixField::NotPressX()	// 問題の答えがX以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_3)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
-		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_3))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -716,9 +720,7 @@ void MixField::NotPressX()	// 問題の答えがX以外の場合
 
 void MixField::NotPressB()	// 問題の答えがA以外の場合
 {
-	if (Pad::isTrigger(PAD_INPUT_2)	  || Pad::isTrigger(PAD_INPUT_UP)  ||
-		Pad::isTrigger(PAD_INPUT_DOWN)|| Pad::isTrigger(PAD_INPUT_LEFT)||
-		Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_2))
 	{
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -743,11 +745,11 @@ bool MixField::AnswerCheck()
 	// trueだったら正解正解ボタンが押されるまでは待機
 	if (answerCheck == true)
 	{
-		DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
+	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}
 	else
 	{
-		DrawFormatString(0, 300, GetColor(255, 255, 255), "待機中");
+	//	DrawFormatString(0, 300, GetColor(255, 255, 255), "待機中");
 	}
 	return false;
 }

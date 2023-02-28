@@ -72,6 +72,8 @@ void PadField::Init()
 
 	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
+	question = 30;	// 残り問題数を初期化
+
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～8の乱数を出す
 }
@@ -101,7 +103,7 @@ void PadField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 30)
+	if (answerNum == 5)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 

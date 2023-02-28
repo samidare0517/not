@@ -63,10 +63,10 @@ void KeyExplanationScene::Draw()
 	DrawGraph(0, 0,Handle, true);
 	
 	
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "‘S‘Ì•1–â–Úà–¾‰æ–Ê");
+//	DrawFormatString(0, 0, GetColor(255, 255, 255), "‘S‘Ì•1–â–Úà–¾‰æ–Ê");
 	
-	DrawFormatString(0, 500, GetColor(255, 255, 255),
-		"(‰¼à–¾)\n");
+//	DrawFormatString(0, 500, GetColor(255, 255, 255),
+//		"(‰¼à–¾)\n");
 	
 	// “_–Åˆ—
 	static int BrinkCounter;
