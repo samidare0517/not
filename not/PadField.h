@@ -21,13 +21,13 @@ public:
 	void DrawField();
 
 	// 不正解の場合	(通常ver)
-	void MissPressY();			// 正解が上の場合
+	void MissPressY();		// 正解が上の場合
 	void MissPressA();		// 正解が下の場合
 	void MissPressX();		// 正解が左の場合
 	void MissPressB();		// 正解が右の場合
 
 	// 不正解の場合	(じゃないver)
-	void NotPressY();			// 正解が上じゃない場合
+	void NotPressY();		// 正解が上じゃない場合
 	void NotPressA();		// 正解が下じゃない場合
 	void NotPressX();		// 正解が左じゃない場合
 	void NotPressB();		// 正解が右じゃない場合

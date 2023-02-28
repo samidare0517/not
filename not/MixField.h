@@ -33,7 +33,7 @@ public:
 	void NotPressRight();		// 正解が右じゃない場合
 
 	// 不正解の場合	(パッド問題通常ver)
-	void MissPressY();			// 正解が上の場合
+	void MissPressY();		// 正解が上の場合
 	void MissPressA();		// 正解が下の場合
 	void MissPressX();		// 正解が左の場合
 	void MissPressB();		// 正解が右の場合

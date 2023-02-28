@@ -64,22 +64,22 @@ void MixGameoverScene::DrawAnimation()
 
 	frameCount++;
 
-	if (frameCount > 2)	//2フレームごとに画像を右に192移動させる
+	if (frameCount > 2)	// 2フレームごとに画像を右に192移動させる
 	{
 		frameCount = 0;	// フレームカウントをリセット
-		posX++;	//1をプラスする
+		posX++;	// 1をプラスする
 	}
 	if (posX >= 5)	// 画像の右まで移動すると左に戻す
 	{
-		posX = 0;	//0に戻す
+		posX = 0;	// 0に戻す
 		posY += 1;	// アニメーションを一段下げる
 
 	}
-	if (posY >= 4)	//一番最後の段より大きくなろうとしたら
+	if (posY >= 4)	// 一番最後の段より大きくなろうとしたら
 	{
-		posY = 0;	//ゼロに戻す
+		posY = 0;	// ゼロに戻す
 
-		//一番最後まで行ったら場所をランダムで生成する
+		// 一番最後まで行ったら場所をランダムで生成する
 		srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 		starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
 		starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
@@ -130,12 +130,12 @@ void MixGameoverScene::Draw()
 	DrawAnimation();	// アニメーションを呼び出す
 
 	// 表示用文字
-	ChangeFont("Lucida Bright");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFont("Comic Sans MS");	// Comic Sans MSに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(150);
-	DrawFormatString(260, 300, GetColor(191, 127, 255), "GAME OVER");
+	DrawFormatString(260, 300, GetColor(191, 127, 255), "GAME OVER...");
 
-	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
+	ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
 	DrawFormatString(500, 600, GetColor(255, 255, 255),

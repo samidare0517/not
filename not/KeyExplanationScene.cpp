@@ -62,11 +62,9 @@ void KeyExplanationScene::Draw()
 	// 普通の描画
 	DrawGraph(0, 0,Handle, true);
 	
-	
 //	DrawFormatString(0, 0, GetColor(255, 255, 255), "全体＆1問目説明画面");
 	
-//	DrawFormatString(0, 500, GetColor(255, 255, 255),
-//		"(仮説明)\n");
+//	DrawFormatString(0, 500, GetColor(255, 255, 255),"(仮説明)\n");
 	
 	// 点滅処理
 	static int BrinkCounter;
@@ -78,11 +76,11 @@ void KeyExplanationScene::Draw()
 	
 	if (BrinkCounter < 80)
 	{
+		SetFontSize(50);
 		DrawFormatString(250, 800, GetColor(255, 255, 255),"ゲームをスタートするには");
 		DrawFormatString(790, 800, GetColor(255, 0, 0),"RBボタン");
 		DrawFormatString(995, 800, GetColor(255, 255, 255),"を押してください");
 	}
-
 	
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
