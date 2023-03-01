@@ -26,7 +26,7 @@ void TitleScene::NormalUpdate(const InputState& input)
 		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
 
 		// SEを呼び出す
-		PlaySoundMem(seButton, DX_PLAYTYPE_NORMAL, false);
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
 
 		updateFunc = &TitleScene::FadeOutUpdate;
 	}
@@ -109,6 +109,12 @@ updateFunc(&TitleScene::FadeInUpdate)
 	// BGMの読みこみ
 	musicTitle = LoadSoundMem("data/BGM/TitleBGM.mp3");
 
+	// BGMの音量を調整する
+	ChangeVolumeSoundMem(255 * 50 / 100, musicTitle);
+
+	// BGMを呼び出す
+	PlaySoundMem(musicTitle, DX_PLAYTYPE_LOOP, false);
+
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
 }
@@ -136,12 +142,6 @@ void TitleScene::Draw()
 {
 	// 背景描画
 	DrawGraph(0, 0, titleHandle, true);
-
-	// BGMの音量を調整する
-	ChangeVolumeSoundMem(255 * 50 / 100, musicTitle);
-
-	// BGMを呼び出す
-	PlaySoundMem(musicTitle, DX_PLAYTYPE_LOOP, false);
 
 	// テスト用座標固定アニメーション
 	//DrawRectRotaGraph(200, 200,

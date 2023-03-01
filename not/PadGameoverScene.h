@@ -34,6 +34,10 @@ private:
 	int starX = 0;	// 星が描画されるX
 	int starY = 0;	// 星が描画されるY
 
+	int musicOver = 0;	// ゲームオーバーBGMハンドル
+	int seButton = 0;	// 次に行くときのSEハンドル
+	int seBackButton = 0;	// タイトルへ戻るときのSEハンドル
+
 	static constexpr int fadeInterval = 120;
 	int fadeTimer = fadeInterval;
 	int fadeValue = 255;

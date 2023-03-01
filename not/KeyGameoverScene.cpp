@@ -22,12 +22,24 @@ void KeyGameoverScene::NormalUpdate(const InputState& input)
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seBackButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seBackButton, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyField(manager_));
 		return;
 	}
@@ -101,6 +113,21 @@ updateFunc(&KeyGameoverScene::FadeInUpdate)
 	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
 	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
+
+	// BGMの読みこみ
+	musicOver = LoadSoundMem("data/BGM/GameOverBGM.mp3");
+	
+	// BGMの音量を調整する
+	ChangeVolumeSoundMem(255 * 50 / 100, musicOver);
+
+	// BGMを呼び出す
+	PlaySoundMem(musicOver, DX_PLAYTYPE_LOOP, false);
+
+	// SEの読み込み
+	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
+
+	// SEの読み込み
+	seBackButton = LoadSoundMem("data/BGM/BackTitleSE.mp3");
 }
 
 KeyGameoverScene::~KeyGameoverScene()
@@ -110,6 +137,11 @@ KeyGameoverScene::~KeyGameoverScene()
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
+
+	// 音楽のデリート
+	DeleteSoundMem(musicOver);
+	DeleteSoundMem(seButton);
+	DeleteSoundMem(seBackButton);
 }
 
 void KeyGameoverScene::Update(const InputState& input)

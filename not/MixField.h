@@ -66,7 +66,6 @@ private:
 	int mozi2X = 640;	// じゃない用二行目
 	int mozi2Y = 450;	// じゃない用二行目
 
-	bool answerCheck = false;
 
 	int questionNum = 30;	// 問題を繰り返す回数
 
@@ -77,8 +76,9 @@ private:
 	int handle = 0;	// 背景用ハンドル
 
 	int musicGameScene = 0;	// ゲーム中BGMハンドル
-	int seButtonYse = 0;	// 正解ときのSEハンドル
+	int seButtonYes = 0;	// 正解ときのSEハンドル
 	int seButtonNo = 0;		// 不正解ときのSEハンドル
+	int seButtonPause = 0;	// ポーズシーンへ移行するときのSEハンドル
 
 	unsigned int fadeColor = 0x1e90ff;	// フェードの色(デフォ黒)
 	static constexpr int fadeInterval = 160;

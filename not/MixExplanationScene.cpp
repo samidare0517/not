@@ -21,6 +21,12 @@ void MixExplanationScene::NormalUpdate(const InputState& input)
 	// 次へボタンが押されたら次のシーンへ移行する
 	if (input.IsTriggred(InputType::next))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
+
 		updateFunc_ = &MixExplanationScene::FadeOutUpdate;
 	}
 }
@@ -44,12 +50,18 @@ updateFunc_(&MixExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
 	Handle = LoadGraph("data/MixGameSetumei.png");
+
+	// SEの読み込み
+	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
 }
 
 MixExplanationScene::~MixExplanationScene()
 {
 	// 画像のデリート
 	DeleteGraph(Handle);
+
+	// 音楽のデリート
+	DeleteSoundMem(seButton);
 }
 
 void MixExplanationScene::Update(const InputState& input)

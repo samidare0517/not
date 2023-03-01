@@ -21,6 +21,12 @@ void KeyExplanationScene::NormalUpdate(const InputState& input)
 	// 次へボタンが押されたら次のシーンへ移行する
 	if (input.IsTriggred(InputType::next))
 	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
+
 		updateFunc_ = &KeyExplanationScene::FadeOutUpdate;
 	}
 }
@@ -44,12 +50,18 @@ updateFunc_(&KeyExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
 	Handle = LoadGraph("data/KeyGameSetumei.png");
+
+	// SEの読み込み
+	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
 }
 
 KeyExplanationScene::~KeyExplanationScene()
 {
 	// 画像のデリート
 	DeleteGraph(Handle);
+
+	// 音楽のデリート
+	DeleteSoundMem(seButton);
 }
 
 void KeyExplanationScene::Update(const InputState& input)

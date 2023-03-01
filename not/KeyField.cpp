@@ -12,6 +12,7 @@
 
 namespace
 {
+	bool answerCheck = false;
 	TimeBar kTime;
 }
 
@@ -37,8 +38,10 @@ KeyField::~KeyField()
 
 	// 音楽のデリート
 	DeleteSoundMem(musicGameScene);
-	DeleteSoundMem(seButtonYse);
+	DeleteSoundMem(seButtonYes);
 	DeleteSoundMem(seButtonNo);
+	DeleteSoundMem(seButtonPause);
+
 }
 
 void KeyField::Init()
@@ -52,13 +55,6 @@ void KeyField::Init()
 
 	// BGMを呼び出す
 	PlaySoundMem(musicGameScene, DX_PLAYTYPE_LOOP, false);
-	
-	// 正解用SEの読みこみ
-	seButtonYse = LoadSoundMem("data/BGM/SeikaiBGM.mp3");
-
-	// 不正解用SEの読み込み
-	seButtonYse = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
-
 
 	kTime.Init();
 
@@ -75,6 +71,7 @@ void KeyField::NormalUpdate(const InputState& input)
 
 	// 背景描画 (デバック文字が見えるように背景を表示)
 //	DrawGraph(0, 0, handle, true);
+
 
 	Pad::Update();
 	kTime.Update();
@@ -95,7 +92,7 @@ void KeyField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 1)
+	if (answerNum == 5)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -230,6 +227,15 @@ void KeyField::NormalUpdate(const InputState& input)
 	// パッドのSTARTでポーズシーン
 	if (input.IsTriggred(InputType::pause))
 	{
+		// ポーズシーンへの移行用のSEの読み込み
+		seButtonPause = LoadSoundMem("data/BGM/PauseSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 150 / 100, seButtonPause);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonPause, DX_PLAYTYPE_BACK, false);
+
 		manager_.PushScene(new PauseScene(manager_));
 	}
 }
@@ -259,11 +265,14 @@ void KeyField::Draw()		// 問題の描画
 	// 残り問題数を表示
 	DrawFormatString(100, 190, GetColor(255, 255, 255), "問題数\n  %d", question);
 
+
 	// 文字を拡大
 	SetFontSize(100);
-	
-	// 問題
-	switch (num)	
+
+	if (fadeTimer == 0)
+	{
+		// 問題
+		switch (num)	
 	{
 		// ***通常問題***
 
@@ -313,6 +322,7 @@ void KeyField::Draw()		// 問題の描画
 		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
 		break;
 	}
+	}
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
@@ -347,6 +357,15 @@ void KeyField::MissPressUp()	// 正解が上の場合
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -359,6 +378,15 @@ void KeyField::MissPressDown()	// 正解が下の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -371,6 +399,15 @@ void KeyField::MissPressLeft()	// 正解が左の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -383,6 +420,15 @@ void KeyField::MissPressRight()	// 正解が右の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_LEFT))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -395,6 +441,15 @@ void KeyField::NotPressUp()	// 問題の答えが上以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -406,6 +461,15 @@ void KeyField::NotPressDown()	// 問題の答えが下以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -417,6 +481,15 @@ void KeyField::NotPressLeft()	// 問題の答えが左以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_LEFT))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -428,6 +501,15 @@ void KeyField::NotPressRight()	// 問題の答えが右以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用SEの読み込み
+		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
@@ -451,6 +533,15 @@ bool KeyField::AnswerCheck()
 	// trueだったら正解正解ボタンが押されるまでは待機
 	if (answerCheck == true)
 	{
+		// 正解用SEの読みこみ
+		seButtonYes = LoadSoundMem("data/BGM/SeikaiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButtonYes);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonYes, DX_PLAYTYPE_BACK, false);
+
 	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}
 	else

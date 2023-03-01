@@ -26,7 +26,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 		ChangeVolumeSoundMem(255 * 60 / 100, seBackButton);
 
 		// SE‚ğŒÄ‚Ño‚·
-		PlaySoundMem(seBackButton, DX_PLAYTYPE_NORMAL, false);
+		PlaySoundMem(seBackButton, DX_PLAYTYPE_BACK, false);
 
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
@@ -38,7 +38,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
 
 		// SE‚ğŒÄ‚Ño‚·
-		PlaySoundMem(seButton, DX_PLAYTYPE_NORMAL, false);
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
 
 		manager_.CangeScene(new PadExplanationScene(manager_));
 		return;
