@@ -96,7 +96,7 @@ void KeyExplanationScene::Draw()
 	DrawGraph(0, 0,Handle, true);
 
 	SetFontSize(30);
-	DrawFormatString(20, 20, GetColor(255, 255, 0),
+	DrawFormatString(20, 20, GetColor(255, 255, 77),
 		"RBÉ{É^ÉìÇ≈ÉQÅ[ÉÄê‡ñæ");
 
 	SetFontSize(50);

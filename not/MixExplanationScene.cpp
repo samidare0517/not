@@ -77,11 +77,12 @@ void MixExplanationScene::Draw()
 	SetFontSize(50);
 	DrawFormatString(550, 410, GetColor(127, 255, 127),
 		"3問目はミックス問題です");
-	DrawFormatString(350, 500, GetColor(255, 255, 255),
+	SetFontSize(30);
+	DrawFormatString(550, 500, GetColor(255, 255, 255),
 		"方向問題の場合、十字キーか左スティックを");
-	DrawFormatString(340, 590, GetColor(255, 255, 255),
+	DrawFormatString(540, 550, GetColor(255, 255, 255),
 		"ボタン問題の場合、ボタンを使用してください");
-
+	SetFontSize(50);
 
 	// 点滅処理
 	static int BrinkCounter;
