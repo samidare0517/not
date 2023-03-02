@@ -6,6 +6,7 @@
 // ゲーム中で使用される仮想入力情報
 enum class InputType
 {
+	button,	// ボタンで次へ進む場合
 	next,	// 次へ行くボタン
 	prev,	// 前に戻るボタン
 	title,	// タイトルに戻る

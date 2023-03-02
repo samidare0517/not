@@ -28,9 +28,6 @@ private:
 	// タイムバー用の背景ハンドル
 	int mixTimeBackHandle = 0;
 
-	// タイマー用の画像ハンドル
-	int mixTimerBackHandle = 0;
-
 	// フレーム
 	int frame = 0;
 

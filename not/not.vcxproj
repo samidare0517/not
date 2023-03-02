@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameExplanation.cpp" />
     <ClCompile Include="KeyExplanationScene.cpp" />
     <ClCompile Include="KeyField.cpp" />
     <ClCompile Include="KeyGameClearScene.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameExplanation.h" />
     <ClInclude Include="KeyExplanationScene.h" />
     <ClInclude Include="KeyField.h" />
     <ClInclude Include="game.h" />

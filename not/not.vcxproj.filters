@@ -111,6 +111,9 @@
     <ClCompile Include="MixExplanationScene.cpp">
       <Filter>ソース ファイル\MixGame</Filter>
     </ClCompile>
+    <ClCompile Include="GameExplanation.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="MixExplanationScene.h">
       <Filter>ヘッダー ファイル\MixGame</Filter>
+    </ClInclude>
+    <ClInclude Include="GameExplanation.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

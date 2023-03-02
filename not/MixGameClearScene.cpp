@@ -39,14 +39,18 @@ void MixGameClearScene::NormalUpdate(const InputState& input)
 		// SEを呼び出す
 		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new MixField(manager_));
-		return;
+		updateFunc = &MixGameClearScene::FadeOutUpdate;
 	}
 }
 
 void MixGameClearScene::FadeOutUpdate(const InputState& input)
 {
-
+	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
+	if (++fadeTimer == fadeInterval)
+	{
+		manager_.CangeScene(new MixField(manager_));
+		return;
+	}
 }
 
 void MixGameClearScene::DrawAnimation()
@@ -170,7 +174,7 @@ void MixGameClearScene::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
 	DrawFormatString(500, 600, GetColor(255, 255, 255),
-		" タイトル  ・・・ BACK\n\nリスタート ・・・ LB");
+		" タイトル  ・・・ BACK\n\nリスタート ・・・ B");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

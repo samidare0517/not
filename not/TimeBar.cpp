@@ -18,7 +18,8 @@ TimeBar::TimeBar()
 
 TimeBar::~TimeBar()
 {
-	
+	DeleteGraph(handle);
+	DeleteGraph(timeBackHandle);
 }
 
 void TimeBar::Init()
@@ -27,7 +28,6 @@ void TimeBar::Init()
 	time = 3;		// 表示用のタイマー(3秒)
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
 	timeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の画像
-	timerBackHandle = LoadGraph("data/TimerBack.png");
 }
 
 void TimeBar::Update()
@@ -69,13 +69,11 @@ void TimeBar::Update()
 void TimeBar::Draw()
 {
 	// 数字をマイナスする(デバック用)
-	SetFontSize(50);
 //	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
-	
-	DrawGraph(20, 20, timerBackHandle, true);
 
+	SetFontSize(40);
 	// ゲージ用のタイマー(表示用)
-	DrawFormatString(75, 50, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
+	DrawFormatString(510, 170, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
 	
 	// タイムバーの背景
 	DrawGraph(450, 25, timeBackHandle, true);

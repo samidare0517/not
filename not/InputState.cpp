@@ -4,11 +4,14 @@
 
 InputState::InputState()
 {
+	// ボタンで次へ進む場合
+	defaultMapTable[InputType::button] = { {InputCategory::pad,PAD_INPUT_Z} };//RBボタン
+
 	// 次へ
-	defaultMapTable[InputType::next] = { {InputCategory::pad,PAD_INPUT_Z} };//RBボタン
+	defaultMapTable[InputType::next] = { {InputCategory::pad,PAD_INPUT_1} };//Aボタン
 
 	// 前へ
-	defaultMapTable[InputType::prev] = { {InputCategory::pad,PAD_INPUT_Y} };//LBボタン
+	defaultMapTable[InputType::prev] = { {InputCategory::pad,PAD_INPUT_2} };//Bボタン
 
 	// タイトルへ
 	defaultMapTable[InputType::title] = { {InputCategory::pad,PAD_INPUT_L} };//BACKボタン

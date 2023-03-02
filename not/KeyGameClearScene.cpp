@@ -40,8 +40,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 		// SEを呼び出す
 		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new PadExplanationScene(manager_));
-		return;
+		updateFunc = &KeyGameClearScene::FadeOutUpdate;
 	}
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
@@ -59,7 +58,12 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 
 void KeyGameClearScene::FadeOutUpdate(const InputState& input)
 {
-
+	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
+	if (++fadeTimer == fadeInterval)
+	{
+		manager_.CangeScene(new PadExplanationScene(manager_));
+		return;
+	}
 }
 
 void KeyGameClearScene::DrawAnimation()
@@ -184,7 +188,7 @@ void KeyGameClearScene::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
 	DrawFormatString(500, 600, GetColor(255, 255, 255),
-		" タイトル  ・・・ BACK\n\n次の問題 ・・・ RB\n\nリスタート ・・・ LB");
+		" タイトル  ・・・ BACK\n\n次の問題 ・・・ A\n\nリスタート ・・・ B");
 	
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);

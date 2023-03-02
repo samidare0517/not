@@ -16,7 +16,8 @@ MixTimeBar::MixTimeBar()
 
 MixTimeBar::~MixTimeBar()
 {
-
+	DeleteGraph(handle);
+	DeleteGraph(mixTimeBackHandle);
 }
 
 void MixTimeBar::Init()
@@ -25,7 +26,6 @@ void MixTimeBar::Init()
 	time = 4;		// 表示用のタイマー(6秒)
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
 	mixTimeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の背景画像
-	mixTimerBackHandle = LoadGraph("data/TimerBack.png");// タイマー
 }
 
 void MixTimeBar::Update()
@@ -63,13 +63,11 @@ void MixTimeBar::Draw()
 	SetFontSize(50);
 	//	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
 
-	DrawGraph(20, 20, mixTimerBackHandle, true);
-
 	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 
 	// ゲージ用のタイマー(表示用)
-	DrawFormatString(75, 50, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
+	DrawFormatString(510, 170, GetColor(255, 255, 255), "残り時間\n   %d秒", time);
 
 	// タイムバーの背景
 	DrawGraph(450, 25, mixTimeBackHandle, true);

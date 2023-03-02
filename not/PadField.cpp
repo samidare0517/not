@@ -92,7 +92,7 @@ void PadField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 5)
+	if (answerNum == 1)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -276,7 +276,11 @@ void PadField::Draw()		// 問題の描画
 	AnswerCheck();
 
 	// 残り問題数を表示
-	DrawFormatString(100, 190, GetColor(255, 255, 255), "問題数\n  %d", question);
+	SetFontSize(40);
+	DrawFormatString(960, 170, GetColor(255, 255, 255), "問題数\n  %d", question);
+	SetFontSize(20);
+	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・ START");
+	SetFontSize(50);
 
 	// 文字を拡大
 	SetFontSize(100);

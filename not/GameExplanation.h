@@ -1,26 +1,29 @@
 #pragma once
 #include "Scene.h"
-#include <memory>
 
-class KeyExplanationScene : public Scene
+class InputState;
+
+class GameExplanation : public Scene
 {
-
 public:
 
-	KeyExplanationScene(SceneManager& manager);
-	~KeyExplanationScene();
+	GameExplanation(SceneManager& manager);
+	~GameExplanation();
 
 	void Update(const InputState& input);
+
 	void Draw();
 
 private:
 
-	int seButton = 0;	// 次に行くときのSEハンドル
+	int explanationHandle = -1;		// タイトル画像
 
 	static constexpr int fadeIntarval = 60;
-	int Handle = -1;		// 画像
 	int fadeTimer = fadeIntarval;		// フェードタイマー
 	int fadeValue = 225;	// 黒矩形とのブレンド具合
+
+	int musicTitle = 0;	// タイトルBGMハンドル
+	int seButton = 0;	// 次に行くときのSEハンドル
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);
@@ -31,14 +34,9 @@ private:
 	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
 
-	// フェードアウト2時のUpdate関数
-	void FadeOutUpdate2(const InputState& input);
-
 	// Update用メンバ関数ポインタ
-	void (KeyExplanationScene::* updateFunc_)(const InputState& input);
+	void (GameExplanation::* updateFunc)(const InputState& input);
 
-	void Function();
 
 };
-
 

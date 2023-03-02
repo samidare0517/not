@@ -1,6 +1,7 @@
 #include "TimeBar.h"
 #include "KeyField.h"
 #include "KeyExplanationScene.h"
+#include "GameExplanation.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "DxLib.h"
@@ -18,7 +19,7 @@ void KeyExplanationScene::FadeInUpdate(const InputState& input)
 
 void KeyExplanationScene::NormalUpdate(const InputState& input)
 {
-	// 次へボタンが押されたら次のシーンへ移行する
+	// ボタンが押されたらゲームシーンへ移行する
 	if (input.IsTriggred(InputType::next))
 	{
 		// SEの音量を調整する
@@ -29,6 +30,16 @@ void KeyExplanationScene::NormalUpdate(const InputState& input)
 
 		updateFunc_ = &KeyExplanationScene::FadeOutUpdate;
 	}
+	// RBボタンが押されたらゲーム説明のシーンへ移行する
+	if (input.IsTriggred(InputType::button))
+	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
+		updateFunc_ = &KeyExplanationScene::FadeOutUpdate2;
+	}
 }
 
 void KeyExplanationScene::FadeOutUpdate(const InputState& input)
@@ -37,6 +48,16 @@ void KeyExplanationScene::FadeOutUpdate(const InputState& input)
 	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new KeyField(manager_));
+		return;
+	}
+}
+
+void KeyExplanationScene::FadeOutUpdate2(const InputState& input)
+{
+	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
+	if (++fadeTimer == fadeIntarval)
+	{
+		manager_.CangeScene(new GameExplanation(manager_));
 		return;
 	}
 }
@@ -73,10 +94,16 @@ void KeyExplanationScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0,Handle, true);
-	
-//	DrawFormatString(0, 0, GetColor(255, 255, 255), "全体＆1問目説明画面");
-	
-//	DrawFormatString(0, 500, GetColor(255, 255, 255),"(仮説明)\n");
+
+	SetFontSize(30);
+	DrawFormatString(20, 20, GetColor(255, 255, 0),
+		"RBボタンでゲーム説明");
+
+	SetFontSize(50);
+	DrawFormatString(550, 410, GetColor(127, 255, 127), 
+		"1問目は方向問題です");
+	DrawFormatString(350, 500, GetColor(255, 255, 255),
+		"十字キーか左スティックを使用してください");
 	
 	// 点滅処理
 	static int BrinkCounter;
@@ -88,9 +115,9 @@ void KeyExplanationScene::Draw()
 	if (BrinkCounter < 80)
 	{
 		SetFontSize(50);
-		DrawFormatString(250, 800, GetColor(255, 255, 255),"ゲームをスタートするには");
-		DrawFormatString(790, 800, GetColor(255, 0, 0),"RBボタン");
-		DrawFormatString(995, 800, GetColor(255, 255, 255),"を押してください");
+		DrawFormatString(270, 700, GetColor(255, 255, 255),"ゲームをスタートするには");
+		DrawFormatString(820, 700, GetColor(255, 0, 0),"Aボタン");
+		DrawFormatString(995, 700, GetColor(255, 255, 255),"を押してください");
 	}
 	
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定

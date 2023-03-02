@@ -399,7 +399,11 @@ void MixField::Draw()		// 問題の描画
 	AnswerCheck();
 
 	// 残り問題数を表示
-	DrawFormatString(100, 190, GetColor(255, 255, 255), "問題数\n  %d", question);
+	SetFontSize(40);
+	DrawFormatString(960, 170, GetColor(255, 255, 255), "問題数\n  %d", question);
+	SetFontSize(20);
+	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・ START");
+	SetFontSize(50);
 
 	// 文字を拡大
 	SetFontSize(100);

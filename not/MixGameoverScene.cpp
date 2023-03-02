@@ -172,7 +172,7 @@ void MixGameoverScene::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
 	DrawFormatString(500, 600, GetColor(255, 255, 255),
-		"  タイトル    ・・・ BACK\n\nリスタート   ・・・ LB");
+		"  タイトル    ・・・ BACK\n\nリスタート   ・・・ B");
 
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);

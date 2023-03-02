@@ -174,12 +174,12 @@ void TitleScene::Draw()
 	if (BrinkCounter < 80)
 	{
 		SetFontSize(50);
-		DrawFormatString(500, 600, GetColor(255, 255, 0), "RBボタンを押してください");
+		DrawFormatString(500, 600, GetColor(255, 255, 0), "Aボタンを押してください");
 	}
 
 
 
-	DrawCircle(60, 60, 10, GetColor(255, 255, 255), true);
+//	DrawCircle(60, 60, 10, GetColor(255, 255, 255), true);
 
 
 	// シーン確認用
