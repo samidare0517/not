@@ -177,11 +177,6 @@ void TitleScene::Draw()
 		DrawFormatString(520, 650, GetColor(255, 255, 77), "Aボタンを押してください");
 	}
 
-
-
-//	DrawCircle(60, 60, 10, GetColor(255, 255, 255), true);
-
-
 	// シーン確認用
 //	SetFontSize(50);
 //	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");
