@@ -13,7 +13,7 @@
 namespace
 {
 	bool answerCheck = false;
-	TimeBar kMixTime;
+	TimeBar kTime;
 }
 
 void PadField::FadeInUpdate(const InputState& input)
@@ -56,9 +56,8 @@ void PadField::Init()
 	// BGMを呼び出す
 	PlaySoundMem(musicGameScene, DX_PLAYTYPE_LOOP, false);
 
-	
-	
-	kMixTime.Init();
+	kTime.Init();
+	kTime.Update();
 
 	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
@@ -70,12 +69,12 @@ void PadField::Init()
 
 void PadField::NormalUpdate(const InputState& input)
 {
-
-	// 背景描画 (デバック文字が見えるように背景を表示)
-//	DrawGraph(0, 0, handle, true);
-
 	Pad::Update();
-	kMixTime.Update();
+	if (countDown == 0)	// カウントダウンが0になったらkTime.Updateを呼び出す
+	{
+		kTime.Update();
+	}
+	CountDownUpdate();
 
 	if (answerCheck == true)	// 正解が押されたら次の問題へ
 	{
@@ -86,7 +85,7 @@ void PadField::NormalUpdate(const InputState& input)
 		answerNum++;
 		question--;
 	}
-	else if (kMixTime.Check() == true)	// タイムバーが0になっていたらゲームオーバー処理へ
+	else if (kTime.Check() == true)	// タイムバーが0になっていたらゲームオーバー処理へ
 	{
 		TimeUp();
 	}
@@ -112,120 +111,119 @@ void PadField::NormalUpdate(const InputState& input)
 	// パッド(もしくはキーボード)からの入力を取得する
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 
-	// numと同じ方向が押されていたら次の問題へ
-	// numが1キーの上が押されるまでfalse(待機)
-
-	// ***通常問題***
-	// Yが正解
-	if (num == 1)
+	if (countDown == 0)	// カウントが0になったら入力を受け付ける
 	{
-		if (Pad::isTrigger(PAD_INPUT_4))
+		// ***通常問題***
+		// Yが正解
+		if (num == 1)
 		{
-			answerCheck = true;		// 正解が押されたらマル
+			if (Pad::isTrigger(PAD_INPUT_4))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressY();			// 誤答処理を呼び出す
+			}
 		}
-		else
+
+		// Aが正解
+		if (num == 2)
 		{
-			MissPressY();			// 誤答処理を呼び出す
+			if (Pad::isTrigger(PAD_INPUT_1))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressA();		// 誤答処理を呼び出す
+			}
+		}
+
+		// Xが正解
+		if (num == 3)
+		{
+			if (Pad::isTrigger(PAD_INPUT_3))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressX();		// 誤答処理を呼び出す
+			}
+		}
+
+		// Bが正解
+		if (num == 4)
+		{
+			if (Pad::isTrigger(PAD_INPUT_2))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressB();		// 誤答処理を呼び出す
+			}
+		}
+
+		// ***じゃない問題***
+
+		// Yじゃない　(ABXが丸)
+		if (num == 5)
+		{
+			if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
+				Pad::isTrigger(PAD_INPUT_3))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressY();		// 誤答処理を呼び出す
+			}
+		}
+
+		//Aじゃない　(BXYが丸)
+		if (num == 6)
+		{
+			if (Pad::isTrigger(PAD_INPUT_2) || Pad::isTrigger(PAD_INPUT_3) ||
+				Pad::isTrigger(PAD_INPUT_4))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressA();		// 誤答処理を呼び出す
+			}
+		}
+
+		// Xじゃない　(ABYが丸)
+		if (num == 7)
+		{
+			if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
+				Pad::isTrigger(PAD_INPUT_4))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressX();		// 誤答処理を呼び出す
+			}
+		}
+
+		// Bじゃない　(AXYが丸)
+		if (num == 8)
+		{
+			if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_3) ||
+				Pad::isTrigger(PAD_INPUT_4))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressB();		// 誤答処理を呼び出す
+			}
 		}
 	}
-
-	// Aが正解
-	if (num == 2)
-	{
-		if (Pad::isTrigger(PAD_INPUT_1))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			MissPressA();		// 誤答処理を呼び出す
-		}
-	}
-
-	// Xが正解
-	if (num == 3)
-	{
-		if (Pad::isTrigger(PAD_INPUT_3))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			MissPressX();		// 誤答処理を呼び出す
-		}
-	}
-
-	// Bが正解
-	if (num == 4)
-	{
-		if (Pad::isTrigger(PAD_INPUT_2))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			MissPressB();		// 誤答処理を呼び出す
-		}
-	}
-
-	// ***じゃない問題***
-
-	// Yじゃない　(ABXが丸)
-	if (num == 5)
-	{
-		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
-			Pad::isTrigger(PAD_INPUT_3))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressY();		// 誤答処理を呼び出す
-		}
-	}
-
-	//Aじゃない　(BXYが丸)
-	if (num == 6)
-	{
-		if (Pad::isTrigger(PAD_INPUT_2) || Pad::isTrigger(PAD_INPUT_3) ||
-			Pad::isTrigger(PAD_INPUT_4))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressA();		// 誤答処理を呼び出す
-		}
-	}
-
-	// Xじゃない　(ABYが丸)
-	if (num == 7)
-	{
-		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2) ||
-			Pad::isTrigger(PAD_INPUT_4))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressX();		// 誤答処理を呼び出す
-		}
-	}
-
-	// Bじゃない　(AXYが丸)
-	if (num == 8)
-	{
-		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_3) ||
-			Pad::isTrigger(PAD_INPUT_4))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressB();		// 誤答処理を呼び出す
-		}
-	}
-
 
 	// Pキーでポーズシーン
 	if (input.IsTriggred(InputType::pause))
@@ -240,6 +238,19 @@ void PadField::NormalUpdate(const InputState& input)
 		PlaySoundMem(seButtonPause, DX_PLAYTYPE_BACK, false);
 		manager_.PushScene(new PauseScene(manager_));
 	}
+}
+
+void PadField::CountDownUpdate()
+{
+	if (fadeTimer == 0)
+	{
+		countDown--;	// フェードタイマーが0になったら(フェードが終わり次第)カウントダウンをする
+	}
+	if (countDown < 0)
+	{
+		countDown = 0;
+	}
+	countNum = (countDown / 60);	// 180/60で3，2，1カウントをする
 }
 
 void PadField::FadeOutUpdate(const InputState& input)
@@ -261,7 +272,7 @@ void PadField::Draw()		// 問題の描画
 {
 	SetFontSize(50);
 	DrawField();
-	kMixTime.Draw();
+	kTime.Draw();
 	AnswerCheck();
 
 	// 残り問題数を表示
@@ -270,7 +281,18 @@ void PadField::Draw()		// 問題の描画
 	// 文字を拡大
 	SetFontSize(100);
 
-	if (fadeTimer == 0)
+	if (countNum != 0)	// countNumが0ではなかったら数字を減らしながら表示する
+	{
+		SetFontSize(200);
+		ChangeFont("Franklin Gothic Medium");	// Franklin Gothic Mediumに変更
+		ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+
+		DrawFormatString(740, 350, GetColor(127, 127, 255), "%d", countNum);
+
+		ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
+		ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+	}
+	if (countDown == 0)	// カウントが0になったら問題を表示
 	{
 		// 問題
 		switch (num)

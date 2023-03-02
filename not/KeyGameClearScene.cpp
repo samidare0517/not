@@ -50,7 +50,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
 
 		// SE‚ğŒÄ‚Ño‚·
-		PlaySoundMem(seButton, DX_PLAYTYPE_NORMAL, false);
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
 
 		manager_.CangeScene(new KeyField(manager_));
 		return;

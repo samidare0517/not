@@ -57,10 +57,15 @@ void KeyField::Init()
 	PlaySoundMem(musicGameScene, DX_PLAYTYPE_LOOP, false);
 
 	kTime.Init();
+	kTime.Update();
 
  	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
 	question = 30;	// 残り問題数を初期化
+
+	countDown = 180;	// カウントダウン初期化
+
+	countNum = 3;	// カウントダウン数初期化
 
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～8の乱数を出す
@@ -68,13 +73,12 @@ void KeyField::Init()
 
 void KeyField::NormalUpdate(const InputState& input)
 {
-
-	// 背景描画 (デバック文字が見えるように背景を表示)
-//	DrawGraph(0, 0, handle, true);
-
-
 	Pad::Update();
-	kTime.Update();
+	if (countDown == 0)	// カウントダウンが0になったらkTime.Updateを呼び出す
+	{
+		kTime.Update();
+	}
+	CountDownUpdate();
 
 	if (answerCheck == true)	// 正解が押されたら次の問題へ
 	{
@@ -108,121 +112,120 @@ void KeyField::NormalUpdate(const InputState& input)
 	// ランダムになっているか調べる(デバック用)
 //	DrawFormatString(0, 200, GetColor(255, 255, 255), "問題:% d", num);
 
-	
-	// numと同じ方向が押されていたら次の問題へ
-	// numが1キーの上が押されるまでfalse(待機)
-	
-	// ***通常問題***
-	// 上が正解
-	if (num == 1)
+	if (countDown == 0)	// カウントが0になったら入力を受け付ける
 	{
-		if (Pad::isTrigger(PAD_INPUT_UP))
+		// ***通常問題***
+		
+		// 上が正解
+		if (num == 1)
 		{
-			answerCheck = true;		// 正解が押されたらマル
+			if (Pad::isTrigger(PAD_INPUT_UP))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressUp();			// 誤答処理を呼び出す
+			}
 		}
-		else
-		{
-			MissPressUp();			// 誤答処理を呼び出す
-		}
-	}
 
-	// 下が正解
-	if (num == 2)
-	{
-		if (Pad::isTrigger(PAD_INPUT_DOWN))
+		// 下が正解
+		if (num == 2)
 		{
-			answerCheck = true;		// 正解が押されたらマル
+			if (Pad::isTrigger(PAD_INPUT_DOWN))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressDown();		// 誤答処理を呼び出す
+			}
 		}
-		else
-		{
-			MissPressDown();		// 誤答処理を呼び出す
-		}
-	}
 
-	// 左が正解
-	if (num == 3)
-	{
-		if (Pad::isTrigger(PAD_INPUT_LEFT))
+		// 左が正解
+		if (num == 3)
 		{
-			answerCheck = true;		// 正解が押されたらマル
+			if (Pad::isTrigger(PAD_INPUT_LEFT))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressLeft();		// 誤答処理を呼び出す
+			}
 		}
-		else
-		{
-			MissPressLeft();		// 誤答処理を呼び出す
-		}
-	}
-	
-	// 右が正解
-	if (num == 4)
-	{
-		if (Pad::isTrigger(PAD_INPUT_RIGHT))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			MissPressRight();		// 誤答処理を呼び出す
-		}
-	}
-	
-	// ***じゃない問題***
-	
-	// 上じゃない　(下左右が丸)
-	if (num == 5)
-	{
-		if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) || 
-			Pad::isTrigger(PAD_INPUT_RIGHT))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressUp();		// 誤答処理を呼び出す
-		}
-	}
 
-	 //下じゃない　(上左右が丸)
-	if (num == 6)
-	{
-		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
-			Pad::isTrigger(PAD_INPUT_RIGHT))
+		// 右が正解
+		if (num == 4)
 		{
-			answerCheck = true;		// 正解が押されたらマル
+			if (Pad::isTrigger(PAD_INPUT_RIGHT))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				MissPressRight();		// 誤答処理を呼び出す
+			}
 		}
-		else
+
+		// ***じゃない問題***
+
+		// 上じゃない　(下左右が丸)
+		if (num == 5)
 		{
-			NotPressDown();		// 誤答処理を呼び出す
+			if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+				Pad::isTrigger(PAD_INPUT_RIGHT))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressUp();		// 誤答処理を呼び出す
+			}
+		}
+
+		//下じゃない　(上左右が丸)
+		if (num == 6)
+		{
+			if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
+				Pad::isTrigger(PAD_INPUT_RIGHT))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressDown();		// 誤答処理を呼び出す
+			}
+		}
+
+		// 左じゃない　(上下右が丸)
+		if (num == 7)
+		{
+			if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
+				Pad::isTrigger(PAD_INPUT_RIGHT))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressLeft();		// 誤答処理を呼び出す
+			}
+		}
+
+		// 右じゃない　(上下左が丸)
+		if (num == 8)
+		{
+			if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
+				Pad::isTrigger(PAD_INPUT_LEFT))
+			{
+				answerCheck = true;		// 正解が押されたらマル
+			}
+			else
+			{
+				NotPressRight();		// 誤答処理を呼び出す
+			}
 		}
 	}
-
-	// 左じゃない　(上下右が丸)
-	if (num == 7)
-	{
-		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
-			Pad::isTrigger(PAD_INPUT_RIGHT))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressLeft();		// 誤答処理を呼び出す
-		}
-	}
-
-	// 右じゃない　(上下左が丸)
-	if (num == 8)
-	{
-		if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
-			Pad::isTrigger(PAD_INPUT_LEFT))
-		{
-			answerCheck = true;		// 正解が押されたらマル
-		}
-		else
-		{
-			NotPressRight();		// 誤答処理を呼び出す
-		}
-	}
-
 	
 	// パッドのSTARTでポーズシーン
 	if (input.IsTriggred(InputType::pause))
@@ -250,6 +253,19 @@ void KeyField::FadeOutUpdate(const InputState& input)
 	}
 }
 
+void KeyField::CountDownUpdate()
+{
+	if (fadeTimer == 0)
+	{
+		countDown--;	// フェードタイマーが0になったら(フェードが終わり次第)カウントダウンをする
+	}
+	if (countDown < 0)
+	{
+		countDown = 0;
+	}
+	countNum = (countDown / 60);	// 180/60で3，2，1カウントをする
+}
+
 void KeyField::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
@@ -265,13 +281,23 @@ void KeyField::Draw()		// 問題の描画
 	// 残り問題数を表示
 	DrawFormatString(100, 190, GetColor(255, 255, 255), "問題数\n  %d", question);
 
-	// 文字を拡大
-	DrawFormatString(100, 200, GetColor(255, 255, 255), "フェード%d", fadeTimer);
-	
-	SetFontSize(100);
 
-	if (fadeTimer == 0)	// フェードが0になったら問題を表示
+	if (countNum != 0)	// countNumが0ではなかったら数字を減らしながら表示する
 	{
+		SetFontSize(200);
+		ChangeFont("Franklin Gothic Medium");	// Franklin Gothic Mediumに変更
+		ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+		
+		DrawFormatString(740, 350, GetColor(127, 127, 255), "%d", countNum);
+
+		ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
+		ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+		
+	}
+	if (countDown == 0)	// カウントが0になったら問題を表示
+	{
+		// 文字を拡大
+		SetFontSize(100);
 		// 問題
 		switch (num)
 		{
@@ -324,23 +350,7 @@ void KeyField::Draw()		// 問題の描画
 			break;
 		}
 	}
-	
-	//frame++;
-	//// フレーム計算
-	//if (frame >= 60)
-	//{
-	//	frame = 0;
-	//	if (tb > 0)
-	//	{
-	//		tb -= 200;			// 1フレームで200ずつ減らす(1問あたり約3秒)
-	//		time--;				// 表示する用の時間
-	//	}
-	//	if (tb <= 500)			// 500になったら500を入れる
-	//	{
-	//		tb = 500;
-	//		timeflag = true;	// 500になったらtrueを返す
-	//	}
-	//}
+
 	 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
@@ -538,6 +548,15 @@ void KeyField::NotPressRight()	// 問題の答えが右以外の場合
 // タイムアップの場合の処理(即ゲームオーバー)
 void KeyField::TimeUp()
 {
+	// 不正解用SEの読み込み
+	seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+	// SEの音量を調整する
+	ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+	// SEを呼び出す
+	PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
 	manager_.CangeScene(new KeyGameoverScene(manager_));
 	return;
 }

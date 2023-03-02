@@ -177,6 +177,11 @@ void TitleScene::Draw()
 		DrawFormatString(500, 600, GetColor(255, 255, 0), "RBボタンを押してください");
 	}
 
+
+
+	DrawCircle(60, 60, 10, GetColor(255, 255, 255), true);
+
+
 	// シーン確認用
 //	SetFontSize(50);
 //	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");

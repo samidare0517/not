@@ -69,10 +69,16 @@ private:
 	int seButtonNo = 0;		// 不正解ときのSEハンドル
 	int seButtonPause = 0;	// ポーズシーンへ移行するときのSEハンドル
 
+	int countDown = 180;	// 問題表示用カウントダウン
+	int countNum = 3;
+
 	unsigned int fadeColor = 0x1e90ff;	// フェードの色(デフォ黒)
 	static constexpr int fadeInterval = 160;
 	int fadeTimer = fadeInterval;
 	int fadeValue = 255;
+
+	// カウントダウン用アップデート関数
+	void CountDownUpdate();
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);
