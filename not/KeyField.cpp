@@ -96,7 +96,7 @@ void KeyField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 1)
+	if (answerNum == 5)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -291,7 +291,7 @@ void KeyField::Draw()		// 問題の描画
 		ChangeFont("Franklin Gothic Medium");	// Franklin Gothic Mediumに変更
 		ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 		
-		DrawFormatString(740, 350, GetColor(127, 127, 255), "%d", countNum);
+		DrawFormatString(740, 350, GetColor(255, 255, 127), "%d", countNum);
 
 		ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
 		ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント

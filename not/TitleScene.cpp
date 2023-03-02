@@ -159,7 +159,7 @@ void TitleScene::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	
 	SetFontSize(100);
-	DrawFormatString(250, 400, GetColor(255, 255, 255), "Simple Brain Training");
+	DrawFormatString(260, 400, GetColor(255, 255, 255), "Simple Brain Training");
 	
 	ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
@@ -174,7 +174,7 @@ void TitleScene::Draw()
 	if (BrinkCounter < 80)
 	{
 		SetFontSize(50);
-		DrawFormatString(500, 600, GetColor(255, 255, 0), "Aボタンを押してください");
+		DrawFormatString(520, 650, GetColor(255, 255, 77), "Aボタンを押してください");
 	}
 
 

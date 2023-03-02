@@ -93,7 +93,7 @@ void MixExplanationScene::Draw()
 	if (BrinkCounter < 80)
 	{
 		DrawFormatString(270, 700, GetColor(255, 255, 255), "ゲームをスタートするには");
-		DrawFormatString(820, 700, GetColor(255, 0, 0), "Aボタン");
+		DrawFormatString(820, 700, GetColor(255, 77, 77), "Aボタン");
 		DrawFormatString(995, 700, GetColor(255, 255, 255), "を押してください");
 	}
 
