@@ -265,65 +265,83 @@ void KeyField::Draw()		// 問題の描画
 	// 残り問題数を表示
 	DrawFormatString(100, 190, GetColor(255, 255, 255), "問題数\n  %d", question);
 
-
 	// 文字を拡大
+	DrawFormatString(100, 200, GetColor(255, 255, 255), "フェード%d", fadeTimer);
+	
 	SetFontSize(100);
 
-	if (fadeTimer == 0)
+	if (fadeTimer == 0)	// フェードが0になったら問題を表示
 	{
 		// 問題
-		switch (num)	
-	{
-		// ***通常問題***
+		switch (num)
+		{
+			// ***通常問題***
 
-	case 1:
-		// 表示する文字
-		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "上");
-		break;
+		case 1:
+			// 表示する文字
+			DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "上");
+			break;
 
-	case 2:
-		// 表示する文字
-		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "下");
-		break;
+		case 2:
+			// 表示する文字
+			DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "下");
+			break;
 
-	case 3:
-		// 表示する文字
-		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "左");
-		break;
+		case 3:
+			// 表示する文字
+			DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "左");
+			break;
 
-	case 4:
-		// 表示する文字
-		DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "右");
-		break;
+		case 4:
+			// 表示する文字
+			DrawFormatString(mozi0X, mozi0Y, GetColor(255, 255, 255), "右");
+			break;
 
-		// ***じゃない問題***
+			// ***じゃない問題***
 
-	case 5:
-		// 表示する文字
-		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "上");
-		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
-		break;
-	
-	case 6:
-		// 表示する文字
-		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "下");
-		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
-		break;
-	
-	case 7:
-		// 表示する文字
-		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "左");
-		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
-		break;
+		case 5:
+			// 表示する文字
+			DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "上");
+			DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
+			break;
 
-	case 8:
-		// 表示する文字
-		DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "右");
-		DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
-		break;
+		case 6:
+			// 表示する文字
+			DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "下");
+			DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
+			break;
+
+		case 7:
+			// 表示する文字
+			DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "左");
+			DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
+			break;
+
+		case 8:
+			// 表示する文字
+			DrawFormatString(mozi1X, mozi1Y, GetColor(255, 255, 255), "右");
+			DrawFormatString(mozi2X, mozi2Y, GetColor(255, 255, 255), "じゃない");
+			break;
+		}
 	}
-	}
-
+	
+	//frame++;
+	//// フレーム計算
+	//if (frame >= 60)
+	//{
+	//	frame = 0;
+	//	if (tb > 0)
+	//	{
+	//		tb -= 200;			// 1フレームで200ずつ減らす(1問あたり約3秒)
+	//		time--;				// 表示する用の時間
+	//	}
+	//	if (tb <= 500)			// 500になったら500を入れる
+	//	{
+	//		tb = 500;
+	//		timeflag = true;	// 500になったらtrueを返す
+	//	}
+	//}
+	 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 
