@@ -45,8 +45,8 @@ void TimeBar::Update()
 		time = 3;
 	}
 
-
 	timeflag = false;		// フラグの初期化
+
 
 	frame++;
 	// フレーム計算
