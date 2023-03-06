@@ -4,9 +4,11 @@
 
 class KeyField;
 class PadField;
+
 /// <summary>
-/// タイムバー
+/// キー&パッド用タイムバー
 /// </summary>
+
 class TimeBar
 {
 public:

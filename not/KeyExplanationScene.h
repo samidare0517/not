@@ -2,6 +2,10 @@
 #include "Scene.h"
 #include <memory>
 
+/// <summary>
+/// ÉLÅ[ÇÃñ‚ëËê‡ñæ
+/// </summary>
+
 class KeyExplanationScene : public Scene
 {
 

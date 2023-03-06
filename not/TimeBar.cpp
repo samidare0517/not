@@ -47,6 +47,12 @@ void TimeBar::Update()
 
 	timeflag = false;		// フラグの初期化
 
+	tb--;
+	/*if (tb <= 500)
+	{
+		tb = 500;
+		timeflag = true;
+	}*/
 
 	frame++;
 	// フレーム計算

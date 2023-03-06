@@ -7,6 +7,7 @@ class SceneManager;
 /// <summary>
 /// ポーズシーン
 /// </summary>
+
 class PauseScene : public Scene
 {
 public:

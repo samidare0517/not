@@ -4,6 +4,7 @@
 /// <summary>
 /// キー問題用ゲームオーバーシーン
 /// </summary>
+
 class KeyGameoverScene : public Scene
 {
 public:

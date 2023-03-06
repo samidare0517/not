@@ -2,6 +2,10 @@
 #include "Scene.h"
 #include <memory>
 
+/// <summary>
+/// パッド問題用説明
+/// </summary>
+ 
 class PadExplanationScene : public Scene
 {
 public:

@@ -2,6 +2,9 @@
 #include "Scene.h"
 #include <memory>
 
+/// <summary>
+/// ミックス問題用説明
+/// </summary>
 class MixExplanationScene : public Scene
 {
 public:

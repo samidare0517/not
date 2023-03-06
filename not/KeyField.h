@@ -5,8 +5,9 @@
 class TimeBar;
 
 /// <summary>
-/// フィールド
+/// キー問題用フィールド
 /// </summary>
+
 class KeyField : public Scene
 {
 public:

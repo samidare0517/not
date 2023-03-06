@@ -1,9 +1,9 @@
 #pragma once
 
 /// <summary>
-/// タイムバー
+/// ミックス用タイムバー
 /// </summary>
-/// 
+
 class MixTimeBar
 {
 public:

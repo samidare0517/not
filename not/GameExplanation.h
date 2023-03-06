@@ -3,6 +3,10 @@
 
 class InputState;
 
+/// <summary>
+/// ƒQ[ƒ€‘S‘Ìà–¾
+/// </summary>
+
 class GameExplanation : public Scene
 {
 public:

@@ -4,7 +4,7 @@
 /// <summary>
 /// パッド問題用ゲームクリアシーン
 /// </summary>
-/// 
+
 class MixGameClearScene : public Scene
 {
 public:
