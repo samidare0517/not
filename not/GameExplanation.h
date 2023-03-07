@@ -21,13 +21,13 @@ public:
 private:
 
 	int explanationHandle = -1;		// タイトル画像
+	int buttonRBhandle = -1;	// RBボタン画像
+	int musicTitle = 0;	// タイトルBGMハンドル
+	int seButton = 0;	// 次に行くときのSEハンドル
 
 	static constexpr int fadeIntarval = 60;
 	int fadeTimer = fadeIntarval;		// フェードタイマー
 	int fadeValue = 225;	// 黒矩形とのブレンド具合
-
-	int musicTitle = 0;	// タイトルBGMハンドル
-	int seButton = 0;	// 次に行くときのSEハンドル
 
 	// フェードイン時のUpdate関数
 	void FadeInUpdate(const InputState& input);

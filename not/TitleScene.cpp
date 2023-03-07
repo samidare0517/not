@@ -99,6 +99,7 @@ updateFunc(&TitleScene::FadeInUpdate)
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
+	buttonAhandle = LoadGraph("data/button/buttonA.png");
 
 	//初期化
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
@@ -126,6 +127,7 @@ TitleScene::~TitleScene()
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
+	DeleteGraph(buttonAhandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(musicTitle);
@@ -173,8 +175,9 @@ void TitleScene::Draw()
 	}
 	if (BrinkCounter < 80)
 	{
+		DrawGraph(780, 610, buttonAhandle, true);
 		SetFontSize(50);
-		DrawFormatString(520, 650, GetColor(255, 255, 77), "Aボタンを押してください");
+		DrawFormatString(650, 650, GetColor(255, 255, 77), "PUSH");
 	}
 
 	// シーン確認用

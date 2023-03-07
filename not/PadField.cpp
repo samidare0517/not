@@ -35,6 +35,7 @@ PadField::~PadField()
 {
 	// 画像のデリート
 	DeleteGraph(handle);
+	DeleteGraph(buttonSTARThandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(musicGameScene);
@@ -47,6 +48,8 @@ void PadField::Init()
 {
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
 
+	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");	// ポーズボタン用画像
+
 	// BGMの読みこみ
 	musicGameScene = LoadSoundMem("data/BGM/GameSceneBGM.mp3");
 
@@ -57,7 +60,6 @@ void PadField::Init()
 	PlaySoundMem(musicGameScene, DX_PLAYTYPE_LOOP, false);
 
 	kTime.Init();
-	kTime.Update();
 
 	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
@@ -92,7 +94,7 @@ void PadField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 5)
+	if (answerNum == 1)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -278,8 +280,12 @@ void PadField::Draw()		// 問題の描画
 	// 残り問題数を表示
 	SetFontSize(40);
 	DrawFormatString(960, 170, GetColor(255, 255, 255), "問題数\n  %d", question);
+	
+	// ポーズ案内表示
 	SetFontSize(20);
-	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・ START");
+	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・");
+	DrawGraph(1000, 695, buttonSTARThandle, true);
+	
 	SetFontSize(50);
 
 	// 文字を拡大
@@ -547,8 +553,16 @@ void PadField::NotPressB()	// 問題の答えがA以外の場合
 // タイムアップの場合の処理(即ゲームオーバー)
 void PadField::TimeUp()
 {
-	manager_.CangeScene(new PadGameoverScene(manager_));
-	return;
+	// 不正解用SEの読み込み
+	seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
+
+	// SEの音量を調整する
+	ChangeVolumeSoundMem(255 * 60 / 100, seButtonNo);
+
+	// SEを呼び出す
+	PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
+	updateFunc = &PadField::FadeOutUpdate;
 }
 
 // 正解の入力

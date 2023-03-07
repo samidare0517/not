@@ -21,7 +21,7 @@ private:
 	int starHandle1 = -1;		// 流れ星アニメーション画像
 	int starHandle2 = -1;
 	int starHandle3 = -1;
-	
+	int buttonAhandle = -1;	// ボタン画像
 
 	int indexX = 192;		//画像サイズのインデックス
 	int indexY = 192;		//画像サイズのインデックス

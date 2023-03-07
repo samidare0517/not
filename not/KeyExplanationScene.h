@@ -19,10 +19,15 @@ public:
 
 private:
 
+	int Handle = -1;		// 画像
+	int buttonAhandle = -1;	// Aボタン画像
+	int buttonRBhandle = -1;	// RBボタン画像
+	int buttonPadhandle = -1;	// 十字ボタン画像
+	int buttonLShandle = -1;	// LSスティック画像
+
 	int seButton = 0;	// 次に行くときのSEハンドル
 
 	static constexpr int fadeIntarval = 60;
-	int Handle = -1;		// 画像
 	int fadeTimer = fadeIntarval;		// フェードタイマー
 	int fadeValue = 225;	// 黒矩形とのブレンド具合
 

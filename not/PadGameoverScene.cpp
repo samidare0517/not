@@ -104,6 +104,8 @@ updateFunc(&PadGameoverScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameoverHandle = LoadGraph("data/OverBack.png");
+	buttonBACKhandle = LoadGraph("data/button/buttonBACK.png");
+	buttonBhandle = LoadGraph("data/button/buttonB.png");
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
@@ -134,6 +136,8 @@ PadGameoverScene::~PadGameoverScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameoverHandle);
+	DeleteGraph(buttonBACKhandle);
+	DeleteGraph(buttonBhandle);
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
@@ -167,11 +171,18 @@ void PadGameoverScene::Draw()
 	SetFontSize(150);
 	DrawFormatString(260, 300, GetColor(191, 127, 255), "GAME OVER...");
 
-	ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
+	DrawGraph(900, 550, buttonBACKhandle, true);
+	DrawGraph(900, 660, buttonBhandle, true);
+
+
+	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
-	DrawFormatString(500, 600, GetColor(255, 255, 255),
-		"  タイトル    ・・・ BACK\n\nリスタート   ・・・ B");
+
+	DrawFormatString(540, 600, GetColor(127, 255, 255), "TITLE");
+	DrawFormatString(500, 700, GetColor(255, 127, 127), "RESTART");
+	DrawFormatString(800, 600, GetColor(255, 255, 255), "・・・");
+	DrawFormatString(800, 700, GetColor(255, 255, 255), "・・・");
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, 0x000000, true);

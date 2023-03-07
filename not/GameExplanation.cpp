@@ -49,6 +49,7 @@ updateFunc(&GameExplanation::FadeInUpdate)
 {
 	// 画像のロード
 	explanationHandle = LoadGraph("data/KeyGameSetumei.png");
+	buttonRBhandle = LoadGraph("data/button/buttonRB.png");
 
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
@@ -58,6 +59,7 @@ GameExplanation::~GameExplanation()
 {
 	// 画像のデリート
 	DeleteGraph(explanationHandle);
+	DeleteGraph(buttonRBhandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(seButton);
@@ -73,6 +75,7 @@ void GameExplanation::Draw()
 {
 	// 背景描画
 	DrawGraph(0, 0, explanationHandle, true);
+	DrawGraph(20, 0, buttonRBhandle, true);
 
 	// テスト用座標固定アニメーション
 	//DrawRectRotaGraph(200, 200,
@@ -99,7 +102,8 @@ void GameExplanation::Draw()
 
 	
 	SetFontSize(30);
-	DrawFormatString(20, 20, GetColor(255, 255, 0), "RBボタンで戻る");
+	DrawFormatString(100, 28, GetColor(255, 255, 77),
+		"戻る");
 	
 
 

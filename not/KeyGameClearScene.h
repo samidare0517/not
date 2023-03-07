@@ -17,7 +17,10 @@ public:
 
 private:
 
-	int gameclearHandle = -1;	// 画像
+	int gameClearHandle = -1;	// 画像
+	int buttonBACKhandle = -1;	// BACKボタン画像
+	int buttonAhandle = -1;		// Aボタン画像
+	int buttonBhandle = -1;		// Bボタン画像
 	int starHandle1 = -1;		// 流れ星アニメーション画像
 	int starHandle2 = -1;
 	int starHandle3 = -1;
@@ -29,13 +32,13 @@ private:
 	int frameCount = 0;
 	int frame = 0;
 
-	int starnum = 0;// 星の種類ランダム用
-	int randomnum = 3;// 全体の問題バリエーション数
-	int starX = 0;	// 星が描画されるX
-	int starY = 0;	// 星が描画されるY
+	int starnum = 0;	// 星の種類ランダム用
+	int randomnum = 3;	// 全体の問題バリエーション数
+	int starX = 0;		// 星が描画されるX
+	int starY = 0;		// 星が描画されるY
 
-	int musicClear = 0;	// クリアBGMハンドル
-	int seButton = 0;	// 次に行くときのSEハンドル
+	int musicClear = 0;		// クリアBGMハンドル
+	int seButton = 0;		// 次に行くときのSEハンドル
 	int seBackButton = 0;	// タイトルへ戻るときのSEハンドル
 
 	static constexpr int fadeInterval = 60;

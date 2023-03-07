@@ -50,6 +50,12 @@ updateFunc_(&MixExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
 	Handle = LoadGraph("data/KeyGameSetumei.png");
+	buttonAhandle = LoadGraph("data/button/buttonA.png");
+	buttonBhandle = LoadGraph("data/button/buttonB.png");
+	buttonXhandle = LoadGraph("data/button/buttonX.png");
+	buttonYhandle = LoadGraph("data/button/buttonY.png");
+	buttonPadhandle = LoadGraph("data/button/buttonPad.png");
+	buttonLShandle = LoadGraph("data/button/buttonLS.png");
 
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
@@ -59,6 +65,12 @@ MixExplanationScene::~MixExplanationScene()
 {
 	// 画像のデリート
 	DeleteGraph(Handle);
+	DeleteGraph(buttonAhandle);
+	DeleteGraph(buttonBhandle);
+	DeleteGraph(buttonXhandle);
+	DeleteGraph(buttonYhandle);
+	DeleteGraph(buttonPadhandle);
+	DeleteGraph(buttonLShandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(seButton);
@@ -73,16 +85,19 @@ void MixExplanationScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, Handle, true);
-	
+	DrawGraph(520, 558, buttonAhandle, true);
+	DrawGraph(670, 558, buttonBhandle, true);
+	DrawGraph(820, 558, buttonXhandle, true);
+	DrawGraph(970, 558, buttonYhandle, true);
+	DrawGraph(660, 460, buttonPadhandle, true);
+	DrawGraph(830, 460, buttonLShandle, true);
+
 	SetFontSize(50);
-	DrawFormatString(550, 410, GetColor(127, 255, 127),
-		"3問目はミックス問題です");
-	SetFontSize(30);
-	DrawFormatString(550, 500, GetColor(255, 255, 255),
-		"方向問題の場合、十字キーか左スティックを");
-	DrawFormatString(540, 550, GetColor(255, 255, 255),
-		"ボタン問題の場合、ボタンを使用してください");
-	SetFontSize(50);
+	DrawFormatString(550, 410, GetColor(127, 255, 127), "3問目はミックス問題です");
+
+	DrawFormatString(770, 500, GetColor(255, 255, 255), "OR");
+	DrawFormatString(520, 600, GetColor(255, 255, 255), "       &       &       &");
+
 
 	// 点滅処理
 	static int BrinkCounter;
@@ -93,9 +108,8 @@ void MixExplanationScene::Draw()
 	}
 	if (BrinkCounter < 80)
 	{
-		DrawFormatString(270, 700, GetColor(255, 255, 255), "ゲームをスタートするには");
-		DrawFormatString(820, 700, GetColor(255, 77, 77), "Aボタン");
-		DrawFormatString(995, 700, GetColor(255, 255, 255), "を押してください");
+		DrawGraph(810, 700, buttonAhandle, true);
+		DrawFormatString(680, 740, GetColor(255, 255, 77), "PUSH");
 	}
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定

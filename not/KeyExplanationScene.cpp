@@ -71,6 +71,10 @@ updateFunc_(&KeyExplanationScene::FadeInUpdate)
 {
 	// 画像のロード
 	Handle = LoadGraph("data/KeyGameSetumei.png");
+	buttonAhandle = LoadGraph("data/button/buttonA.png");
+	buttonRBhandle = LoadGraph("data/button/buttonRB.png");
+	buttonPadhandle = LoadGraph("data/button/buttonPad.png");
+	buttonLShandle = LoadGraph("data/button/buttonLS.png");
 
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
@@ -80,6 +84,10 @@ KeyExplanationScene::~KeyExplanationScene()
 {
 	// 画像のデリート
 	DeleteGraph(Handle);
+	DeleteGraph(buttonAhandle);
+	DeleteGraph(buttonRBhandle);
+	DeleteGraph(buttonPadhandle);
+	DeleteGraph(buttonLShandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(seButton);
@@ -94,16 +102,17 @@ void KeyExplanationScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0,Handle, true);
+	DrawGraph(20, 0, buttonRBhandle, true);
+	DrawGraph(645, 460, buttonPadhandle, true);
+	DrawGraph(810, 460, buttonLShandle, true);
+
 
 	SetFontSize(30);
-	DrawFormatString(20, 20, GetColor(255, 255, 77),
-		"RBボタンでゲーム説明");
+	DrawFormatString(100, 28, GetColor(255, 255, 77), "ゲーム説明");
 
 	SetFontSize(50);
-	DrawFormatString(550, 410, GetColor(127, 255, 127), 
-		"1問目は方向問題です");
-	DrawFormatString(350, 500, GetColor(255, 255, 255),
-		"十字キーか左スティックを使用してください");
+	DrawFormatString(550, 410, GetColor(127, 255, 127), "1問目は方向問題です");
+	DrawFormatString(750, 500, GetColor(255, 255, 255), "OR");
 	
 	// 点滅処理
 	static int BrinkCounter;
@@ -114,10 +123,8 @@ void KeyExplanationScene::Draw()
 	}
 	if (BrinkCounter < 80)
 	{
-		SetFontSize(50);
-		DrawFormatString(270, 700, GetColor(255, 255, 255),"ゲームをスタートするには");
-		DrawFormatString(820, 700, GetColor(255, 77, 77),"Aボタン");
-		DrawFormatString(995, 700, GetColor(255, 255, 255),"を押してください");
+		DrawGraph(810, 700, buttonAhandle, true);
+		DrawFormatString(680, 740, GetColor(255, 255, 77), "PUSH");
 	}
 	
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定

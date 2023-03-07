@@ -20,7 +20,7 @@ public:
 private:
 
 	// タイムバー
-	int mtb = 0;
+	int tb = 0;
 
 	// 画像ハンドル
 	int handle = 0;

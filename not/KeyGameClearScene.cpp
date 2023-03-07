@@ -119,7 +119,10 @@ KeyGameClearScene::KeyGameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc(&KeyGameClearScene::FadeInUpdate)
 {
 	// 画像のロード
-	gameclearHandle = LoadGraph("data/ClearBack.png");
+	gameClearHandle = LoadGraph("data/ClearBack.png");
+	buttonBACKhandle = LoadGraph("data/button/buttonBACK.png");
+	buttonAhandle = LoadGraph("data/button/buttonA.png");
+	buttonBhandle = LoadGraph("data/button/buttonB.png");
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
@@ -143,7 +146,10 @@ updateFunc(&KeyGameClearScene::FadeInUpdate)
 KeyGameClearScene::~KeyGameClearScene()
 {
 	// 画像のデリート
-	DeleteGraph(gameclearHandle);
+	DeleteGraph(gameClearHandle);
+	DeleteGraph(buttonBACKhandle);
+	DeleteGraph(buttonAhandle);
+	DeleteGraph(buttonBhandle);
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
@@ -162,7 +168,7 @@ void KeyGameClearScene::Update(const InputState& input)
 void KeyGameClearScene::Draw()
 {
 	// 普通の描画
-	DrawGraph(0, 0, gameclearHandle, true);
+	DrawGraph(0, 0, gameClearHandle, true);
 
 	// BGMの音量を調整する
 	ChangeVolumeSoundMem(255 * 50 / 100, musicClear);
@@ -181,15 +187,28 @@ void KeyGameClearScene::Draw()
 
 	ChangeFont("Lucida Bright");	//UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
+	
 	SetFontSize(150);
 	DrawFormatString(250, 300, GetColor(255, 255, 133), "GAME CLEAR");
+
+
+	DrawGraph(900, 550, buttonBACKhandle, true);
+	DrawGraph(900, 660, buttonAhandle, true);
+	DrawGraph(900, 760, buttonBhandle, true);
+
 
 	ChangeFont("UD デジタル 教科書体 NK-B");	//UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(50);
-	DrawFormatString(500, 600, GetColor(255, 255, 255),
-		" タイトル  ・・・ BACK\n\n次の問題 ・・・ A\n\nリスタート ・・・ B");
-	
+
+	DrawFormatString(540, 600, GetColor(127, 255, 255), "TITLE");
+	DrawFormatString(550, 700, GetColor(127, 255, 127), "NEXT");
+	DrawFormatString(500, 800, GetColor(255, 127, 127), "RESTART");
+	DrawFormatString(800, 600, GetColor(255, 255, 255), "・・・");
+	DrawFormatString(800, 700, GetColor(255, 255, 255), "・・・");
+	DrawFormatString(800, 800, GetColor(255, 255, 255), "・・・");
+
+
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fadeValue);
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

@@ -35,6 +35,7 @@ KeyField::~KeyField()
 {
 	// 画像のデリート
 	DeleteGraph(handle);
+	DeleteGraph(buttonSTARThandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(musicGameScene);
@@ -46,7 +47,10 @@ KeyField::~KeyField()
 
 void KeyField::Init()
 {
-	handle = LoadGraph("data/Back.png");	// タイムバー用画像
+	handle = LoadGraph("data/Back.png");	// 背景用画像
+
+	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");	// ポーズボタン用画像
+
 	// BGMの読みこみ
 	musicGameScene = LoadSoundMem("data/BGM/GameSceneBGM.mp3");
 
@@ -57,7 +61,6 @@ void KeyField::Init()
 	PlaySoundMem(musicGameScene, DX_PLAYTYPE_LOOP, false);
 
 	kTime.Init();
-	kTime.Update();
 
  	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
@@ -96,7 +99,7 @@ void KeyField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 5)
+	if (answerNum == 1)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -281,8 +284,12 @@ void KeyField::Draw()		// 問題の描画
 	// 残り問題数を表示
 	SetFontSize(40);
 	DrawFormatString(960, 170, GetColor(255, 255, 255), "問題数\n  %d", question);
+	
+	// ポーズ案内表示
 	SetFontSize(20);
-	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・ START");
+	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・");
+	DrawGraph(1000, 695, buttonSTARThandle, true);
+	
 	SetFontSize(50);
 
 	if (countNum != 0)	// countNumが0ではなかったら数字を減らしながら表示する
@@ -560,8 +567,7 @@ void KeyField::TimeUp()
 	// SEを呼び出す
 	PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-	manager_.CangeScene(new KeyGameoverScene(manager_));
-	return;
+	updateFunc = &KeyField::FadeOutUpdate;
 }
 
 // 正解の入力

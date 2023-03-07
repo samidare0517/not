@@ -8,18 +8,29 @@ PauseScene::PauseScene(SceneManager& manager) : Scene(manager)
 {
 	// 画像のロード
 	Handle = LoadGraph("data/cat/black_1.png");
+	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");
 }
 
 PauseScene::~PauseScene()
 {
 	// 画像のデリート
 	DeleteGraph(Handle);
+	DeleteGraph(buttonSTARThandle);
 }
 
 void PauseScene::Update(const InputState& input)
 {
 	if (input.IsTriggred(InputType::pause))
 	{
+		// ポーズシーンへの移行用のSEの読み込み
+		seButtonPause = LoadSoundMem("data/BGM/PauseSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 150 / 100, seButtonPause);
+
+		// SEを呼び出す
+		PlaySoundMem(seButtonPause, DX_PLAYTYPE_BACK, false);
+
 		manager_.PopScene();
 		return;
 	}
@@ -44,7 +55,7 @@ void PauseScene::Draw()
 	DrawBox(pw_start_x, pw_start_y,
 			pw_start_x + pw_width,
 			pw_start_y + pw_height,
-			GetColor(188, 221, 255), true);
+			GetColor(71, 83 ,162), true);
 
 	// ポーズウィンドウ枠線
 	DrawBox(pw_start_x, pw_start_y,
@@ -55,6 +66,11 @@ void PauseScene::Draw()
 	// ポーズ中メッセージ
 	SetFontSize(80);
 	DrawString(pw_start_x + 20, pw_start_y + 210, "Pauseing...", GetColor(255, 255, 127));
+
+	// 戻り案内
+	DrawGraph(630, 645, buttonSTARThandle, true);
+	SetFontSize(20);
+	DrawFormatString(560, 670, GetColor(255, 255, 255), "戻る ・・・");
 
 	//アニメーションが最後まで行ったらゼロに戻してあげる
 	if (animationNumber > 14)

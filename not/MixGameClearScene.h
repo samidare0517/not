@@ -18,6 +18,8 @@ public:
 private:
 
 	int gameclearHandle = -1;	// 画像
+	int buttonBACKhandle = -1;	// BACKボタン画像
+	int buttonBhandle = -1;		// Bボタン画像
 	int starHandle1 = -1;		// 流れ星アニメーション画像
 	int starHandle2 = -1;
 	int starHandle3 = -1;

@@ -26,6 +26,7 @@ void TimeBar::Init()
 {
 	tb = 1100;		// タイムバーの大きさ
 	time = 3;		// 表示用のタイマー(3秒)
+	timeflag = false;		// フラグの初期化
 	handle = LoadGraph("data/tb.png");	// タイムバー用画像
 	timeBackHandle = LoadGraph("data/TimeBack.png");	// タイムバー用の画像
 }
@@ -45,15 +46,6 @@ void TimeBar::Update()
 		time = 3;
 	}
 
-	timeflag = false;		// フラグの初期化
-
-	tb--;
-	/*if (tb <= 500)
-	{
-		tb = 500;
-		timeflag = true;
-	}*/
-
 	frame++;
 	// フレーム計算
 	if (frame >= 60)
@@ -61,22 +53,36 @@ void TimeBar::Update()
 		frame = 0;
 		if (tb > 0)
 		{
-			tb -= 200;			// 1フレームで200ずつ減らす(1問あたり約3秒)
 			time--;				// 表示する用の時間
 		}
-		if (tb <= 500)			// 500になったら500を入れる
-		{
-			tb = 500;
-			timeflag = true;	// 500になったらtrueを返す
-		}
 	}
+
+	int Mtime = 3;	// タイマーの数字
+	int Mtb = 1100;	// タイムバーの一番右
+	float test = ((Mtb - 500) / Mtime) / 60;
+
+	if (tb <= 500)
+	{
+		tb = 500;
+	}
+	else if (tb >= 500)
+	{
+		tb -= test;
+	}
+	if (time <= 0)
+	{
+		time = 0;
+	}
+	if (tb <= 500)
+	{
+		timeflag = true;
+	}
+//	printfDx("tb:%d\n", tb);
+//	printfDx("frame:%d\n", frame);
 }
 
 void TimeBar::Draw()
 {
-	// 数字をマイナスする(デバック用)
-//	DrawFormatString(0, 2, GetColor(255, 255, 255), "\nTime:%d\n", tb);
-
 	SetFontSize(40);
 	// ゲージ用のタイマー(表示用)
 	DrawFormatString(510, 170, GetColor(255, 255, 255), "残り時間\n   %d秒", time);

@@ -6,7 +6,7 @@ class KeyField;
 class PadField;
 
 /// <summary>
-/// キー&パッド用タイムバー
+/// タイムバー
 /// </summary>
 
 class TimeBar
