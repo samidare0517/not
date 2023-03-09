@@ -1,20 +1,33 @@
 #include "PauseScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
+#include <time.h>		// ランダム用
 #include "DxLib.h"
 
 
 PauseScene::PauseScene(SceneManager& manager) : Scene(manager)
 {
 	// 画像のロード
-	Handle = LoadGraph("data/cat/black_1.png");
+	catHandle1 = LoadGraph("data/cat/black_1.png");
+	catHandle2 = LoadGraph("data/cat/blue_1.png");
+	catHandle3 = LoadGraph("data/cat/brown_8.png");
+
 	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");
+
+	//初期化
+	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
+
+	// 猫アニメーションのランダム関係の処理
+	catNum = rand() % catRandomNum + 1;	// 1～3の乱数を出す
 }
 
 PauseScene::~PauseScene()
 {
 	// 画像のデリート
-	DeleteGraph(Handle);
+	DeleteGraph(catHandle1);
+	DeleteGraph(catHandle2);
+	DeleteGraph(catHandle3);
+
 	DeleteGraph(buttonSTARThandle);
 }
 
@@ -33,6 +46,57 @@ void PauseScene::Update(const InputState& input)
 
 		manager_.PopScene();
 		return;
+	}
+}
+
+void PauseScene::Init()
+{
+	// ランダムで猫を生成する　
+	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
+	catNum = rand() % catRandomNum + 1;		// 1～3の乱数を出す
+}
+
+void PauseScene::CatAnimationDraw()
+{
+	
+
+	switch (catNum)
+	{
+	case 1:
+		DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+			32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
+			32, 32,							//幅、高さ（画像の大きさ32）
+			2.5f, 0.0f,						//拡大率、回転角度
+			catHandle1, true);
+		break;
+	case 2:
+		DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+			32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
+			32, 32,							//幅、高さ（画像の大きさ32）
+			2.5f, 0.0f,						//拡大率、回転角度
+			catHandle2, true);
+		break;
+	case 3:
+		DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+			32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
+			32, 32,							//幅、高さ（画像の大きさ32）
+			2.5f, 0.0f,						//拡大率、回転角度
+			catHandle3, true);
+		break;
+	}
+
+	//アニメーションが最後まで行ったらゼロに戻してあげる
+	if (animationNumber > 14)
+	{
+		animationNumber = 0;
+	}
+
+	timer++;        //時間のカウント
+	if (timer >= 15)
+	{
+		//インターバルより大きくなったらアニメーションを動かす
+		animationNumber++;
+		timer = 0;
 	}
 }
 
@@ -72,24 +136,6 @@ void PauseScene::Draw()
 	SetFontSize(20);
 	DrawFormatString(560, 670, GetColor(255, 255, 255), "戻る ・・・");
 
-	//アニメーションが最後まで行ったらゼロに戻してあげる
-	if (animationNumber > 14)
-	{
-		animationNumber = 0;
-	}
-
-	timer++;        //時間のカウント
-	if (timer >= 15)
-	{
-		//インターバルより大きくなったらアニメーションを動かす
-		animationNumber++;
-		timer = 0;
-	}
-
-	DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
-		32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
-		32, 32,							//幅、高さ（画像の大きさ32）
-		2.5f, 0.0f,						//拡大率、回転角度
-		Handle, true);
+	CatAnimationDraw();
 
 }

@@ -140,10 +140,10 @@ void TitleScene::DrawCatAnimation()
 
 		if (0 > catX)	// 猫が左から出そうになったら右から再度表示する
 		{
-			// 一番最後まで行ったら場所をランダムで生成する
+			// 一番最後まで行ったら場所をランダムで生成する　
 			srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 			catNum = rand() % catRandomNum + 1;		// 1～3の乱数を出す
-			
+
 			catX = 1632;	// 自然に入れ替われるように画面外(xが1632)の位置から描画
 		}
 		
