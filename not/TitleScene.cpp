@@ -151,8 +151,8 @@ void TitleScene::DrawCatAnimation()
 	}
 	
 	// ハンドルがランダムになっているかを確認するための表示(デバック用)
-	SetFontSize(30);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "猫ハンドル番号:%d", catNum);
+//	SetFontSize(30);
+//	DrawFormatString(0, 0, GetColor(255, 255, 255), "猫ハンドル番号:%d", catNum);
 }
 
 TitleScene::TitleScene(SceneManager& manager) : Scene(manager),

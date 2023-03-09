@@ -28,7 +28,6 @@ private:
 	int catHandle3 = -1;
 	
 	int buttonAhandle = -1;	// ボタン画像
-	int buttonSTARThandle = -1;	// 戻る案内用画像
 
 	int indexX = 192;		//画像サイズのインデックス
 	int indexY = 192;		//画像サイズのインデックス
