@@ -58,6 +58,7 @@ void PauseScene::CatInit()
 
 void PauseScene::CatAnimationDraw()
 {
+	//猫のアニメーションをランダムに出す
 	switch (catNum)
 	{
 	case 1:
@@ -105,8 +106,8 @@ void PauseScene::Draw()
 	constexpr int pw_start_x = (1600 - pw_width) / 2;	// ポーズ枠左
 	constexpr int pw_start_y = (900 - pw_height) / 2;	// ポーズ枠上
 
-//	SetDrawBlendMode(DX_BLENDMODE_MULA, 128);	// 乗算合成
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+
 	// 画面を暗くする
 	DrawBox(0, 0, 1600, 900, GetColor(0, 0, 0), TRUE);
 
@@ -123,7 +124,7 @@ void PauseScene::Draw()
 	DrawBox(pw_start_x, pw_start_y,
 			pw_start_x + pw_width,
 			pw_start_y + pw_height,
-			0xffffff, false);
+			GetColor(255, 255, 255), false);
 
 	// ポーズ中メッセージ
 	SetFontSize(80);
@@ -131,9 +132,10 @@ void PauseScene::Draw()
 
 	// 戻り案内
 	DrawGraph(630, 645, buttonSTARThandle, true);
+
 	SetFontSize(20);
 	DrawFormatString(560, 670, GetColor(255, 255, 255), "戻る ・・・");
 
+	// 猫のアニメーションを呼びだす
 	CatAnimationDraw();
-
 }

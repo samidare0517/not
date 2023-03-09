@@ -18,7 +18,8 @@ public:
 private:
 
 	int titleHandle = -1;		// タイトル画像
-	
+	int titlerogoHandle = -1;	// タイトルロゴ画像
+
 	int starHandle1 = -1;		// 流れ星アニメーション画像
 	int starHandle2 = -1;
 	int starHandle3 = -1;

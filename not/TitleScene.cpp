@@ -160,7 +160,7 @@ updateFunc(&TitleScene::FadeInUpdate)
 {
 	// 画像のロード
 	titleHandle = LoadGraph("data/TitleBack.png");
-
+	titlerogoHandle = LoadGraph("data/Titlerogo.png");
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
@@ -199,6 +199,7 @@ TitleScene::~TitleScene()
 {
 	// 画像のデリート
 	DeleteGraph(titleHandle);
+	DeleteGraph(titlerogoHandle);
 
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
@@ -234,12 +235,8 @@ void TitleScene::Draw()
 	DrawStarAnimation();	// 星のアニメーションを呼び出す
 	DrawCatAnimation();		// 猫のアニメーションを呼び出す
 
-	ChangeFont("Sitka");	// Sitkaに変更
-	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
-	
-	SetFontSize(100);
-	DrawFormatString(260, 400, GetColor(255, 255, 255), "Simple Brain Training");	// タイトル
-	
+	DrawGraph(200, 340, titlerogoHandle, true);	// タイトルロゴを描画
+
 	ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 
@@ -252,9 +249,9 @@ void TitleScene::Draw()
 	}
 	if (BrinkCounter < 80)
 	{
-		DrawGraph(780, 610, buttonAhandle, true);
+		DrawGraph(790, 610, buttonAhandle, true);
 		SetFontSize(50);
-		DrawFormatString(650, 650, GetColor(255, 255, 77), "PUSH");
+		DrawFormatString(660, 650, GetColor(255, 255, 77), "PUSH");
 	}
 
 	// シーン確認用
