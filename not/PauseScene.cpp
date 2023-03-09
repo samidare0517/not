@@ -61,24 +61,24 @@ void PauseScene::CatAnimationDraw()
 	switch (catNum)
 	{
 	case 1:
-		DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+		DrawRectRotaGraph(990, 655,			//表示したい座標の指定
 			32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
 			32, 32,							//幅、高さ（画像の大きさ32）
-			2.5f, 0.0f,						//拡大率、回転角度
+			3.5f, 0.0f,						//拡大率、回転角度
 			catHandle1, true);
 		break;
 	case 2:
-		DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+		DrawRectRotaGraph(990, 655,			//表示したい座標の指定
 			32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
 			32, 32,							//幅、高さ（画像の大きさ32）
-			2.5f, 0.0f,						//拡大率、回転角度
+			3.5f, 0.0f,						//拡大率、回転角度
 			catHandle2, true);
 		break;
 	case 3:
-		DrawRectRotaGraph(1000, 670,			//表示したい座標の指定
+		DrawRectRotaGraph(990, 655,			//表示したい座標の指定
 			32 * animationNumber, 32 + (32 * imgidx),			//切り取り左上    （+32は上のよくわかんないやつを省いてる）
 			32, 32,							//幅、高さ（画像の大きさ32）
-			2.5f, 0.0f,						//拡大率、回転角度
+			3.5f, 0.0f,						//拡大率、回転角度
 			catHandle3, true);
 		break;
 	}
