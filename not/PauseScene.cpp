@@ -49,17 +49,15 @@ void PauseScene::Update(const InputState& input)
 	}
 }
 
-void PauseScene::Init()
+void PauseScene::CatInit()
 {
-	// ランダムで猫を生成する　
+	// ポーズシーンが表示されるたびにランダムで猫を生成する　
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	catNum = rand() % catRandomNum + 1;		// 1～3の乱数を出す
 }
 
 void PauseScene::CatAnimationDraw()
 {
-	
-
 	switch (catNum)
 	{
 	case 1:

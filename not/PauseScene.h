@@ -15,7 +15,7 @@ public:
 	~PauseScene();
 
 	virtual void Update(const InputState& input) override;
-	void Init();
+	void CatInit();
 	void CatAnimationDraw();
 	void Draw();
 
