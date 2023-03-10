@@ -132,6 +132,7 @@ void KeyGameClearScene::HanabiAnimation()
 			120, 120,
 			1.2f, 0.0f,
 			hanabiHandle2, true);
+
 		break;
 
 	case 2:
@@ -146,6 +147,7 @@ void KeyGameClearScene::HanabiAnimation()
 			120, 120,
 			1.2f, 0.0f,
 			hanabiHandle5, true);
+
 		break;
 
 	case 3:
@@ -160,6 +162,7 @@ void KeyGameClearScene::HanabiAnimation()
 			120, 120,
 			1.2f, 0.0f,
 			hanabiHandle6, true);
+
 		break;
 	}
 
@@ -167,6 +170,15 @@ void KeyGameClearScene::HanabiAnimation()
 	if (hanabiAnimationNumber > 14)
 	{
 		hanabiAnimationNumber = 0;
+
+		// SEの読み込み
+		seHanabi = LoadSoundMem("data/BGM/HanabiSE.mp3");
+
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 100 / 100, seHanabi);
+
+		// SEを呼び出す
+		PlaySoundMem(seHanabi, DX_PLAYTYPE_BACK, false);
 
 		srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 		hanabiNum = rand() % hanabiRandomNum + 1;		// 1～3の乱数を出す		
@@ -181,6 +193,8 @@ void KeyGameClearScene::HanabiAnimation()
 
 		timer = 0;
 	}
+
+	
 
 	// デバック用
 //	DrawFormatString(0, 0, GetColor(255, 255, 255), "何枚目か %d", hanabiNum);
@@ -228,6 +242,7 @@ updateFunc(&KeyGameClearScene::FadeInUpdate)
 
 	// SEの読み込み
 	seBackButton = LoadSoundMem("data/BGM/BackTitleSE.mp3");
+
 }
 
 KeyGameClearScene::~KeyGameClearScene()
@@ -254,6 +269,7 @@ KeyGameClearScene::~KeyGameClearScene()
 	DeleteSoundMem(musicClear);
 	DeleteSoundMem(seButton);
 	DeleteSoundMem(seBackButton);
+	DeleteSoundMem(seHanabi);
 }
 
 void KeyGameClearScene::Update(const InputState& input)
