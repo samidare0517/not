@@ -168,6 +168,15 @@ void PadGameClearScene::HanabiAnimation()
 	{
 		hanabiAnimationNumber = 0;
 
+		// SE‚Ì“Ç‚İ‚İ
+		seHanabi = LoadSoundMem("data/BGM/HanabiSE.mp3");
+
+		// SE‚Ì‰¹—Ê‚ğ’²®‚·‚é
+		ChangeVolumeSoundMem(255 * 100 / 100, seHanabi);
+
+		// SE‚ğŒÄ‚Ño‚·
+		PlaySoundMem(seHanabi, DX_PLAYTYPE_BACK, false);
+
 		srand((unsigned int)time(NULL));	// Œ»İ‚Ìî•ñ‚Å‰Šú‰»
 		hanabiNum = rand() % hanabiRandomNum + 1;		// 1`3‚Ì—”‚ğo‚·		
 	}
@@ -252,6 +261,7 @@ PadGameClearScene::~PadGameClearScene()
 	DeleteSoundMem(musicClear);
 	DeleteSoundMem(seButton);
 	DeleteSoundMem(seBackButton);
+	DeleteSoundMem(seHanabi);
 }
 
 void PadGameClearScene::Update(const InputState& input)

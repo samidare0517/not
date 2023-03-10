@@ -56,6 +56,7 @@ private:
 	int musicClear = 0;	// クリアBGMハンドル
 	int seButton = 0;	// 次に行くときのSEハンドル
 	int seBackButton = 0;	// タイトルへ戻るときのSEハンドル
+	int seHanabi = 0;	// 花火SE
 
 	static constexpr int fadeInterval = 120;
 	int fadeTimer = fadeInterval;
