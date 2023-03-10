@@ -9,7 +9,7 @@ class TitleScene : public Scene
 public:
 
 	TitleScene(SceneManager& manager);
-	~TitleScene();
+	virtual ~TitleScene();
 
 	void Update(const InputState& input);
 

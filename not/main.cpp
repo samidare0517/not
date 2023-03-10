@@ -16,7 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ChangeWindowMode(Game::kWindowMode);
 
     // ウインドウ名設定
-    SetMainWindowText("ゲーム名");
+    SetMainWindowText("Simple Brain Training");
 
     // 画面サイズの設定
     SetGraphMode(Game::kScreenWindth, Game::kScreenHeight, Game::kColorDepth);
@@ -51,16 +51,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
       
         // 裏画面を表画面を入れ替える
         ScreenFlip();
-
+  
         // escキーを押したら終了する
-        if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
+        if (CheckHitKey(KEY_INPUT_ESCAPE))
+        {
+            break;
+        }
 
         // fpsを60に固定
         while (GetNowHiPerformanceCount() - time < 16667)
         {
 
         }
+
     }
+
+    sceneManager.End();     // 先に全てのdelete処理をここでする
 
     DxLib_End();                // ＤＸライブラリ使用の終了処理
 

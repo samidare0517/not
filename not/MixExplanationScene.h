@@ -10,7 +10,7 @@ class MixExplanationScene : public Scene
 public:
 
 	MixExplanationScene(SceneManager& manager);
-	~MixExplanationScene();
+	virtual ~MixExplanationScene();
 
 	void Update(const InputState& input);
 	void Draw();

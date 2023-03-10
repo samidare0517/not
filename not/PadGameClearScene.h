@@ -10,7 +10,7 @@ class PadGameClearScene : public Scene
 public:
 
 	PadGameClearScene(SceneManager& manager);
-	~PadGameClearScene();
+	virtual ~PadGameClearScene();
 
 	void Update(const InputState& input);
 	void Draw();

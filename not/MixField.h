@@ -13,7 +13,7 @@ class MixField : public Scene
 public:
 
 	MixField(SceneManager& manager);
-	~MixField();
+	virtual ~MixField();
 
 	void Init();
 	void Update(const InputState& input);

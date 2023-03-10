@@ -13,7 +13,7 @@ class PadField : public Scene
 public:
 
 	PadField(SceneManager& manager);
-	~PadField();
+	virtual ~PadField();
 
 	void Init();
 	void Update(const InputState& input);

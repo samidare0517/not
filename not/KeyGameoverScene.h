@@ -10,7 +10,7 @@ class KeyGameoverScene : public Scene
 public:
 
 	KeyGameoverScene(SceneManager& manager);
-	~KeyGameoverScene();
+	virtual ~KeyGameoverScene();
 
 	void Update(const InputState& input);
 	void Draw();

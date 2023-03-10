@@ -12,7 +12,7 @@ class KeyExplanationScene : public Scene
 public:
 
 	KeyExplanationScene(SceneManager& manager);
-	~KeyExplanationScene();
+	virtual ~KeyExplanationScene();
 
 	void Update(const InputState& input);
 	void Draw();

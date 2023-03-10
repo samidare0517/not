@@ -41,6 +41,7 @@ MixField::~MixField()
 	DeleteSoundMem(musicGameScene);
 	DeleteSoundMem(seButtonYes);
 	DeleteSoundMem(seButtonNo);
+	DeleteSoundMem(seButtonPause);
 }
 
 void MixField::Init()

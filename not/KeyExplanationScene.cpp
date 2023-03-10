@@ -102,17 +102,17 @@ void KeyExplanationScene::Draw()
 {
 	// •’Ê‚Ì•`‰æ
 	DrawGraph(0, 0,Handle, true);
-	DrawGraph(20, 0, buttonRBhandle, true);
-	DrawGraph(645, 460, buttonPadhandle, true);
-	DrawGraph(810, 460, buttonLShandle, true);
+	DrawGraph(860, 600, buttonRBhandle, true);
+	DrawGraph(645, 435, buttonPadhandle, true);
+	DrawGraph(810, 440, buttonLShandle, true);
 
 
-	SetFontSize(30);
-	DrawFormatString(100, 28, GetColor(255, 255, 77), "ƒQ[ƒ€à–¾");
 
+	SetFontSize(40);
+	DrawFormatString(660, 620, GetColor(255, 255, 77), "ƒQ[ƒ€à–¾");
 	SetFontSize(50);
-	DrawFormatString(550, 410, GetColor(127, 255, 127), "1–â–Ú‚Í•ûŒü–â‘è‚Å‚·");
-	DrawFormatString(750, 500, GetColor(255, 255, 255), "OR");
+	DrawFormatString(550, 390, GetColor(127, 255, 127), "1–â–Ú‚Í•ûŒü–â‘è‚Å‚·");
+	DrawFormatString(750, 480, GetColor(255, 255, 255), "OR");
 	
 	// “_–Åˆ—
 	static int BrinkCounter;

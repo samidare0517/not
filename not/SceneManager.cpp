@@ -1,6 +1,15 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
+void SceneManager::End()	// 全てのシーンのdeleteをする
+{
+	while (scenes.size() > 0)
+	{
+		delete scenes.front();
+		scenes.pop_front();
+	}
+}
+
 void SceneManager::CangeScene(Scene* scene)
 {
 	// Sceneスタックが空じゃなかったら

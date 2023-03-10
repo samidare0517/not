@@ -10,7 +10,7 @@ class KeyGameClearScene : public Scene
 public:
 
 	KeyGameClearScene(SceneManager& manager);
-	~KeyGameClearScene();
+	virtual ~KeyGameClearScene();
 
 	void Update(const InputState& input);
 	void Draw();

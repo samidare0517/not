@@ -12,7 +12,7 @@ class GameExplanation : public Scene
 public:
 
 	GameExplanation(SceneManager& manager);
-	~GameExplanation();
+	virtual ~GameExplanation();
 
 	void Update(const InputState& input);
 

@@ -13,7 +13,7 @@ class KeyField : public Scene
 public:
 
 	KeyField(SceneManager& manager);
-	~KeyField();
+	virtual ~KeyField();
 
 	void Init();
 	void Update(const InputState& input);

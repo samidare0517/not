@@ -122,6 +122,12 @@ updateFunc(&MixGameClearScene::FadeInUpdate)
 	// BGMの読みこみ
 	musicClear = LoadSoundMem("data/BGM/GameClearBGM.mp3");
 
+	// BGMの音量を調整する
+	ChangeVolumeSoundMem(255 * 50 / 100, musicClear);
+
+	// BGMを呼び出す
+	PlaySoundMem(musicClear, DX_PLAYTYPE_LOOP, false);
+
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
 
@@ -155,11 +161,6 @@ void MixGameClearScene::Draw()
 	// 普通の描画
 	DrawGraph(0, 0, gameclearHandle, true);
 
-	// BGMの音量を調整する
-	ChangeVolumeSoundMem(255 * 50 / 100, musicClear);
-
-	// BGMを呼び出す
-	PlaySoundMem(musicClear, DX_PLAYTYPE_LOOP, false);
 	// ランダムになっているか(デバック用)
 //	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
 	// フレーム数(デバック用)

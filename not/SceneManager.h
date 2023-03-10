@@ -11,6 +11,8 @@ class SceneManager
 {
 public:
 
+	void End();
+
 	/// <summary>
 	/// ƒV[ƒ“‚ÌØ‚è‘Ö‚¦‚ğs‚¤
 	/// </summary>

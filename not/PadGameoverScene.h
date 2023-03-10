@@ -10,7 +10,7 @@ class PadGameoverScene : public Scene
 public:
 
 	PadGameoverScene(SceneManager& manager);
-	~PadGameoverScene();
+	virtual ~PadGameoverScene();
 
 	void Update(const InputState& input);
 	void Draw();

@@ -12,7 +12,7 @@ class PauseScene : public Scene
 {
 public:
 	PauseScene(SceneManager& manager);
-	~PauseScene();
+	virtual ~PauseScene();
 
 	virtual void Update(const InputState& input) override;
 	void CatInit();

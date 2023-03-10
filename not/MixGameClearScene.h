@@ -10,7 +10,7 @@ class MixGameClearScene : public Scene
 public:
 
 	MixGameClearScene(SceneManager& manager);
-	~MixGameClearScene();
+	virtual ~MixGameClearScene();
 
 	void Update(const InputState& input);
 	void Draw();

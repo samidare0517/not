@@ -11,7 +11,7 @@ class PadExplanationScene : public Scene
 public:
 
 	PadExplanationScene(SceneManager& manager);
-	~PadExplanationScene();
+	virtual ~PadExplanationScene();
 
 	void Update(const InputState& input);
 	void Draw();

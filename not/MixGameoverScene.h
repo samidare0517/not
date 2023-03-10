@@ -10,7 +10,7 @@ class MixGameoverScene : public Scene
 public:
 
 	MixGameoverScene(SceneManager& manager);
-	~MixGameoverScene();
+	virtual ~MixGameoverScene();
 
 	void Update(const InputState& input);
 	void Draw();
