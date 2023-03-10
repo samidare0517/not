@@ -69,23 +69,23 @@ void PadGameClearScene::FadeOutUpdate(const InputState& input)
 void PadGameClearScene::DrawAnimation()
 {
 	// ランダムにアニメーションを描画
-	switch (starnum)
+	switch (starNum)
 	{
 	case 1:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
+			starIndexX * starPosX, starIndexY * starPosY, starIndexX, starIndexY,
 			1, 0, starHandle1, true, false);
 		break;
 
 	case 2:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
+			starIndexX * starPosX, starIndexY * starPosY, starIndexX, starIndexY,
 			1, 0, starHandle2, true, false);
 		break;
 
 	case 3:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
+			starIndexX * starPosX, starIndexY * starPosY, starIndexX, starIndexY,
 			1, 0, starHandle3, true, false);
 		break;
 	}
@@ -95,25 +95,97 @@ void PadGameClearScene::DrawAnimation()
 	if (frameCount > 2)	//2フレームごとに画像を右に192移動させる
 	{
 		frameCount = 0;	// フレームカウントをリセット
-		posX++;	//1をプラスする
+		starPosX++;	//1をプラスする
 	}
-	if (posX >= 5)	// 画像の右まで移動すると左に戻す
+	if (starPosX >= 5)	// 画像の右まで移動すると左に戻す
 	{
-		posX = 0;	//0に戻す
-		posY += 1;	// アニメーションを一段下げる
+		starPosX = 0;	//0に戻す
+		starPosY += 1;	// アニメーションを一段下げる
 
 	}
-	if (posY >= 4)	//一番最後の段より大きくなろうとしたら
+	if (starPosY >= 4)	//一番最後の段より大きくなろうとしたら
 	{
-		posY = 0;	//ゼロに戻す
+		starPosY = 0;	//ゼロに戻す
 
 		//一番最後まで行ったら場所をランダムで生成する
 		srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
-		starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
+		starNum = rand() % randomNum + 1;		// 1～3の乱数を出す
 		starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 		starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
 	}
 }
+
+void PadGameClearScene::HanabiAnimation()
+{
+	// ランダムで3パターンの花火を表示する
+	switch (hanabiNum)
+	{
+	case 1:
+		DrawRectRotaGraph(150, 370,
+			120 * (hanabiAnimationNumber), hanabiImgIdx,
+			120, 120,
+			1.2f, 0.0f,
+			hanabiHandle1, true);
+
+		DrawRectRotaGraph(1400, 370,
+			120 * (hanabiAnimationNumber), hanabiImgIdx,
+			120, 120,
+			1.2f, 0.0f,
+			hanabiHandle2, true);
+		break;
+
+	case 2:
+		DrawRectRotaGraph(150, 370,
+			120 * (hanabiAnimationNumber), hanabiImgIdx,
+			120, 120,
+			1.2f, 0.0f,
+			hanabiHandle3, true);
+
+		DrawRectRotaGraph(1400, 370,
+			120 * (hanabiAnimationNumber), hanabiImgIdx,
+			120, 120,
+			1.2f, 0.0f,
+			hanabiHandle5, true);
+		break;
+
+	case 3:
+		DrawRectRotaGraph(150, 370,
+			120 * (hanabiAnimationNumber), hanabiImgIdx,
+			120, 120,
+			1.2f, 0.0f,
+			hanabiHandle4, true);
+
+		DrawRectRotaGraph(1400, 370,
+			120 * (hanabiAnimationNumber), hanabiImgIdx,
+			120, 120,
+			1.2f, 0.0f,
+			hanabiHandle6, true);
+		break;
+	}
+
+	//アニメーションが最後まで行ったら14に戻してあげる
+	if (hanabiAnimationNumber > 14)
+	{
+		hanabiAnimationNumber = 0;
+
+		srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
+		hanabiNum = rand() % hanabiRandomNum + 1;		// 1～3の乱数を出す		
+	}
+
+	timer++;        //時間のカウント
+
+	if (timer >= 5)
+	{
+		//インターバルより大きくなったらアニメーションを動かす
+		hanabiAnimationNumber++;
+
+		timer = 0;
+	}
+
+	// デバック用
+//	DrawFormatString(0, 0, GetColor(255, 255, 255), "何枚目か %d", hanabiNum);
+}
+
 
 PadGameClearScene::PadGameClearScene(SceneManager& manager) : Scene(manager),
 updateFunc(&PadGameClearScene::FadeInUpdate)
@@ -123,13 +195,21 @@ updateFunc(&PadGameClearScene::FadeInUpdate)
 	buttonBACKhandle = LoadGraph("data/button/buttonBACK.png");
 	buttonAhandle = LoadGraph("data/button/buttonA.png");
 	buttonBhandle = LoadGraph("data/button/buttonB.png");
+
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
 
+	hanabiHandle1 = LoadGraph("data/png/hanabi1.png");
+	hanabiHandle2 = LoadGraph("data/png/hanabi2.png");
+	hanabiHandle3 = LoadGraph("data/png/hanabi3.png");
+	hanabiHandle4 = LoadGraph("data/png/hanabi4.png");
+	hanabiHandle5 = LoadGraph("data/png/hanabi5.png");
+	hanabiHandle6 = LoadGraph("data/png/hanabi6.png");
+
 	//初期化
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
-	starnum = rand() % randomnum + 1;		// 1～3の乱数を出す
+	starNum = rand() % randomNum + 1;		// 1～3の乱数を出す
 	starX = rand() % 1400 + 192;	// 192～1400のランダムな数値 (画面内に描画)
 	starY = rand() % 650 + 192;	// 192～700のランダムな数値 (画面内に描画)
 
@@ -156,9 +236,17 @@ PadGameClearScene::~PadGameClearScene()
 	DeleteGraph(buttonBACKhandle);
 	DeleteGraph(buttonAhandle);
 	DeleteGraph(buttonBhandle);
+	
 	DeleteGraph(starHandle1);
 	DeleteGraph(starHandle2);
 	DeleteGraph(starHandle3);
+
+	DeleteGraph(hanabiHandle1);
+	DeleteGraph(hanabiHandle2);
+	DeleteGraph(hanabiHandle3);
+	DeleteGraph(hanabiHandle4);
+	DeleteGraph(hanabiHandle5);
+	DeleteGraph(hanabiHandle6);
 
 	// 音楽のデリート
 	DeleteSoundMem(musicClear);
@@ -181,7 +269,11 @@ void PadGameClearScene::Draw()
 	// フレーム数(デバック用)
 //	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
-	DrawAnimation();	// アニメーションを呼び出す
+	// 花火を描画
+	HanabiAnimation();
+
+	// 星を描画
+	DrawAnimation();
 
 	// 表示用文字
 

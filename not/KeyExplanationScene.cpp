@@ -107,7 +107,6 @@ void KeyExplanationScene::Draw()
 	DrawGraph(810, 440, buttonLShandle, true);
 
 
-
 	SetFontSize(40);
 	DrawFormatString(660, 620, GetColor(255, 255, 77), "ÉQÅ[ÉÄê‡ñæ");
 	SetFontSize(50);

@@ -13,6 +13,7 @@ public:
 	virtual ~KeyGameClearScene();
 
 	void Update(const InputState& input);
+	void HanabiAnimation();
 	void Draw();
 
 private:
@@ -21,21 +22,36 @@ private:
 	int buttonBACKhandle = -1;	// BACKボタン画像
 	int buttonAhandle = -1;		// Aボタン画像
 	int buttonBhandle = -1;		// Bボタン画像
+
 	int starHandle1 = -1;		// 流れ星アニメーション画像
 	int starHandle2 = -1;
 	int starHandle3 = -1;
 
-	int indexX = 192;		//画像サイズのインデックス
-	int indexY = 192;		//画像サイズのインデックス
-	int posX = 0;			//今のアニメーション
-	int posY = 0;
+	int hanabiHandle1 = -1;		// 花火アニメーション
+	int hanabiHandle2 = -1;
+	int hanabiHandle3 = -1;
+	int hanabiHandle4 = -1;
+	int hanabiHandle5 = -1;
+	int hanabiHandle6 = -1;
+
+	int starIndexX = 192;		//画像サイズのインデックス
+	int starIndexY = 192;		//画像サイズのインデックス
+	int starPosX = 0;			//今のアニメーション
+	int starPosY = 0;
 	int frameCount = 0;
 	int frame = 0;
 
-	int starnum = 0;	// 星の種類ランダム用
-	int randomnum = 3;	// 全体の問題バリエーション数
+	int starNum = 0;	// 星の種類ランダム用
+	int randomNum = 3;	// 全体の問題バリエーション数
 	int starX = 0;		// 星が描画されるX
 	int starY = 0;		// 星が描画されるY
+
+	int hanabiAnimationNumber = 0;
+	int hanabiImgIdx = 0;
+	int timer = 0;
+
+	int hanabiNum = 0;	// 花火の種類ランダム用
+	int hanabiRandomNum = 3;	// 花火のパターンの数
 
 	int musicClear = 0;		// クリアBGMハンドル
 	int seButton = 0;		// 次に行くときのSEハンドル
