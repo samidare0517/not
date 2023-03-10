@@ -75,7 +75,7 @@ void GameExplanation::Draw()
 {
 	// 背景描画
 	DrawGraph(0, 0, explanationHandle, true);
-	DrawGraph(20, 0, buttonRBhandle, true);
+	DrawGraph(1100, 720, buttonRBhandle, true);
 
 	// テスト用座標固定アニメーション
 	//DrawRectRotaGraph(200, 200,
@@ -96,14 +96,13 @@ void GameExplanation::Draw()
 	SetFontSize(50);
 	DrawFormatString(450, 450, GetColor(255, 255, 255),
 		"中央に表示される指示に従って");
-	DrawFormatString(400, 550, GetColor(255, 255, 255),
+	DrawFormatString(400, 650, GetColor(255, 255, 255),
 		"正しくゲームパットを操作してください");
 
 
 	
 	SetFontSize(30);
-	DrawFormatString(100, 28, GetColor(255, 255, 77),
-		"戻る");
+	DrawFormatString(1050, 746, GetColor(255, 255, 77),"戻る");
 	
 
 
