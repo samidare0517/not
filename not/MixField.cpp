@@ -100,7 +100,7 @@ void MixField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 5)
+	if (answerNum == 30)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
