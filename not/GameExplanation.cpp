@@ -93,24 +93,20 @@ void GameExplanation::Draw()
 
 	SetFontSize(100);
 	DrawFormatString(550, 200,GetColor(255, 255, 255), "ゲーム説明");
+	
 	SetFontSize(50);
 	DrawFormatString(450, 450, GetColor(255, 255, 255),
 		"中央に表示される指示に従って");
-	DrawFormatString(400, 650, GetColor(255, 255, 255),
+	DrawFormatString(400, 550, GetColor(255, 255, 255),
 		"正しくゲームパットを操作してください");
-
 
 	
 	SetFontSize(30);
 	DrawFormatString(1050, 746, GetColor(255, 255, 77),"戻る");
-	
-
-
 
 	//	DrawCircle(60, 60, 10, GetColor(255, 255, 255), true);
 
-
-		// シーン確認用
+	// シーン確認用
 	//	SetFontSize(50);
 	//	DrawFormatString(0, 0, GetColor(255, 255, 255), "タイトル");
 
