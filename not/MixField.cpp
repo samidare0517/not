@@ -417,6 +417,8 @@ void MixField::Draw()		// 問題の描画
 	// ポーズ案内表示
 	SetFontSize(20);
 	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・");
+	
+	// ポーズ用STARTボタン画像
 	DrawGraph(1000, 695, buttonSTARThandle, true);
 	
 	SetFontSize(50);
