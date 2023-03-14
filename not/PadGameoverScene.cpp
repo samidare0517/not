@@ -169,7 +169,7 @@ void PadGameoverScene::Draw()
 	ChangeFont("Comic Sans MS");	// Comic Sans MSに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 	SetFontSize(150);
-	DrawFormatString(260, 300, GetColor(191, 127, 255), "GAME OVER...");
+	DrawFormatString(350, 300, GetColor(191, 127, 255), "GAME OVER...");
 
 	DrawGraph(900, 550, buttonBACKhandle, true);
 	DrawGraph(900, 660, buttonBhandle, true);

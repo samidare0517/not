@@ -64,6 +64,10 @@ private:
 
 	int handle = 0;	// 背景用ハンドル
 
+	int maruHandle = 0;	// 正解用マル画像表示
+
+	int batuHandle = 0;	// 不正解用バツ画像表示
+
 	int buttonSTARThandle = 0;	// ポーズ画像用ハンドル
 
 	int musicGameScene = 0;	// ゲーム中BGMハンドル

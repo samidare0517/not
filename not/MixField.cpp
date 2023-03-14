@@ -35,6 +35,8 @@ MixField::~MixField()
 {
 	// 画像のデリート
 	DeleteGraph(handle);
+	DeleteGraph(maruHandle);
+	DeleteGraph(batuHandle);
 	DeleteGraph(buttonSTARThandle);
 
 	// 音楽のデリート
@@ -48,6 +50,10 @@ void MixField::Init()
 {
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
 	
+	maruHandle = LoadGraph("data/maru.png");	// 正解用マル画像
+
+	batuHandle = LoadGraph("data/batu.png");	// 正解用バツ画像
+
 	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");	// ポーズボタン用画像
 
 	// BGMの読みこみ
@@ -353,6 +359,7 @@ void MixField::NormalUpdate(const InputState& input)
 			}
 		}
 	}
+
 	// パッドのSTARTでポーズシーンへ
 	if (input.IsTriggred(InputType::pause))
 	{
@@ -575,6 +582,9 @@ void MixField::MissPressUp()	// 正解が上の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -597,6 +607,9 @@ void MixField::MissPressDown()// 正解が下の場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
 
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -621,6 +634,9 @@ void MixField::MissPressLeft()	// 正解が左の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -644,6 +660,9 @@ void MixField::MissPressRight()	// 正解が右の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -665,6 +684,9 @@ void MixField::NotPressUp()	// 問題の答えが上以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -685,6 +707,9 @@ void MixField::NotPressDown()	// 問題の答えが下以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -703,6 +728,9 @@ void MixField::NotPressLeft()	// 問題の答えが左以外の場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+		
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
 
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -723,6 +751,9 @@ void MixField::NotPressRight()	// 問題の答えが右以外の場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
 
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -748,6 +779,9 @@ void MixField::MissPressY()	// 正解がYの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -770,6 +804,9 @@ void MixField::MissPressA()	// 正解がAの場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
 
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -794,6 +831,9 @@ void MixField::MissPressX()	// 正解がXの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -817,6 +857,9 @@ void MixField::MissPressB()	// 正解がBの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+		
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -838,6 +881,9 @@ void MixField::NotPressY()	// 問題の答えがY以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -857,6 +903,9 @@ void MixField::NotPressA()	// 問題の答えがA以外の場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
 
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -878,6 +927,9 @@ void MixField::NotPressX()	// 問題の答えがX以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
 		// デバック用
@@ -897,6 +949,9 @@ void MixField::NotPressB()	// 問題の答えがA以外の場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
+
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
 
 		manager_.CangeScene(new MixGameoverScene(manager_));
 		return;
@@ -937,6 +992,9 @@ bool MixField::AnswerCheck()
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonYes, DX_PLAYTYPE_BACK, false);
+
+		// 正解用マル画像
+		DrawGraph(900, 550, maruHandle, true);
 
 	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}

@@ -35,6 +35,8 @@ KeyField::~KeyField()
 {
 	// 画像のデリート
 	DeleteGraph(handle);
+	DeleteGraph(maruHandle);
+	DeleteGraph(batuHandle);
 	DeleteGraph(buttonSTARThandle);
 
 	// 音楽のデリート
@@ -48,6 +50,10 @@ KeyField::~KeyField()
 void KeyField::Init()
 {
 	handle = LoadGraph("data/Back.png");	// 背景用画像
+
+	maruHandle = LoadGraph("data/maru.png");	// 正解用マル画像
+	
+	batuHandle = LoadGraph("data/batu.png");	// 正解用バツ画像
 
 	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");	// ポーズボタン用画像
 
@@ -90,7 +96,7 @@ void KeyField::NormalUpdate(const InputState& input)
 			num = rand() % randomnum + 1;
 		}
 		answerNum++;
-		question--;
+		question--;	// 表示用の問題数を減らす
 	}
 	else if (kTime.Check() == true)	// タイムバーが0になっていたらゲームオーバー処理へ
 	{
@@ -395,6 +401,9 @@ void KeyField::MissPressUp()	// 正解が上の場合
 	if (Pad::isTrigger(PAD_INPUT_DOWN) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -407,7 +416,7 @@ void KeyField::MissPressUp()	// 正解が上の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");	
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");	
 	}
 }
 
@@ -416,6 +425,9 @@ void KeyField::MissPressDown()	// 正解が下の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_LEFT) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -428,7 +440,7 @@ void KeyField::MissPressDown()	// 正解が下の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -437,6 +449,9 @@ void KeyField::MissPressLeft()	// 正解が左の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -449,7 +464,7 @@ void KeyField::MissPressLeft()	// 正解が左の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -458,6 +473,9 @@ void KeyField::MissPressRight()	// 正解が右の場合
 	if (Pad::isTrigger(PAD_INPUT_UP) || Pad::isTrigger(PAD_INPUT_DOWN) ||
 		Pad::isTrigger(PAD_INPUT_LEFT))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -470,7 +488,7 @@ void KeyField::MissPressRight()	// 正解が右の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -479,6 +497,9 @@ void KeyField::NotPressUp()	// 問題の答えが上以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_UP))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -491,7 +512,7 @@ void KeyField::NotPressUp()	// 問題の答えが上以外の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -499,6 +520,9 @@ void KeyField::NotPressDown()	// 問題の答えが下以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_DOWN))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -511,7 +535,7 @@ void KeyField::NotPressDown()	// 問題の答えが下以外の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -519,6 +543,9 @@ void KeyField::NotPressLeft()	// 問題の答えが左以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_LEFT))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -531,7 +558,7 @@ void KeyField::NotPressLeft()	// 問題の答えが左以外の場合
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -539,6 +566,9 @@ void KeyField::NotPressRight()	// 問題の答えが右以外の場合
 {
 	if (Pad::isTrigger(PAD_INPUT_RIGHT))
 	{
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		// 不正解用SEの読み込み
 		seButtonNo = LoadSoundMem("data/BGM/FuseikaiSE.mp3");
 
@@ -547,11 +577,11 @@ void KeyField::NotPressRight()	// 問題の答えが右以外の場合
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
-
+		
 		manager_.CangeScene(new KeyGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -587,6 +617,9 @@ bool KeyField::AnswerCheck()
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonYes, DX_PLAYTYPE_BACK, false);
+
+		// 正解用マル画像
+		DrawGraph(900, 550, maruHandle, true);
 
 	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}

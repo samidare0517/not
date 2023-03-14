@@ -113,6 +113,7 @@ void TitleScene::DrawCatAnimation()
 			4.0f, 0.0f,				//拡大率、回転角度
 			catHandle2, true);
 		break;
+
 	case 3:
 		DrawRectRotaGraph(catX, catY,//表示したい座標の指定
 			32 * animationNumber,

@@ -35,6 +35,8 @@ PadField::~PadField()
 {
 	// 画像のデリート
 	DeleteGraph(handle);
+	DeleteGraph(maruHandle);
+	DeleteGraph(batuHandle);
 	DeleteGraph(buttonSTARThandle);
 
 	// 音楽のデリート
@@ -47,6 +49,10 @@ PadField::~PadField()
 void PadField::Init()
 {
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
+
+	maruHandle = LoadGraph("data/maru.png");	// 正解用マル画像
+
+	batuHandle = LoadGraph("data/batu.png");	// 正解用バツ画像
 
 	buttonSTARThandle = LoadGraph("data/button/buttonSTART.png");	// ポーズボタン用画像
 
@@ -399,10 +405,13 @@ void PadField::MissPressY()	// 正解がYの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -420,10 +429,13 @@ void PadField::MissPressA()	// 正解がAの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -441,10 +453,13 @@ void PadField::MissPressX()	// 正解がXの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -462,10 +477,13 @@ void PadField::MissPressB()	// 正解がBの場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -483,10 +501,13 @@ void PadField::NotPressY()	// 問題の答えがY以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -503,10 +524,13 @@ void PadField::NotPressA()	// 問題の答えがA以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -523,10 +547,13 @@ void PadField::NotPressX()	// 問題の答えがX以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -543,10 +570,13 @@ void PadField::NotPressB()	// 問題の答えがA以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
+		// 不正解用バツ画像表示
+		DrawGraph(900, 550, batuHandle, true);
+
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
-		DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
+	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
 	}
 }
 
@@ -582,6 +612,9 @@ bool PadField::AnswerCheck()
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonYes, DX_PLAYTYPE_BACK, false);
+
+		// 正解用マル画像
+		DrawGraph(900, 550, maruHandle, true);
 
 	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}
