@@ -46,14 +46,14 @@ private:
 	int randomnum = 8;	// 全体の問題バリエーション数
 
 	// 問題の文字表示位置
-	int mozi0X = 765;	// 通常用
-	int mozi0Y = 400;	// 通常用
+	int mozi0X = 765;	// 通常用(ABXY)
+	int mozi0Y = 400;	// 通常用(ABXY)
 
-	int mozi1X = 765;	// じゃない用一行目
-	int mozi1Y = 350;	// じゃない用一行目
+	int mozi1X = 765;	// じゃない用一行目(ABXY)
+	int mozi1Y = 350;	// じゃない用一行目(ABXY)
 
-	int mozi2X = 640;	// じゃない用二行目
-	int mozi2Y = 450;	// じゃない用二行目
+	int mozi2X = 640;	// じゃない用二行目(ABXY)
+	int mozi2Y = 450;	// じゃない用二行目(ABXY)
 
 
 	int questionNum = 30;	// 問題を繰り返す回数
