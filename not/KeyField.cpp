@@ -295,7 +295,7 @@ void KeyField::Draw()		// 問題の描画
 	SetFontSize(20);
 	DrawFormatString(900, 720, GetColor(255, 255, 255), "ポーズ ・・・");
 	DrawGraph(1000, 695, buttonSTARThandle, true);
-	
+
 	SetFontSize(50);
 
 	if (countNum != 0)	// countNumが0ではなかったら数字を減らしながら表示する
