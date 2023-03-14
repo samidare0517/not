@@ -15,10 +15,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     // windowモード設定
     ChangeWindowMode(Game::kWindowMode);
 
-    SetWindowSizeChangeEnableFlag(true);    //ウィンドウモードの拡大縮小(サイズ変更)
-    SetAlwaysRunFlag(true); //dxlib.exeにフォーカス合わせなくても更新処理を続けてくれる関数
+    //ウィンドウモードの拡大縮小(サイズ変更)
+    SetWindowSizeChangeEnableFlag(true);
+
+    //dxlib.exeにフォーカス合わせなくても更新処理を続けてくれる関数
+    SetAlwaysRunFlag(true);
  
-                            // ウインドウ名設定
+    // ウインドウ名設定
     SetMainWindowText("Simple Brain Training");
 
     // 画面サイズの設定
@@ -48,9 +51,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         input.Update();
         sceneManager.Update(input);
         sceneManager.Draw();
-
-
-      
+  
         // 裏画面を表画面を入れ替える
         ScreenFlip();
   
