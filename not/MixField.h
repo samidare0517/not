@@ -57,15 +57,23 @@ private:
 	int randomnum = 16;	// 全体の問題バリエーション数
 
 	// 問題の文字表示位置
-	int mozi0X = 765;	// 通常用
-	int mozi0Y = 400;	// 通常用
+	int mozi0X = 760;	// 通常用(上下右左)
+	int mozi0Y = 400;	// 通常用(上下右左)
 
-	int mozi1X = 765;	// じゃない用一行目
-	int mozi1Y = 350;	// じゃない用一行目
+	int mozi1X = 760;	// じゃない用一行目(上下左右)
+	int mozi1Y = 350;	// じゃない用一行目(上下左右)
 
-	int mozi2X = 640;	// じゃない用二行目
-	int mozi2Y = 450;	// じゃない用二行目
+	int mozi2X = 640;	// じゃない用二行目(上下左右)
+	int mozi2Y = 450;	// じゃない用二行目(上下左右)
 
+	int mozi3X = 765;	// 通常用(ABXY)
+	int mozi3Y = 400;	// 通常用(ABXY)
+	
+	int mozi4X = 765;	// じゃない用一行目(ABXY)
+	int mozi4Y = 350;	// じゃない用一行目(ABXY)
+
+	int mozi5X = 640;	// じゃない用二行目(ABXY)
+	int mozi5Y = 450;	// じゃない用二行目(ABXY)
 
 	int questionNum = 30;	// 問題を繰り返す回数
 
