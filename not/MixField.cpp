@@ -362,6 +362,8 @@ void MixField::NormalUpdate(const InputState& input)
 		// SE‚Ì‰¹—Ê‚ğ’²®‚·‚é
 		ChangeVolumeSoundMem(255 * 150 / 100, seButtonPause);
 
+		// SE‚ğŒÄ‚Ño‚·
+		PlaySoundMem(seButtonPause, DX_PLAYTYPE_BACK, false);
 		manager_.PushScene(new PauseScene(manager_));
 	}
 }
