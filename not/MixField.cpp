@@ -18,14 +18,14 @@ namespace
 
 void MixField::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	fadeValue = 225 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &MixField::NormalUpdate;
 	}
 }
 
-MixField::MixField(SceneManager& manager) :Scene(manager),
+MixField::MixField(SceneManager& manager) : Scene(manager),
 updateFunc(&MixField::FadeInUpdate)
 {
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
@@ -95,7 +95,7 @@ void MixField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 30)
+	if (answerNum == 1)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
@@ -385,7 +385,7 @@ void MixField::CountDownUpdate()
 
 void MixField::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	fadeValue = 225 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
 	if (++fadeTimer == fadeInterval)
 	{
 		manager_.CangeScene(new MixGameOverScene(manager_));
@@ -415,8 +415,6 @@ void MixField::Draw()		// 問題の描画
 	
 	// ポーズ用STARTボタン画像
 	DrawGraph(1000, 695, buttonSTARThandle, true);
-	
-	SetFontSize(50);
 
 	// 文字を拡大
 	SetFontSize(100);
@@ -975,12 +973,12 @@ void MixField::TimeUp()
 // 正解の入力
 bool MixField::AnswerCheck()
 {
-
-	SetFontSize(50);
-
 	// trueだったら正解正解ボタンが押されるまでは待機
 	if (answerCheck == true)
 	{
+		// 正解用マル画像
+		DrawGraph(700, 350, maruHandle, true);
+
 		// 正解用SEの読みこみ
 		seButtonYes = LoadSoundMem("data/BGM/SeikaiSE.mp3");
 
@@ -989,9 +987,6 @@ bool MixField::AnswerCheck()
 
 		// SEを呼び出す
 		PlaySoundMem(seButtonYes, DX_PLAYTYPE_BACK, false);
-
-		// 正解用マル画像
-		DrawGraph(700, 350, maruHandle, true);
 
 	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}

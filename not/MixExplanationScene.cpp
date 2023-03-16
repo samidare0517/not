@@ -33,7 +33,7 @@ void MixExplanationScene::NormalUpdate(const InputState& input)
 
 void MixExplanationScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
+	fadeValue = 255 * (static_cast<int>(fadeTimer) / static_cast<int>(fadeIntarval));
 	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new MixField(manager_));

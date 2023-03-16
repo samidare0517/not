@@ -9,7 +9,7 @@
 
 void KeyGameOverScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	fadeValue = 255 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &KeyGameOverScene::NormalUpdate;

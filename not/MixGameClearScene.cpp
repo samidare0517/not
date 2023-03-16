@@ -8,7 +8,7 @@
 
 void MixGameClearScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	fadeValue = 255 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &MixGameClearScene::NormalUpdate;
@@ -46,7 +46,7 @@ void MixGameClearScene::NormalUpdate(const InputState& input)
 
 void MixGameClearScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
+	fadeValue = 255 * (static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval));
 	if (++fadeTimer == fadeInterval)
 	{
 		manager_.CangeScene(new MixField(manager_));
