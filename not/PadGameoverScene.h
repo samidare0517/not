@@ -5,12 +5,12 @@
 /// パッド問題用ゲームオーバーシーン
 /// </summary>
 
-class PadGameoverScene : public Scene
+class PadGameOverScene : public Scene
 {
 public:
 
-	PadGameoverScene(SceneManager& manager);
-	virtual ~PadGameoverScene();
+	PadGameOverScene(SceneManager& manager);
+	virtual ~PadGameOverScene();
 
 	void Update(const InputState& input);
 	void Draw();
@@ -50,13 +50,10 @@ private:
 	// 通常時のUpdate関数
 	void NormalUpdate(const InputState& input);
 
-	// フェードアウト時のUpdate関数
-	void FadeOutUpdate(const InputState& input);
-
 	// アニメーション時のDraw関数
-	void DrawAnimation();
+	void StarAnimation();
 
-	using UpdateFunc_t = void(PadGameoverScene::*)(const InputState&);
+	using UpdateFunc_t = void(PadGameOverScene::*)(const InputState&);
 	UpdateFunc_t updateFunc = nullptr;
 };
 

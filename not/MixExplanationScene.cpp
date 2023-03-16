@@ -41,10 +41,6 @@ void MixExplanationScene::FadeOutUpdate(const InputState& input)
 	}
 }
 
-void MixExplanationScene::Function()
-{
-}
-
 MixExplanationScene::MixExplanationScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&MixExplanationScene::FadeInUpdate)
 {

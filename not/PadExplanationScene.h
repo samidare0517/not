@@ -42,7 +42,6 @@ private:
 	// Update用メンバ関数ポインタ
 	void (PadExplanationScene::* updateFunc_)(const InputState& input);
 
-	void Function();
 
 };
 

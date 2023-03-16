@@ -78,13 +78,13 @@
     <ClCompile Include="KeyGameClearScene.cpp">
       <Filter>ソース ファイル\KeyGame</Filter>
     </ClCompile>
-    <ClCompile Include="KeyGameoverScene.cpp">
+    <ClCompile Include="KeyGameOverScene.cpp">
       <Filter>ソース ファイル\KeyGame</Filter>
     </ClCompile>
     <ClCompile Include="PadGameClearScene.cpp">
       <Filter>ソース ファイル\PadGame</Filter>
     </ClCompile>
-    <ClCompile Include="PadGameoverScene.cpp">
+    <ClCompile Include="PadGameOverScene.cpp">
       <Filter>ソース ファイル\PadGame</Filter>
     </ClCompile>
     <ClCompile Include="MixField.cpp">
@@ -93,7 +93,7 @@
     <ClCompile Include="MixGameClearScene.cpp">
       <Filter>ソース ファイル\MixGame</Filter>
     </ClCompile>
-    <ClCompile Include="MixGameoverScene.cpp">
+    <ClCompile Include="MixGameOverScene.cpp">
       <Filter>ソース ファイル\MixGame</Filter>
     </ClCompile>
     <ClCompile Include="MixTimeBar.cpp">
@@ -152,13 +152,13 @@
     <ClInclude Include="KeyGameClearScene.h">
       <Filter>ヘッダー ファイル\KeyGame</Filter>
     </ClInclude>
-    <ClInclude Include="KeyGameoverScene.h">
+    <ClInclude Include="KeyGameOverScene.h">
       <Filter>ヘッダー ファイル\KeyGame</Filter>
     </ClInclude>
     <ClInclude Include="PadGameClearScene.h">
       <Filter>ヘッダー ファイル\PadGame</Filter>
     </ClInclude>
-    <ClInclude Include="PadGameoverScene.h">
+    <ClInclude Include="PadGameOverScene.h">
       <Filter>ヘッダー ファイル\PadGame</Filter>
     </ClInclude>
     <ClInclude Include="MixField.h">
@@ -167,7 +167,7 @@
     <ClInclude Include="MixGameClearScene.h">
       <Filter>ヘッダー ファイル\MixGame</Filter>
     </ClInclude>
-    <ClInclude Include="MixGameoverScene.h">
+    <ClInclude Include="MixGameOverScene.h">
       <Filter>ヘッダー ファイル\MixGame</Filter>
     </ClInclude>
     <ClInclude Include="MixTimeBar.h">

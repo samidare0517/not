@@ -7,17 +7,17 @@
 #include <time.h>		// ランダム用
 #include "DxLib.h"
 
-void KeyGameoverScene::FadeInUpdate(const InputState& input)
+void KeyGameOverScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &KeyGameoverScene::NormalUpdate;
+		updateFunc = &KeyGameOverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void KeyGameoverScene::NormalUpdate(const InputState& input)
+void KeyGameOverScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
@@ -31,6 +31,7 @@ void KeyGameoverScene::NormalUpdate(const InputState& input)
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
+
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
@@ -45,32 +46,33 @@ void KeyGameoverScene::NormalUpdate(const InputState& input)
 	}
 }
 
-void KeyGameoverScene::FadeOutUpdate(const InputState& input)
+void KeyGameOverScene::StarAnimation()
 {
-
-}
-
-void KeyGameoverScene::DrawAnimation()
-{
-	// ランダムにアニメーションを描画
+	// ランダムに星アニメーションを描画
 	switch (starnum)
 	{
 	case 1:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle1, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle1,
+						  true, false);
 		break;
 
 	case 2:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle2, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle2,
+						  true, false);
 		break;
 
 	case 3:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle3, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle3,
+						  true, false);
 		break;
 	}
 
@@ -99,13 +101,14 @@ void KeyGameoverScene::DrawAnimation()
 	}
 }
 
-KeyGameoverScene::KeyGameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc(&KeyGameoverScene::FadeInUpdate)
+KeyGameOverScene::KeyGameOverScene(SceneManager& manager) : Scene(manager),
+updateFunc(&KeyGameOverScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameoverHandle = LoadGraph("data/OverBack.png");
 	buttonBACKhandle = LoadGraph("data/button/buttonBACK.png");
 	buttonBhandle = LoadGraph("data/button/buttonB.png");
+	
 	starHandle1 = LoadGraph("data/png/star1.png");
 	starHandle2 = LoadGraph("data/png/star2.png");
 	starHandle3 = LoadGraph("data/png/star3.png");
@@ -132,7 +135,7 @@ updateFunc(&KeyGameoverScene::FadeInUpdate)
 	seBackButton = LoadSoundMem("data/BGM/BackTitleSE.mp3");
 }
 
-KeyGameoverScene::~KeyGameoverScene()
+KeyGameOverScene::~KeyGameOverScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameoverHandle);
@@ -148,12 +151,12 @@ KeyGameoverScene::~KeyGameoverScene()
 	DeleteSoundMem(seBackButton);
 }
 
-void KeyGameoverScene::Update(const InputState& input)
+void KeyGameOverScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void KeyGameoverScene::Draw()
+void KeyGameOverScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameoverHandle, true);
@@ -163,7 +166,7 @@ void KeyGameoverScene::Draw()
 	// フレーム数(デバック用)
 //	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
-	DrawAnimation();	// アニメーションを呼び出す
+	StarAnimation();	// アニメーションを呼び出す
 
 	// 表示用文字
 	ChangeFont("Comic Sans MS");	// Comic Sans MSに変更

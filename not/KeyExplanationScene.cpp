@@ -30,6 +30,7 @@ void KeyExplanationScene::NormalUpdate(const InputState& input)
 
 		updateFunc_ = &KeyExplanationScene::FadeOutUpdate;
 	}
+
 	// RBボタンが押されたらゲーム説明のシーンへ移行する
 	if (input.IsTriggred(InputType::button))
 	{
@@ -60,10 +61,6 @@ void KeyExplanationScene::FadeOutUpdate2(const InputState& input)
 		manager_.CangeScene(new GameExplanation(manager_));
 		return;
 	}
-}
-
-void KeyExplanationScene::Function()
-{
 }
 
 KeyExplanationScene::KeyExplanationScene(SceneManager& manager) : Scene(manager),

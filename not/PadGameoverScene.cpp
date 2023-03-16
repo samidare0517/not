@@ -7,17 +7,17 @@
 #include <time.h>		// ランダム用
 #include "DxLib.h"
 
-void PadGameoverScene::FadeInUpdate(const InputState& input)
+void PadGameOverScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &PadGameoverScene::NormalUpdate;
+		updateFunc = &PadGameOverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void PadGameoverScene::NormalUpdate(const InputState& input)
+void PadGameOverScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
@@ -31,6 +31,7 @@ void PadGameoverScene::NormalUpdate(const InputState& input)
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
+
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
@@ -45,32 +46,33 @@ void PadGameoverScene::NormalUpdate(const InputState& input)
 	}
 }
 
-void PadGameoverScene::FadeOutUpdate(const InputState& input)
+void PadGameOverScene::StarAnimation()
 {
-
-}
-
-void PadGameoverScene::DrawAnimation()
-{
-	// ランダムにアニメーションを描画
+	// ランダムに星アニメーションを描画
 	switch (starnum)
 	{
 	case 1:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle1, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle1,
+						  true, false);
 		break;
 
 	case 2:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle2, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle2,
+						  true, false);
 		break;
 
 	case 3:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle3, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle3,
+						  true, false);
 		break;
 	}
 
@@ -99,8 +101,8 @@ void PadGameoverScene::DrawAnimation()
 	}
 }
 
-PadGameoverScene::PadGameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc(&PadGameoverScene::FadeInUpdate)
+PadGameOverScene::PadGameOverScene(SceneManager& manager) : Scene(manager),
+updateFunc(&PadGameOverScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameoverHandle = LoadGraph("data/OverBack.png");
@@ -132,7 +134,7 @@ updateFunc(&PadGameoverScene::FadeInUpdate)
 	seBackButton = LoadSoundMem("data/BGM/BackTitleSE.mp3");
 }
 
-PadGameoverScene::~PadGameoverScene()
+PadGameOverScene::~PadGameOverScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameoverHandle);
@@ -148,12 +150,12 @@ PadGameoverScene::~PadGameoverScene()
 	DeleteSoundMem(seBackButton);
 }
 
-void PadGameoverScene::Update(const InputState& input)
+void PadGameOverScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void PadGameoverScene::Draw()
+void PadGameOverScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameoverHandle, true);
@@ -163,7 +165,7 @@ void PadGameoverScene::Draw()
 	// フレーム数(デバック用)
 //	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
-	DrawAnimation();	// アニメーションを呼び出す
+	StarAnimation();	// アニメーションを呼び出す
 
 	// 表示用文字
 	ChangeFont("Comic Sans MS");	// Comic Sans MSに変更

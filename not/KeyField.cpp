@@ -253,7 +253,7 @@ void KeyField::FadeOutUpdate(const InputState& input)
 	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (++fadeTimer == fadeInterval)
 	{
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 	}
 }
@@ -411,7 +411,7 @@ void KeyField::MissPressUp()	// 正解が上の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");	
@@ -435,7 +435,7 @@ void KeyField::MissPressDown()	// 正解が下の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -459,7 +459,7 @@ void KeyField::MissPressLeft()	// 正解が左の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -483,7 +483,7 @@ void KeyField::MissPressRight()	// 正解が右の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -507,7 +507,7 @@ void KeyField::NotPressUp()	// 問題の答えが上以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -530,7 +530,7 @@ void KeyField::NotPressDown()	// 問題の答えが下以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -553,7 +553,7 @@ void KeyField::NotPressLeft()	// 問題の答えが左以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -576,7 +576,7 @@ void KeyField::NotPressRight()	// 問題の答えが右以外の場合
 		// SEを呼び出す
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 		
-		manager_.CangeScene(new KeyGameoverScene(manager_));
+		manager_.CangeScene(new KeyGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");

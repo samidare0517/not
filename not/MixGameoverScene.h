@@ -5,12 +5,12 @@
 /// ミックス問題用ゲームオーバーシーン
 /// </summary>
 
-class MixGameoverScene : public Scene
+class MixGameOverScene : public Scene
 {
 public:
 
-	MixGameoverScene(SceneManager& manager);
-	virtual ~MixGameoverScene();
+	MixGameOverScene(SceneManager& manager);
+	virtual ~MixGameOverScene();
 
 	void Update(const InputState& input);
 	void Draw();
@@ -20,19 +20,23 @@ private:
 	int gameoverHandle = -1;	// 画像
 	int buttonBACKhandle = -1;	// BACKボタン画像
 	int buttonBhandle = -1;		// Bボタン画像
+	
 	int starHandle1 = -1;		// 流れ星アニメーション画像
 	int starHandle2 = -1;
 	int starHandle3 = -1;
 
 	int indexX = 192;		//画像サイズのインデックス
 	int indexY = 192;		//画像サイズのインデックス
+	
 	int posX = 0;			//今のアニメーション
 	int posY = 0;
+	
 	int frameCount = 0;
 	int frame = 0;
 
 	int starnum = 0;// 星の種類ランダム用
 	int randomnum = 3;// 全体の問題バリエーション数
+	
 	int starX = 0;	// 星が描画されるX
 	int starY = 0;	// 星が描画されるY
 
@@ -50,13 +54,10 @@ private:
 	// 通常時のUpdate関数
 	void NormalUpdate(const InputState& input);
 
-	// フェードアウト時のUpdate関数
-	void FadeOutUpdate(const InputState& input);
-
 	// アニメーション時のDraw関数
-	void DrawAnimation();
+	void StarAnimation();
 
-	using UpdateFunc_t = void(MixGameoverScene::*)(const InputState&);
+	using UpdateFunc_t = void(MixGameOverScene::*)(const InputState&);
 	UpdateFunc_t updateFunc = nullptr;
 };
 

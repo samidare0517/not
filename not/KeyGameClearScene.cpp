@@ -31,6 +31,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
+
 	// 次の問題に進む場合
 	if (input.IsTriggred(InputType::next))
 	{
@@ -42,6 +43,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 
 		updateFunc = &KeyGameClearScene::FadeOutUpdate;
 	}
+
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
@@ -66,27 +68,33 @@ void KeyGameClearScene::FadeOutUpdate(const InputState& input)
 	}
 }
 
-void KeyGameClearScene::DrawAnimation()
+void KeyGameClearScene::StarAnimation()
 {
 	// ランダムにアニメーションを描画
 	switch (starNum)
 	{
 	case 1:
 		DrawRectRotaGraph(starX, starY,
-			starIndexX * starPosX, starIndexY * starPosY, starIndexX, starIndexY,
-			1, 0, starHandle1, true, false);
+						  starIndexX * starPosX, starIndexY * starPosY,
+						  starIndexX, starIndexY,
+						  1, 0, starHandle1,
+						  true, false);
 		break;
 
 	case 2:
 		DrawRectRotaGraph(starX, starY,
-			starIndexX * starPosX, starIndexY * starPosY, starIndexX, starIndexY,
-			1, 0, starHandle2, true, false);
+						  starIndexX * starPosX, starIndexY * starPosY,
+						  starIndexX, starIndexY,
+						  1, 0, starHandle2,
+						  true, false);
 		break;
 
 	case 3:
 		DrawRectRotaGraph(starX, starY,
-			starIndexX * starPosX, starIndexY * starPosY, starIndexX, starIndexY,
-			1, 0, starHandle3, true, false);
+						  starIndexX * starPosX, starIndexY * starPosY,
+						  starIndexX, starIndexY,
+						  1, 0, starHandle3,
+						  true, false);
 		break;
 	}
 
@@ -292,7 +300,7 @@ void KeyGameClearScene::Draw()
 	HanabiAnimation();
 
 	// 星を描画
-	DrawAnimation();
+	StarAnimation();
 
 	// 表示用文字
 

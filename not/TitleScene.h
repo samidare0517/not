@@ -71,9 +71,9 @@ private:
 	void (TitleScene::* updateFunc)(const InputState& input);
 
 	// 星アニメーション時のDraw関数
-	void DrawStarAnimation();
+	void StarAnimation();
 
 	// 猫アニメーション時のDraw関数
-	void DrawCatAnimation();
+	void CatAnimation();
 };
 

@@ -42,8 +42,6 @@ void GameExplanation::FadeOutUpdate(const InputState& input)
 	}
 }
 
-
-
 GameExplanation::GameExplanation(SceneManager& manager) : Scene(manager),
 updateFunc(&GameExplanation::FadeInUpdate)
 {
@@ -69,7 +67,6 @@ void GameExplanation::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
-
 
 void GameExplanation::Draw()
 {

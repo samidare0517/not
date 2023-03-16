@@ -43,6 +43,5 @@ private:
 	// Update用メンバ関数ポインタ
 	void (MixExplanationScene::* updateFunc_)(const InputState& input);
 
-	void Function();
 };
 

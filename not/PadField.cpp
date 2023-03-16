@@ -261,7 +261,7 @@ void PadField::FadeOutUpdate(const InputState& input)
 	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (++fadeTimer == fadeInterval)
 	{
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 	}
 }
@@ -405,7 +405,7 @@ void PadField::MissPressY()	// 正解がYの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 	
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -429,7 +429,7 @@ void PadField::MissPressA()	// 正解がAの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -453,7 +453,7 @@ void PadField::MissPressX()	// 正解がXの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -477,7 +477,7 @@ void PadField::MissPressB()	// 正解がBの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -501,7 +501,7 @@ void PadField::NotPressY()	// 問題の答えがY以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -524,7 +524,7 @@ void PadField::NotPressA()	// 問題の答えがA以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -547,7 +547,7 @@ void PadField::NotPressX()	// 問題の答えがX以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -570,7 +570,7 @@ void PadField::NotPressB()	// 問題の答えがA以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new PadGameoverScene(manager_));
+		manager_.CangeScene(new PadGameOverScene(manager_));
 		return;
 		// デバック用
 	//	DrawFormatString(0, 220, GetColor(255, 255, 255), "×");

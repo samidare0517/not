@@ -35,13 +35,16 @@ private:
 
 	int starIndexX = 192;		//画像サイズのインデックス
 	int starIndexY = 192;		//画像サイズのインデックス
+
 	int starPosX = 0;			//今のアニメーション
 	int starPosY = 0;
+	
 	int frameCount = 0;
 	int frame = 0;
 
 	int starNum = 0;// 星の種類ランダム用
 	int randomNum = 3;// 全体の問題バリエーション数
+	
 	int starX = 0;	// 星が描画されるX
 	int starY = 0;	// 星が描画されるY
 
@@ -71,7 +74,7 @@ private:
 	void FadeOutUpdate(const InputState& input);
 
 	// アニメーション時のDraw関数
-	void DrawAnimation();
+	void StarAnimation();
 
 	using UpdateFunc_t = void(MixGameClearScene::*)(const InputState&);
 	UpdateFunc_t updateFunc = nullptr;

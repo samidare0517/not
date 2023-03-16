@@ -41,10 +41,6 @@ void PadExplanationScene::FadeOutUpdate(const InputState& input)
 	}
 }
 
-void PadExplanationScene::Function()
-{
-}
-
 PadExplanationScene::PadExplanationScene(SceneManager& manager) : Scene(manager),
 updateFunc_(&PadExplanationScene::FadeInUpdate)
 {

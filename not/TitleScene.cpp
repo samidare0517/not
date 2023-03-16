@@ -42,27 +42,33 @@ void TitleScene::FadeOutUpdate(const InputState& input)
 	}
 }
 
-void TitleScene::DrawStarAnimation()
+void TitleScene::StarAnimation()
 {
 	// ランダムに星のアニメーションを描画
 	switch (starNum)
 	{
 	case 1:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle1, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle1,
+						  true, false);
 		break;
 
 	case 2:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle2, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle2,
+						  true, false);
 		break;
 
 	case 3:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle3, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle3,
+						  true, false);
 		break;
 	}
 
@@ -91,7 +97,7 @@ void TitleScene::DrawStarAnimation()
 	}
 }
 
-void TitleScene::DrawCatAnimation()
+void TitleScene::CatAnimation()
 {
 	// ランダムに猫のアニメーションを描画
 	switch (catNum)
@@ -233,8 +239,8 @@ void TitleScene::Draw()
 	// フレーム数(デバック用)
 //	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 	
-	DrawStarAnimation();	// 星のアニメーションを呼び出す
-	DrawCatAnimation();		// 猫のアニメーションを呼び出す
+	StarAnimation();	// 星のアニメーションを呼び出す
+	CatAnimation();		// 猫のアニメーションを呼び出す
 
 	DrawGraph(200, 340, titlerogoHandle, true);	// タイトルロゴを描画
 

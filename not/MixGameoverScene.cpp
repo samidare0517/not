@@ -7,17 +7,17 @@
 #include <time.h>		// ランダム用
 #include "DxLib.h"
 
-void MixGameoverScene::FadeInUpdate(const InputState& input)
+void MixGameOverScene::FadeInUpdate(const InputState& input)
 {
 	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
-		updateFunc = &MixGameoverScene::NormalUpdate;
+		updateFunc = &MixGameOverScene::NormalUpdate;
 		fadeValue = 0;
 	}
 }
 
-void MixGameoverScene::NormalUpdate(const InputState& input)
+void MixGameOverScene::NormalUpdate(const InputState& input)
 {
 	// タイトルの場合
 	if (input.IsTriggred(InputType::title))
@@ -31,6 +31,7 @@ void MixGameoverScene::NormalUpdate(const InputState& input)
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
+
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
@@ -45,32 +46,33 @@ void MixGameoverScene::NormalUpdate(const InputState& input)
 	}
 }
 
-void MixGameoverScene::FadeOutUpdate(const InputState& input)
+void MixGameOverScene::StarAnimation()
 {
-
-}
-
-void MixGameoverScene::DrawAnimation()
-{
-	// ランダムにアニメーションを描画
+	// ランダムに星アニメーションを描画
 	switch (starnum)
 	{
 	case 1:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle1, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle1,
+						  true, false);
 		break;
 
 	case 2:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle2, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle2,
+						  true, false);
 		break;
 
 	case 3:
 		DrawRectRotaGraph(starX, starY,
-			indexX * posX, indexY * posY, indexX, indexY,
-			1, 0, starHandle3, true, false);
+						  indexX * posX, indexY * posY,
+						  indexX, indexY,
+						  1, 0, starHandle3,
+						  true, false);
 		break;
 	}
 
@@ -99,8 +101,8 @@ void MixGameoverScene::DrawAnimation()
 	}
 }
 
-MixGameoverScene::MixGameoverScene(SceneManager& manager) : Scene(manager),
-updateFunc(&MixGameoverScene::FadeInUpdate)
+MixGameOverScene::MixGameOverScene(SceneManager& manager) : Scene(manager),
+updateFunc(&MixGameOverScene::FadeInUpdate)
 {
 	// 画像のロード
 	gameoverHandle = LoadGraph("data/OverBack.png");
@@ -133,7 +135,7 @@ updateFunc(&MixGameoverScene::FadeInUpdate)
 
 }
 
-MixGameoverScene::~MixGameoverScene()
+MixGameOverScene::~MixGameOverScene()
 {
 	// 画像のデリート
 	DeleteGraph(gameoverHandle);
@@ -149,12 +151,12 @@ MixGameoverScene::~MixGameoverScene()
 	DeleteSoundMem(seBackButton);
 }
 
-void MixGameoverScene::Update(const InputState& input)
+void MixGameOverScene::Update(const InputState& input)
 {
 	(this->*updateFunc)(input);
 }
 
-void MixGameoverScene::Draw()
+void MixGameOverScene::Draw()
 {
 	// 普通の描画
 	DrawGraph(0, 0, gameoverHandle, true);
@@ -164,7 +166,7 @@ void MixGameoverScene::Draw()
 	// フレーム数(デバック用)
 //	DrawFormatString(0, 300, GetColor(255, 255, 255), "フレーム:% d\n", frameCount);
 
-	DrawAnimation();	// アニメーションを呼び出す
+	StarAnimation();	// アニメーションを呼び出す
 
 	// 表示用文字
 	ChangeFont("Comic Sans MS");	// Comic Sans MSに変更

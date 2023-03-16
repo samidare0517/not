@@ -5,12 +5,12 @@
 /// キー問題用ゲームオーバーシーン
 /// </summary>
 
-class KeyGameoverScene : public Scene
+class KeyGameOverScene : public Scene
 {
 public:
 
-	KeyGameoverScene(SceneManager& manager);
-	virtual ~KeyGameoverScene();
+	KeyGameOverScene(SceneManager& manager);
+	virtual ~KeyGameOverScene();
 
 	void Update(const InputState& input);
 	void Draw();
@@ -50,13 +50,10 @@ private:
 	// 通常時のUpdate関数
 	void NormalUpdate(const InputState& input);
 
-	// フェードアウト時のUpdate関数
-	void FadeOutUpdate(const InputState& input);
-
 	// アニメーション時のDraw関数
-	void DrawAnimation();
+	void StarAnimation();
 
-	using UpdateFunc_t = void(KeyGameoverScene::*)(const InputState&);
+	using UpdateFunc_t = void(KeyGameOverScene::*)(const InputState&);
 	UpdateFunc_t updateFunc = nullptr;
 
 };

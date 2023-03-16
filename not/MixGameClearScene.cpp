@@ -30,6 +30,7 @@ void MixGameClearScene::NormalUpdate(const InputState& input)
 		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
+
 	// リスタートの場合
 	if (input.IsTriggred(InputType::prev))
 	{
@@ -53,9 +54,9 @@ void MixGameClearScene::FadeOutUpdate(const InputState& input)
 	}
 }
 
-void MixGameClearScene::DrawAnimation()
+void MixGameClearScene::StarAnimation()
 {
-	// ランダムにアニメーションを描画
+	// ランダムに星アニメーションを描画
 	switch (starNum)
 	{
 	case 1:
@@ -267,7 +268,7 @@ void MixGameClearScene::Draw()
 	HanabiAnimation();
 
 	// 星を描画
-	DrawAnimation();
+	StarAnimation();
 
 	// 表示用文字
 

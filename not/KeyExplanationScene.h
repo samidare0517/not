@@ -46,7 +46,6 @@ private:
 	// Update用メンバ関数ポインタ
 	void (KeyExplanationScene::* updateFunc_)(const InputState& input);
 
-	void Function();
 
 };
 
