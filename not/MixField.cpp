@@ -388,7 +388,7 @@ void MixField::FadeOutUpdate(const InputState& input)
 	fadeValue = 225 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
 	if (++fadeTimer == fadeInterval)
 	{
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 	}
 }
@@ -582,7 +582,7 @@ void MixField::MissPressUp()	// 正解が上の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -608,7 +608,7 @@ void MixField::MissPressDown()// 正解が下の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -634,7 +634,7 @@ void MixField::MissPressLeft()	// 正解が左の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -660,7 +660,7 @@ void MixField::MissPressRight()	// 正解が右の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -684,7 +684,7 @@ void MixField::NotPressUp()	// 問題の答えが上以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -707,7 +707,7 @@ void MixField::NotPressDown()	// 問題の答えが下以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -729,7 +729,7 @@ void MixField::NotPressLeft()	// 問題の答えが左以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -752,7 +752,7 @@ void MixField::NotPressRight()	// 問題の答えが右以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -779,7 +779,7 @@ void MixField::MissPressY()	// 正解がYの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -805,7 +805,7 @@ void MixField::MissPressA()	// 正解がAの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -831,7 +831,7 @@ void MixField::MissPressX()	// 正解がXの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -857,7 +857,7 @@ void MixField::MissPressB()	// 正解がBの場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 		
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -881,7 +881,7 @@ void MixField::NotPressY()	// 問題の答えがY以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -904,7 +904,7 @@ void MixField::NotPressA()	// 問題の答えがA以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -927,7 +927,7 @@ void MixField::NotPressX()	// 問題の答えがX以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
@@ -950,7 +950,7 @@ void MixField::NotPressB()	// 問題の答えがA以外の場合
 		// 不正解用バツ画像表示
 		DrawGraph(700, 350, batuHandle, true);
 
-		manager_.CangeScene(new MixGameoverScene(manager_));
+		manager_.CangeScene(new MixGameOverScene(manager_));
 		return;
 		// デバック用
 		//DrawFormatString(0, 220, GetColor(255, 255, 255), "×");
