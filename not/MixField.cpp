@@ -2,7 +2,7 @@
 #include "InputState.h"
 #include "TitleScene.h"
 #include "SceneManager.h"
-#include "MixGameoverScene.h"
+#include "MixGameOverScene.h"
 #include "MixGameClearScene.h"
 #include "PauseScene.h"
 #include "DxLib.h"

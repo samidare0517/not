@@ -2,7 +2,7 @@
 #include "InputState.h"
 #include "TitleScene.h"
 #include "SceneManager.h"
-#include "PadGameoverScene.h"
+#include "PadGameOverScene.h"
 #include "PadGameClearScene.h"
 #include "PauseScene.h"
 #include "DxLib.h"

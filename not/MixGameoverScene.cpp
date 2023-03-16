@@ -1,4 +1,4 @@
-#include "MixGameoverScene.h"
+#include "MixGameOverScene.h"
 #include "InputState.h"
 #include "SceneManager.h"
 #include "TitleScene.h"

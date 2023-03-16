@@ -3,7 +3,7 @@
 #include "TitleScene.h"
 #include "SceneManager.h"
 #include "PauseScene.h"
-#include "KeyGameoverScene.h"
+#include "KeyGameOverScene.h"
 #include <time.h>		// ƒ‰ƒ“ƒ_ƒ€—p
 #include "DxLib.h"
 

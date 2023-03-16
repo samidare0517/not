@@ -2,7 +2,7 @@
 #include "InputState.h"
 #include "TitleScene.h"
 #include "SceneManager.h"
-#include "KeyGameoverScene.h"
+#include "KeyGameOverScene.h"
 #include "KeyGameClearScene.h"
 #include "PauseScene.h"
 #include "DxLib.h"
