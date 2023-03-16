@@ -18,7 +18,7 @@ namespace
 
 void KeyField::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 225 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
+	fadeValue = 255 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &KeyField::NormalUpdate;
@@ -250,7 +250,7 @@ void KeyField::NormalUpdate(const InputState& input)
 
 void KeyField::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 225 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
+	fadeValue = 255 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
 	if (++fadeTimer == fadeInterval)
 	{
 		manager_.CangeScene(new KeyGameOverScene(manager_));
