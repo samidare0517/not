@@ -28,26 +28,6 @@ void PadField::FadeInUpdate(const InputState& input)
 PadField::PadField(SceneManager& manager) :Scene(manager),
 updateFunc(&PadField::FadeInUpdate)
 {
-	Init();
-}
-
-PadField::~PadField()
-{
-	// 画像のデリート
-	DeleteGraph(handle);
-	DeleteGraph(maruHandle);
-	DeleteGraph(batuHandle);
-	DeleteGraph(buttonSTARThandle);
-
-	// 音楽のデリート
-	DeleteSoundMem(musicGameScene);
-	DeleteSoundMem(seButtonYes);
-	DeleteSoundMem(seButtonNo);
-	DeleteSoundMem(seButtonPause);
-}
-
-void PadField::Init()
-{
 	handle = LoadGraph("data/Back.png");	// タイムバー用画像
 
 	maruHandle = LoadGraph("data/maru.png");	// 正解用マル画像
@@ -73,6 +53,21 @@ void PadField::Init()
 
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
 	num = rand() % randomnum + 1;		// 1～8の乱数を出す
+}
+
+PadField::~PadField()
+{
+	// 画像のデリート
+	DeleteGraph(handle);
+	DeleteGraph(maruHandle);
+	DeleteGraph(batuHandle);
+	DeleteGraph(buttonSTARThandle);
+
+	// 音楽のデリート
+	DeleteSoundMem(musicGameScene);
+	DeleteSoundMem(seButtonYes);
+	DeleteSoundMem(seButtonNo);
+	DeleteSoundMem(seButtonPause);
 }
 
 void PadField::NormalUpdate(const InputState& input)
@@ -408,8 +403,8 @@ void PadField::MissPressY()	// 正解がYの場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
-
+		DrawGraph(700, 350, batuHandle, true);
+	
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
 		// デバック用
@@ -432,7 +427,7 @@ void PadField::MissPressA()	// 正解がAの場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -456,7 +451,7 @@ void PadField::MissPressX()	// 正解がXの場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -480,7 +475,7 @@ void PadField::MissPressB()	// 正解がBの場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -504,7 +499,7 @@ void PadField::NotPressY()	// 問題の答えがY以外の場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -527,7 +522,7 @@ void PadField::NotPressA()	// 問題の答えがA以外の場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -550,7 +545,7 @@ void PadField::NotPressX()	// 問題の答えがX以外の場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -573,7 +568,7 @@ void PadField::NotPressB()	// 問題の答えがA以外の場合
 		PlaySoundMem(seButtonNo, DX_PLAYTYPE_BACK, false);
 
 		// 不正解用バツ画像表示
-		DrawGraph(900, 550, batuHandle, true);
+		DrawGraph(700, 350, batuHandle, true);
 
 		manager_.CangeScene(new PadGameoverScene(manager_));
 		return;
@@ -616,7 +611,7 @@ bool PadField::AnswerCheck()
 		PlaySoundMem(seButtonYes, DX_PLAYTYPE_BACK, false);
 
 		// 正解用マル画像
-		DrawGraph(900, 550, maruHandle, true);
+		DrawGraph(700, 350, maruHandle, true);
 
 	//	DrawFormatString(0, 350, GetColor(255, 255, 255), "〇");
 	}

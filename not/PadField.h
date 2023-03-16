@@ -15,7 +15,6 @@ public:
 	PadField(SceneManager& manager);
 	virtual ~PadField();
 
-	void Init();
 	void Update(const InputState& input);
 	void Draw();
 	void DrawField();

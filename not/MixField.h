@@ -15,7 +15,6 @@ public:
 	MixField(SceneManager& manager);
 	virtual ~MixField();
 
-	void Init();
 	void Update(const InputState& input);
 	void Draw();
 	void DrawField();
