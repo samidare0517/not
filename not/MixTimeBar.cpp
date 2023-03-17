@@ -51,7 +51,7 @@ void MixTimeBar::Update()
 
 	int Mtime = 4;	// タイマーの数字
 	int Mtb = 1100;	// タイムバーの一番右
-	float test = ((Mtb - 500) / Mtime) / 60;
+	float test = ((Mtb - static_cast<float>(500)) / Mtime) / 60;
 
 	if (tb <= 500)
 	{
@@ -59,7 +59,7 @@ void MixTimeBar::Update()
 	}
 	else if (tb >= 500)
 	{
-		tb -= test;
+		tb -= static_cast<int>(test);
 	}
 	if (time <= 0)
 	{
