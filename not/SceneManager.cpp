@@ -43,7 +43,7 @@ void SceneManager::Update(const InputState& input)
 
 void SceneManager::Draw()
 {
-	for (int i = scenes.size() - 1; i >= 0; --i)
+	for (int i = static_cast<int>(scenes.size() - 1); i >= 0; --i)
 	{
 		scenes[i]->Draw();
 	}
