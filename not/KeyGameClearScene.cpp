@@ -9,7 +9,7 @@
 
 void KeyGameClearScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 255 * static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval);
+	fadeValue = static_cast<int>(255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &KeyGameClearScene::NormalUpdate;
@@ -60,7 +60,7 @@ void KeyGameClearScene::NormalUpdate(const InputState& input)
 
 void KeyGameClearScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<int>(fadeTimer) / static_cast<int>(fadeInterval));
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval)));
 	if (++fadeTimer == fadeInterval)
 	{
 		manager_.CangeScene(new PadExplanationScene(manager_));

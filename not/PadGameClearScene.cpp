@@ -9,7 +9,7 @@
 
 void PadGameClearScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	fadeValue = static_cast<int>(255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &PadGameClearScene::NormalUpdate;
@@ -60,7 +60,7 @@ void PadGameClearScene::NormalUpdate(const InputState& input)
 
 void PadGameClearScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval)));
 	if (++fadeTimer == fadeInterval)
 	{
 		manager_.CangeScene(new MixExplanationScene(manager_));

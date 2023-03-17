@@ -9,7 +9,7 @@
 
 void PadGameOverScene::FadeInUpdate(const InputState& input)
 {
-	fadeValue = 255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval);
+	fadeValue = static_cast<int>(255 * static_cast<float>(fadeTimer) / static_cast<float>(fadeInterval));
 	if (--fadeTimer == 0)
 	{
 		updateFunc = &PadGameOverScene::NormalUpdate;

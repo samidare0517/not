@@ -45,7 +45,7 @@ void KeyExplanationScene::NormalUpdate(const InputState& input)
 
 void KeyExplanationScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<int>(fadeTimer) / static_cast<int>(fadeIntarval));
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval)));
 	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new KeyField(manager_));
@@ -55,7 +55,7 @@ void KeyExplanationScene::FadeOutUpdate(const InputState& input)
 
 void KeyExplanationScene::FadeOutUpdate2(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<int>(fadeTimer) / static_cast<int>(fadeIntarval));
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval)));
 	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new GameExplanation(manager_));

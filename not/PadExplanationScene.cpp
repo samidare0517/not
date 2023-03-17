@@ -33,7 +33,7 @@ void PadExplanationScene::NormalUpdate(const InputState& input)
 
 void PadExplanationScene::FadeOutUpdate(const InputState& input)
 {
-	fadeValue = 255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval));
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval)));
 	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new PadField(manager_));
