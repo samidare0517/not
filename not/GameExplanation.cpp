@@ -47,7 +47,8 @@ updateFunc(&GameExplanation::FadeInUpdate)
 {
 	// 画像のロード
 	explanationHandle = LoadGraph("data/KeyGameSetumei.png");
-	buttonRBhandle = LoadGraph("data/button/buttonRB.png");
+	buttonRBHandle = LoadGraph("data/button/buttonRB.png");
+	gameScreenHanadle = LoadGraph("data/gamesene.png");
 
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
@@ -57,7 +58,7 @@ GameExplanation::~GameExplanation()
 {
 	// 画像のデリート
 	DeleteGraph(explanationHandle);
-	DeleteGraph(buttonRBhandle);
+	DeleteGraph(buttonRBHandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(seButton);
@@ -72,7 +73,8 @@ void GameExplanation::Draw()
 {
 	// 背景描画
 	DrawGraph(0, 0, explanationHandle, true);
-	DrawGraph(1100, 720, buttonRBhandle, true);
+	DrawGraph(1100, 825, buttonRBHandle, true);
+	DrawGraph(670, 580, gameScreenHanadle, true);
 
 	// テスト用座標固定アニメーション
 	//DrawRectRotaGraph(200, 200,
@@ -89,17 +91,19 @@ void GameExplanation::Draw()
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
 
 	SetFontSize(100);
-	DrawFormatString(550, 200,GetColor(255, 255, 255), "ゲーム説明");
+	DrawFormatString(550, 150,GetColor(255, 255, 255), "ゲーム説明");
 	
 	SetFontSize(50);
-	DrawFormatString(450, 450, GetColor(255, 255, 255),
+	DrawFormatString(450, 350, GetColor(255, 255, 255),
 		"中央に表示される指示に従って");
-	DrawFormatString(400, 550, GetColor(255, 255, 255),
+	DrawFormatString(400, 450, GetColor(255, 255, 255),
 		"正しくゲームパットを操作してください");
-
+	
+	SetFontSize(20);
+	DrawFormatString(710, 850, GetColor(255, 255, 255), "ゲーム画面イメージ");
 	
 	SetFontSize(30);
-	DrawFormatString(1050, 746, GetColor(255, 255, 77),"戻る");
+	DrawFormatString(1050, 850, GetColor(255, 255, 77),"戻る");
 
 	//	DrawCircle(60, 60, 10, GetColor(255, 255, 255), true);
 

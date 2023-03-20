@@ -21,7 +21,9 @@ public:
 private:
 
 	int explanationHandle = -1;		// タイトル画像
-	int buttonRBhandle = -1;	// RBボタン画像
+	int buttonRBHandle = -1;	// RBボタン画像
+	int gameScreenHanadle = -1;	// ゲーム画面画像
+
 	int musicTitle = 0;	// タイトルBGMハンドル
 	int seButton = 0;	// 次に行くときのSEハンドル
 
