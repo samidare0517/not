@@ -21,9 +21,7 @@ private:
 
 	int Handle = -1;		// 画像
 	int buttonAhandle = -1;	// Aボタン画像
-	int buttonRBhandle = -1;	// RBボタン画像
 	int buttonPadhandle = -1;	// 十字ボタン画像
-	int buttonLShandle = -1;	// LSスティック画像
 
 	int seButton = 0;	// 次に行くときのSEハンドル
 
@@ -40,8 +38,6 @@ private:
 	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
 
-	// フェードアウト2時のUpdate関数
-	void FadeOutUpdate2(const InputState& input);
 
 	// Update用メンバ関数ポインタ
 	void (KeyExplanationScene::* updateFunc_)(const InputState& input);

@@ -105,7 +105,7 @@ void MixExplanationScene::Draw()
 	if (BrinkCounter < 80)
 	{
 		DrawGraph(810, 700, buttonAhandle, true);
-		DrawFormatString(680, 740, GetColor(255, 255, 77), "PUSH");
+		DrawFormatString(680, 740, GetColor(255, 255, 77), "NEXT");
 	}
 
 	// 今から各画像とすでに描画されているスクリーンとのブレンドの仕方を指定

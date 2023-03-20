@@ -6,9 +6,11 @@
 // ゲーム中で使用される仮想入力情報
 enum class InputType
 {
-	button,	// ボタンで次へ進む場合
+	RBbutton,	// ボタンで次へ進む場合
+	LBbotton,	// ステージセレクト用ボタン
 	next,	// 次へ行くボタン
 	prev,	// 前に戻るボタン
+	next2,	// Xボタン用ボタン	
 	title,	// タイトルに戻る
 	pause,	// ポーズボタン
 	max		// 最大入力インデックス

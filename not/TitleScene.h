@@ -29,6 +29,8 @@ private:
 	int catHandle3 = -1;
 	
 	int buttonAhandle = -1;	// ボタン画像
+	int buttonRBhandle = -1;	// RBボタン画像
+	int buttonLBhandle = -1;	// LBボタン画像
 
 	int indexX = 192;		//画像サイズのインデックス
 	int indexY = 192;		//画像サイズのインデックス
@@ -66,6 +68,12 @@ private:
 
 	// フェードアウト時のUpdate関数
 	void FadeOutUpdate(const InputState& input);
+
+	// フェードアウト2時のUpdate関数
+	void FadeOutUpdate2(const InputState& input);
+
+	// フェードアウト3時のUpdate関数
+	void FadeOutUpdate3(const InputState& input);
 
 	// Update用メンバ関数ポインタ
 	void (TitleScene::* updateFunc)(const InputState& input);

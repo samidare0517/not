@@ -5,13 +5,19 @@
 InputState::InputState()
 {
 	// ボタンで次へ進む場合
-	defaultMapTable[InputType::button] = { {InputCategory::pad,PAD_INPUT_Z} };//RBボタン
+	defaultMapTable[InputType::RBbutton] = { {InputCategory::pad,PAD_INPUT_Z} };//RBボタン
+
+	// ステージセレクト用ボタン
+	defaultMapTable[InputType::LBbotton] = { {InputCategory::pad,PAD_INPUT_Y} };//LBボタン
 
 	// 次へ
 	defaultMapTable[InputType::next] = { {InputCategory::pad,PAD_INPUT_1} };//Aボタン
 
 	// 前へ
 	defaultMapTable[InputType::prev] = { {InputCategory::pad,PAD_INPUT_2} };//Bボタン
+
+	// Xボタン用ボタン
+	defaultMapTable[InputType::next2] = { {InputCategory::pad,PAD_INPUT_3} };//Xボタン
 
 	// タイトルへ
 	defaultMapTable[InputType::title] = { {InputCategory::pad,PAD_INPUT_L} };//BACKボタン

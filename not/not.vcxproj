@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameExplanation.cpp" />
+    <ClCompile Include="GameSelect.cpp" />
     <ClCompile Include="KeyExplanationScene.cpp" />
     <ClCompile Include="KeyField.cpp" />
     <ClCompile Include="KeyGameClearScene.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameExplanation.h" />
+    <ClInclude Include="GameSelect.h" />
     <ClInclude Include="KeyExplanationScene.h" />
     <ClInclude Include="KeyField.h" />
     <ClInclude Include="game.h" />

@@ -3,6 +3,7 @@
 #include "InputState.h"
 #include "SceneManager.h"
 #include "PauseScene.h"
+#include "TitleScene.h"
 #include "KeyGameOverScene.h"
 #include <time.h>		// ランダム用
 #include "DxLib.h"
@@ -20,7 +21,7 @@ void GameExplanation::FadeInUpdate(const InputState& input)
 void GameExplanation::NormalUpdate(const InputState& input)
 {
 	// 次へボタンが押されたら次のシーンへ移行する
-	if (input.IsTriggred(InputType::button))
+	if (input.IsTriggred(InputType::RBbutton))
 	{
 		// SEの音量を調整する
 		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
@@ -37,7 +38,7 @@ void GameExplanation::FadeOutUpdate(const InputState& input)
 	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval)));
 	if (++fadeTimer == fadeIntarval)
 	{
-		manager_.CangeScene(new KeyExplanationScene(manager_));
+		manager_.CangeScene(new TitleScene(manager_));
 		return;
 	}
 }

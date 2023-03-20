@@ -2,6 +2,8 @@
 #include "InputState.h"
 #include "TitleScene.h"
 #include "SceneManager.h"
+#include "GameExplanation.h"
+#include "GameSelect.h"
 #include "PauseScene.h"
 #include "KeyGameOverScene.h"
 #include <time.h>		// ランダム用
@@ -30,6 +32,30 @@ void TitleScene::NormalUpdate(const InputState& input)
 
 		updateFunc = &TitleScene::FadeOutUpdate;
 	}
+
+
+	// RBボタンが押されたらゲーム説明のシーンへ移行する
+	if (input.IsTriggred(InputType::RBbutton))
+	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
+		updateFunc = &TitleScene::FadeOutUpdate2;
+	}
+
+	// LBボタンが押されたらステージセレクトへシーン移行する
+	if (input.IsTriggred(InputType::LBbotton))
+	{
+		// SEの音量を調整する
+		ChangeVolumeSoundMem(255 * 60 / 100, seButton);
+
+		// SEを呼び出す
+		PlaySoundMem(seButton, DX_PLAYTYPE_BACK, false);
+		updateFunc = &TitleScene::FadeOutUpdate3;
+	}
+
 }
 
 void TitleScene::FadeOutUpdate(const InputState& input)
@@ -38,6 +64,26 @@ void TitleScene::FadeOutUpdate(const InputState& input)
 	if (++fadeTimer == fadeIntarval)
 	{
 		manager_.CangeScene(new KeyExplanationScene(manager_));
+		return;
+	}
+}
+
+void TitleScene::FadeOutUpdate2(const InputState& input)
+{
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval)));
+	if (++fadeTimer == fadeIntarval)
+	{
+		manager_.CangeScene(new GameExplanation(manager_));
+		return;
+	}
+}
+
+void TitleScene::FadeOutUpdate3(const InputState& input)
+{
+	fadeValue = static_cast<int>(255 * (static_cast<float>(fadeTimer) / static_cast<float>(fadeIntarval)));
+	if (++fadeTimer == fadeIntarval)
+	{
+		manager_.CangeScene(new GameSelect(manager_));
 		return;
 	}
 }
@@ -177,6 +223,8 @@ updateFunc(&TitleScene::FadeInUpdate)
 	catHandle3  = LoadGraph("data/cat/indigo_0.png");
 	
 	buttonAhandle = LoadGraph("data/button/buttonA.png");
+	buttonRBhandle = LoadGraph("data/button/buttonRB.png");
+	buttonLBhandle = LoadGraph("data/button/buttonLB.png");
 
 	//初期化
 	srand((unsigned int)time(NULL));	// 現在時刻の情報で初期化
@@ -217,6 +265,8 @@ TitleScene::~TitleScene()
 	DeleteGraph(catHandle3);
 
 	DeleteGraph(buttonAhandle);
+	DeleteGraph(buttonRBhandle);
+	DeleteGraph(buttonLBhandle);
 
 	// 音楽のデリート
 	DeleteSoundMem(musicTitle);
@@ -233,6 +283,12 @@ void TitleScene::Draw()
 {
 	// 背景描画
 	DrawGraph(0, 0, titleHandle, true);
+	DrawGraph(880, 475, buttonRBhandle, true);
+	DrawGraph(895, 600, buttonLBhandle, true);
+
+	SetFontSize(40);
+	DrawFormatString(600, 500, GetColor(255, 255, 77), "ゲーム説明");
+	DrawFormatString(560, 600, GetColor(255, 255, 77), "ステージセレクト");
 
 	// ランダムになっているか(デバック用)
 //	DrawFormatString(0, 200, GetColor(255, 255, 255), "星:% d\n", starnum);
@@ -242,7 +298,7 @@ void TitleScene::Draw()
 	StarAnimation();	// 星のアニメーションを呼び出す
 	CatAnimation();		// 猫のアニメーションを呼び出す
 
-	DrawGraph(200, 340, titlerogoHandle, true);	// タイトルロゴを描画
+	DrawGraph(200, 200, titlerogoHandle, true);	// タイトルロゴを描画
 
 	ChangeFont("UD デジタル 教科書体 NK-B");	// UD デジタル 教科書体 NK-Bに変更
 	ChangeFontType(DX_FONTTYPE_ANTIALIASING);	// アンチエイリアスフォント
@@ -256,9 +312,9 @@ void TitleScene::Draw()
 	}
 	if (BrinkCounter < 80)
 	{
-		DrawGraph(790, 610, buttonAhandle, true);
+		DrawGraph(820, 710, buttonAhandle, true);
 		SetFontSize(50);
-		DrawFormatString(660, 650, GetColor(255, 255, 77), "PUSH");
+		DrawFormatString(670, 750, GetColor(255, 255, 77), "PUSH");
 	}
 
 	// シーン確認用
