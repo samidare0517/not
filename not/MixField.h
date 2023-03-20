@@ -74,9 +74,9 @@ private:
 	int mozi5X = 640;	// じゃない用二行目(ABXY)
 	int mozi5Y = 450;	// じゃない用二行目(ABXY)
 
-	int questionNum = 30;	// 問題を繰り返す回数
+	int questionNum = 20;	// 問題を繰り返す回数
 
-	int question = 30;	// 表示用問題数
+	int question = 20;	// 表示用問題数
 
 	int answerNum = 0;	// 問題の正解回数
 

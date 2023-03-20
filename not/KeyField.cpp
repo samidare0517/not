@@ -49,7 +49,7 @@ updateFunc(&KeyField::FadeInUpdate)
 
 	answerNum = 0;	// 問題の正解数カウントを0にする(初期化)
 
-	question = 30;	// 残り問題数を初期化
+	question = 20;	// 残り問題数を初期化
 
 	countDown = 180;	// カウントダウン初期化
 
@@ -101,7 +101,7 @@ void KeyField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 30)
+	if (answerNum == 20)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
