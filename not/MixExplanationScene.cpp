@@ -51,7 +51,6 @@ updateFunc_(&MixExplanationScene::FadeInUpdate)
 	buttonXhandle = LoadGraph("data/button/buttonX.png");
 	buttonYhandle = LoadGraph("data/button/buttonY.png");
 	buttonPadhandle = LoadGraph("data/button/buttonPad.png");
-	buttonLShandle = LoadGraph("data/button/buttonLS.png");
 
 	// SEの読み込み
 	seButton = LoadSoundMem("data/BGM/NextSE.mp3");
@@ -66,8 +65,6 @@ MixExplanationScene::~MixExplanationScene()
 	DeleteGraph(buttonXhandle);
 	DeleteGraph(buttonYhandle);
 	DeleteGraph(buttonPadhandle);
-	DeleteGraph(buttonLShandle);
-
 	// 音楽のデリート
 	DeleteSoundMem(seButton);
 }
@@ -85,13 +82,11 @@ void MixExplanationScene::Draw()
 	DrawGraph(670, 558, buttonBhandle, true);
 	DrawGraph(820, 558, buttonXhandle, true);
 	DrawGraph(970, 558, buttonYhandle, true);
-	DrawGraph(660, 460, buttonPadhandle, true);
-	DrawGraph(830, 460, buttonLShandle, true);
+	DrawGraph(750, 460, buttonPadhandle, true);
 
 	SetFontSize(50);
 	DrawFormatString(550, 410, GetColor(127, 255, 127), "3問目はミックス問題です");
 
-	DrawFormatString(770, 500, GetColor(255, 255, 255), "OR");
 	DrawFormatString(520, 600, GetColor(255, 255, 255), "       &       &       &");
 
 
