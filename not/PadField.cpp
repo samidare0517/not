@@ -95,7 +95,7 @@ void PadField::NormalUpdate(const InputState& input)
 
 	// 正解数が30になったらクリア画面へ
 	SetFontSize(50);
-	if (answerNum == 1)
+	if (answerNum == 20)
 	{
 		answerCheck = false;	// 正解のフラグの初期化
 
